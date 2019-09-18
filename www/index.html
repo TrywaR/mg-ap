@@ -5,37 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MG app</title>
+
+    <!-- jquery -->
+    <script src="lib/jqeury/jquery-3.4.1.min.js"></script>
+    <!-- jquery x -->
+
+    <!-- bootstrap -->
+    <!-- <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"> -->
+    <!-- <script src="lib/bootstrap/css/bootstrap.min.js"></script> -->
+    <!-- bootstrap x -->
+
+    <!-- main -->
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.min.js"></script>
+    <!-- main -->
 </head>
 <body>
-    <header>
-      <div class="header_block">
-        <button type="button" name="button">Меню</button>
-      </div>
-      <div class="header_block">
-      </div>
-    </header>
-
-    <main>
-        <h1>
-          Да-да, войдите!
-        </h1>
+  <div class="pages" id="pages">
+    <section class="page level_0">
+      <main class="page_login">
         <form action="">
-          <label>
-            <p>Имя</p>
-            <input type="text" name="name" value="">
-          </label>
+          <div class="block_input">
+            <label>
+              <p class="label">Имя</p>
+              <input type="text" class="input" name="name" value="">
+            </label>
+          </div>
 
-          <label>
-            <p>Пароль</p>
-            <input type="text" name="pass" value="">
-          </label>
+          <div class="block_input">
+            <label>
+              <p class="label">Пароль</p>
+              <input type="text" class="input" name="pass" value="">
+            </label>
+          </div>
 
-          <button type="submit" name="button">Вхожу!</button>
+          <div class="block_buttons">
+            <button class="button" type="submit" name="button">Вхожу!</button>
+          </div>
+
+          <div class="block_sub_text">
+            <a href="">
+              Если вы забыли пароль, <br> нажмите сюда
+            </a>
+          </div>
         </form>
-    </main>
+      </main>
+    </section>
 
-    <footer>
-    </footer>
+    <section class="page level_1">
+      <header>
+        <div class="block_header_buttons">
+          <button class="_item main_menu_show" type="button" id="main_menu_show" name="button">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <button class="_item" type="button" name="button">Отменить</button>
+          <button class="_item" type="button" name="button">Сохранить</button>
+        </div>
+        <div id="main_menu" class="block_main_menu">
+          <nav class="main_menu">
+            <ul>
+              <li class="_active_">
+                <a class="content_upload" href="templates/profile.htm">
+                  Профиль
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/chats.htm">
+                  Чаты
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/schedule.htm">
+                  Расписание
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/profile.htm">
+                  Курсы
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/members.htm">
+                  Участники
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/trainers.htm">
+                  Тренеры
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/online_support.htm">
+                  Онлайн поддержка
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/faq.htm">
+                  F.A.Q
+                </a>
+              </li>
+              <li>
+                <a class="content_upload" href="templates/privacy.htm">
+                  О программе и политика конфиденциальности
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page_profile">
+        <div class="row">
+          <div class="profile_img">
+            <img src="img/profile.png" alt="">
+          </div>
+          <div class="profile_info">
+            <div class="_name">ЕФИМОВА ВЕРОНИКА ВЛАДИМИРОВНА</div>
+            <div class="_points">777 <span>баллов</span></div>
+          </div>
+        </div>
+        Страница профиля - content
+      </main>
+
+      <footer>
+      </footer>
+    </section>
+
+    <section class="page level_2">
+      <header>
+        <div class="block_header_buttons">
+          <button class="_item main_menu_back" type="button" name="button">
+            <
+          </button>
+          <button class="_item" type="button" name="button">Сохранить</button>
+        </div>
+      </header>
+      <main>
+        Редактирование профиля
+      </main>
+      <footer></footer>
+    </section>
+  </div>
 </body>
 </html>
