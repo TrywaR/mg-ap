@@ -3,6 +3,7 @@ function profile_progress(){
   if ( $(document).find('.profile_progress').length > 0 ) {
 
     $(document).find('.profile_progress .step._yes').each(function(index, elem){
+      $(this).addClass('_load')
       height = 100
       if ( $(this).find('._tree').data().progress )
         height = $(this).find('._tree').data().progress
