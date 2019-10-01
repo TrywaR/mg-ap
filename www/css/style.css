@@ -298,7 +298,7 @@ main ._content {
           background: url(../img/profile_progress/tree_no.svg) no-repeat; }
         .page_profile .profile_progress .step > ._tree span:nth-child(2) {
           height: 0%;
-          z-index: -1; }
+          z-index: 2; }
     .page_profile .profile_progress .step > ._desc {
       position: relative;
       z-index: 1;
