@@ -1,5 +1,3 @@
-window.addEventListener('filePluginIsReady', function(){ console.log('File plugin is ready');}, false);
-
 // profile_progress
 function profile_progress(){
   if ( $(document).find('.profile_progress').length > 0 ) {
@@ -9,10 +7,9 @@ function profile_progress(){
       if ( $(this).find('._tree').data().progress )
         height = $(this).find('._tree').data().progress
 
-      $(this).find('._txt').append(cordova.file.applicationDirectory)
+      // 'background': 'url(.../www/img/profile_progress/tree_yes_'+index+'.svg) no-repeat',
 
       $(this).find('._tree span:eq(1)').css({
-        'background': 'url(.../www/img/profile_progress/tree_yes_'+index+'.svg) no-repeat',
         'height': height + '%',
         'transition-delay': index + 's'
       })

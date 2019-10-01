@@ -334,5 +334,15 @@ main ._content {
         max-width: 80%; }
     .page_profile .profile_progress .step._yes {
       opacity: 1; }
+      .page_profile .profile_progress .step._yes._1 > ._tree span:nth-child(2) {
+        background: url(../img/profile_progress/tree_yes_1.svg) no-repeat; }
+      .page_profile .profile_progress .step._yes._2 > ._tree span:nth-child(2) {
+        background: url(../img/profile_progress/tree_yes_2.svg) no-repeat; }
+      .page_profile .profile_progress .step._yes._3 > ._tree span:nth-child(2) {
+        background: url(../img/profile_progress/tree_yes_3.svg) no-repeat; }
+      .page_profile .profile_progress .step._yes._4 > ._tree span:nth-child(2) {
+        background: url(../img/profile_progress/tree_yes_4.svg) no-repeat; }
+      .page_profile .profile_progress .step._yes._5 > ._tree span:nth-child(2) {
+        background: url(../img/profile_progress/tree_yes_5.svg) no-repeat; }
 
 /*# sourceMappingURL=style.css.map */
