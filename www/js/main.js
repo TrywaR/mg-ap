@@ -8,6 +8,8 @@ function profile_progress(){
       if ( $(this).find('._tree').data().progress )
         height = $(this).find('._tree').data().progress
 
+      $(this).find('._txt').append('№' + index + ' - ' + height + '%')
+
       $(this).find('._tree span:eq(1)').css({
         'background': 'url(img/profile_progress/tree_yes_'+index+'.svg) no-repeat center center',
         'height': height + '%',

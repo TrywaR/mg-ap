@@ -333,7 +333,6 @@ main ._content {
         margin: auto;
         max-width: 80%; }
     .page_profile .profile_progress .step._load {
-      opacity: 1;
-      background: #0584b8; }
+      opacity: 1; }
 
 /*# sourceMappingURL=style.css.map */
