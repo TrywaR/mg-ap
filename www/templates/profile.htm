@@ -1,27 +1,124 @@
 <header>
-    <div class="block_header_buttons">
-      <button class="_item main_menu_back" id="main_menu_back" type="button" name="button">
-        <
-      </button>
-    </div>
-
-    <div class="block_header">
-      Страница профиля
-    </div>
+  <div class="_title" type="button" name="button">Страница профиля</div>
+  <a class="_button content_upload" href="templates/profile/edit.htm" type="button" name="button" data-page="2">Редактировать</a>
 </header>
 
 <main class="page_profile">
-  <div class="row">
-    <div class="profile_img">
-      <img src="img/profile.png" alt="">
+  <div class="_content">
+    <div class="row">
+      <div class="profile_img">
+        <img src="img/profile.png" alt="">
+      </div>
+      <div class="profile_info">
+        <div class="_name">ЕФИМОВА ВЕРОНИКА ВЛАДИМИРОВНА</div>
+        <div class="_points">777 <span>баллов</span></div>
+      </div>
     </div>
-    <div class="profile_info">
-      <div class="_name">ЕФИМОВА ВЕРОНИКА ВЛАДИМИРОВНА</div>
-      <div class="_points">777 <span>баллов</span></div>
-    </div>
-  </div>
-  Страница профиля - content
-</main>
 
-<footer>
-</footer>
+    <div class="row">
+      <div class="profile_progress">
+        <a class="step _1 _yes content_upload" href="templates/courses.htm">
+          <div class="_tree">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="_desc">
+            <div class="_num">
+              01
+            </div>
+            <div class="_name">
+              СИСТЕМНОЕ МЫШЛЕНИЕ
+            </div>
+            <div class="_txt">
+              Небольшое описание
+              раздела и что-то еще
+            </div>
+          </div>
+
+          <div class="_icon">
+            <img src="img/profile_progress/icon.svg" alt="">
+          </div>
+        </a>
+
+        <a class="step _2 _yes content_upload" href="templates/courses.htm">
+          <div class="_tree" data-progress="40">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="_desc">
+            <div class="_num">
+              02
+            </div>
+            <div class="_name">
+              РЕШЕНИЕ ПРОБЛЕМ
+            </div>
+            <div class="_txt">
+              Небольшое описание
+              раздела и что-то еще
+            </div>
+          </div>
+
+          <div class="_icon">
+            <img src="img/profile_progress/icon.svg" alt="">
+          </div>
+        </a>
+
+        <a class="step _3 content_upload" href="templates/courses.htm">
+          <div class="_tree">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="_desc">
+            <div class="_num">
+              03
+            </div>
+            <div class="_name">
+              ТРЕНДВОТЧИНГ
+            </div>
+            <div class="_txt">
+              Небольшое описание
+              раздела и что-то еще
+            </div>
+          </div>
+
+          <div class="_icon">
+            <img src="img/profile_progress/icon.svg" alt="">
+          </div>
+        </a>
+
+        <a class="step _4 content_upload" href="templates/courses.htm">
+          <div class="_tree">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="_desc">
+            <div class="_num">
+              04
+            </div>
+            <div class="_name">
+              ЛИДЕРСТВО
+            </div>
+            <div class="_txt">
+              Небольшое описание
+              раздела и что-то еще
+            </div>
+          </div>
+
+          <div class="_icon">
+            <img src="img/profile_progress/icon.svg" alt="">
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+  <script>
+    $(function(){
+      profile_progress()
+    })
+  </script>
+</main>

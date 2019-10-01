@@ -44,7 +44,7 @@ table {
 
 body {
   position: relative;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   z-index: 1;
   min-height: 100vh;
@@ -79,8 +79,7 @@ header {
   header .block_header_buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    padding: 0 0.5rem; }
+    justify-content: space-between; }
     header .block_header_buttons .main_menu_show {
       display: flex;
       flex-direction: column;
@@ -98,18 +97,36 @@ header {
           margin-bottom: 4px; }
       header .block_header_buttons .main_menu_show._active_ {
         z-index: 1000; }
-    header .block_header_buttons > ._item {
-      color: white;
-      background: none !important;
-      outline: none !important;
-      border: none !important;
-      padding: 0.5rem; }
+    header .block_header_buttons .block_header_fix,
+    header .block_header_buttons .block_header_items {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-grow: 1;
+      padding: 0 0.5rem; }
+      header .block_header_buttons .block_header_fix > ._title, header .block_header_buttons .block_header_fix > ._button,
+      header .block_header_buttons .block_header_items > ._title,
+      header .block_header_buttons .block_header_items > ._button {
+        color: white;
+        background: none !important;
+        outline: none !important;
+        border: none !important;
+        padding: 0.5rem;
+        text-decoration: none; }
+      header .block_header_buttons .block_header_fix > ._button,
+      header .block_header_buttons .block_header_items > ._button {
+        text-align: right; }
   header .block_header {
     padding: 1rem;
     font-size: 1.2rem;
     line-height: 1.2; }
 
-main {
+main ._title {
+  padding: 1rem;
+  background: #0584b8;
+  font-size: 1.1rem;
+  font-weight: bold; }
+main ._content {
   padding: 1rem; }
 
 .pages {
@@ -244,5 +261,77 @@ main {
   .page_profile .profile_info > ._points {
     font-size: 1.2rem;
     line-height: 1.2; }
+.page_profile .profile_progress {
+  width: 100%; }
+  .page_profile .profile_progress .step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    height: 6rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    opacity: 0.5;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease; }
+    .page_profile .profile_progress .step > ._tree {
+      width: 35%;
+      height: 4rem;
+      transition: all 0.4s ease; }
+      .page_profile .profile_progress .step > ._tree span {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30%;
+        background-size: auto 6rem !important;
+        background-position: top left !important;
+        transition: all 1s ease 0s; }
+        .page_profile .profile_progress .step > ._tree span:nth-child(1) {
+          height: 100%;
+          z-index: -2;
+          background: url(../img/profile_progress/tree_no.svg) no-repeat; }
+        .page_profile .profile_progress .step > ._tree span:nth-child(2) {
+          height: 0%;
+          z-index: -1; }
+    .page_profile .profile_progress .step > ._desc {
+      position: relative;
+      z-index: 1;
+      width: 55%;
+      box-sizing: border-box;
+      padding-left: 0.5rem; }
+      .page_profile .profile_progress .step > ._desc:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 0.12rem;
+        background: white; }
+      .page_profile .profile_progress .step > ._desc > ._num {
+        font-size: 1.4rem;
+        line-height: 0.7;
+        font-weight: bold;
+        margin-bottom: 0.4rem; }
+      .page_profile .profile_progress .step > ._desc > ._name {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+        font-weight: bold;
+        text-transform: uppercase; }
+      .page_profile .profile_progress .step > ._desc > ._txt {
+        font-size: 0.7rem; }
+    .page_profile .profile_progress .step > ._icon {
+      width: 10%;
+      text-align: center;
+      box-sizing: border-box; }
+      .page_profile .profile_progress .step > ._icon img {
+        margin: auto;
+        max-width: 80%; }
+    .page_profile .profile_progress .step._yes {
+      opacity: 1; }
 
 /*# sourceMappingURL=style.css.map */

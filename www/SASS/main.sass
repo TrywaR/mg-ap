@@ -7,7 +7,7 @@
 body
   position: relative
   // padding-top: $header_height
-  font-size: 14px
+  font-size: 16px
   line-height: 1
   z-index: 1
   min-height: 100vh
@@ -53,7 +53,6 @@ header
     display: flex
     flex-direction: row
     justify-content: space-between
-    padding: 0 .5rem
 
     .main_menu_show
       display: flex
@@ -76,13 +75,26 @@ header
       &._active_
         z-index: 1000
 
-    & > ._item
-      color: white
-      // flex-grow: 1
-      background: none ! important
-      outline: none ! important
-      border: none ! important
-      padding: .5rem
+    .block_header_fix,
+    .block_header_items
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+      flex-grow: 1
+      padding: 0 .5rem
+
+      & > ._title,
+      & > ._button
+        color: white
+        // flex-grow: 1
+        background: none ! important
+        outline: none ! important
+        border: none ! important
+        padding: .5rem
+        text-decoration: none
+
+      & > ._button
+        text-align: right
 
   .block_header
     padding: 1rem
@@ -93,7 +105,14 @@ header
 
 // main
 main
-  padding: 1rem
+  ._title
+    padding: 1rem
+    background: $color_main_dark
+    font-size: 1.1rem
+    font-weight: bold
+
+  ._content
+    padding: 1rem
 // main x
 
 // footer
@@ -270,3 +289,91 @@ footer
     & > ._points
       font-size: 1.2rem
       line-height: 1.2
+
+  .profile_progress
+    width: 100%
+
+    .step
+      position: relative
+      z-index: 1
+      display: flex
+      flex-direction: row
+      align-items: center
+      padding-top: 1rem
+      padding-bottom: 1rem
+      height: 6rem
+      box-sizing: border-box
+      overflow: hidden
+      opacity: .5
+      text-decoration: none
+      color: white
+      @include transition_standart
+
+      & > ._tree
+        // position: relative
+        // z-index: 1
+        width: 35%
+        height: 4rem
+        @include transition_standart
+
+        span
+          content: ''
+          position: absolute
+          top: 0
+          left: 0
+          width: 30%
+          background-size: auto 6rem ! important
+          background-position: top left ! important
+          transition: all 1s ease 0s
+
+          &:nth-child(1)
+            height: 100%
+            z-index: -2
+            background: url(../img/profile_progress/tree_no.svg) no-repeat
+
+          &:nth-child(2)
+            height: 0%
+            z-index: -1
+
+      & > ._desc
+        position: relative
+        z-index: 1
+        width: 55%
+        box-sizing: border-box
+        padding-left: .5rem
+
+        &:after
+          content: ''
+          position: absolute
+          top: 0
+          bottom: 0
+          left: 0
+          width: .12rem
+          background: white
+
+        & > ._num
+          font-size: 1.4rem
+          line-height: .7
+          font-weight: bold
+          margin-bottom: .4rem
+
+        & > ._name
+          font-size: .7rem
+          margin-bottom: .2rem
+          font-weight: bold
+          text-transform: uppercase
+
+        & > ._txt
+          font-size: .7rem
+
+      & > ._icon
+        width: 10%
+        text-align: center
+        box-sizing: border-box
+
+        img
+          margin: auto
+          max-width: 80%
+
+      &._yes
+        opacity: 1
