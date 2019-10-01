@@ -44,7 +44,7 @@ table {
 
 body {
   position: relative;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1;
   z-index: 1;
   min-height: 100vh;
@@ -108,6 +108,7 @@ header {
       header .block_header_buttons .block_header_items > ._title,
       header .block_header_buttons .block_header_items > ._button {
         color: white;
+        white-space: nowrap;
         background: none !important;
         outline: none !important;
         border: none !important;

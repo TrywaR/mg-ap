@@ -8,7 +8,7 @@ function profile_progress(){
         height = $(this).find('._tree').data().progress
 
       $(this).find('._tree span:eq(1)').css({
-        'background': 'url(/img/profile_progress/tree_yes_'+index+'.svg) no-repeat center center',
+        'background': 'url(img/profile_progress/tree_yes_'+index+'.svg) no-repeat center center',
         'height': height + '%',
         'transition-delay': index + 's'
       })
