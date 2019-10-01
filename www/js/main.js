@@ -11,7 +11,7 @@ function profile_progress(){
       $(this).find('._txt').append('№' + index + ' - ' + height + '%')
 
       $(this).find('._tree span:eq(1)').css({
-        'background': 'url(../img/profile_progress/tree_yes_'+index+'.svg) no-repeat',
+        'background': 'url(http://m97731yi.beget.tech/img/profile_progress/tree_yes_'+index+'.svg) no-repeat',
         'height': height + '%',
         'transition-delay': index + 's'
       })
