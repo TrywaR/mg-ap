@@ -3,15 +3,12 @@ function profile_progress(){
   if ( $(document).find('.profile_progress').length > 0 ) {
 
     $(document).find('.profile_progress .step._yes').each(function(index, elem){
-      $(this).addClass('_load')
       height = 100
       if ( $(this).find('._tree').data().progress )
         height = $(this).find('._tree').data().progress
 
-      $(this).find('._txt').append('№' + index + ' - ' + height + '%')
-
       $(this).find('._tree span:eq(1)').css({
-        'background': 'url(http://m97731yi.beget.tech/img/profile_progress/tree_yes_'+index+'.svg) no-repeat',
+        'background': 'url(file:///img/profile_progress/tree_yes_'+index+'.svg) no-repeat',
         'height': height + '%',
         'transition-delay': index + 's'
       })
