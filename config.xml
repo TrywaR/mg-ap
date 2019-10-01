@@ -13,6 +13,7 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="*"/>
     <plugin name="cordova-plugin-splashscreen" source="npm" />
     <plugin name="cordova-plugin-statusbar" source="npm" />
+    <plugin name="cordova-plugin-file" source="npm" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="StatusBarBackgroundColor" value="#0584b8" />
