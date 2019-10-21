@@ -24,20 +24,25 @@
   <div class="pages" id="pages">
     <section class="page _0">
       <main class="page_login">
-        <form action="">
+        <form action="" id="authorization_form">
+          <input type="hidden" name="form" value="authorization_form">
+          <input type="hidden" name="app" value="app">
+
           <div class="block_input">
             <label>
               <p class="label">Имя</p>
-              <input type="text" class="input" name="name" value="">
+              <input type="text" class="input" name="name" value="" required="required">
             </label>
           </div>
 
           <div class="block_input">
             <label>
               <p class="label">Пароль</p>
-              <input type="text" class="input" name="pass" value="">
+              <input type="text" class="input" name="pass" value="" required="required">
             </label>
           </div>
+
+          <div class="block_input" id="authorization_form_status"></div>
 
           <div class="block_buttons">
             <button class="button" type="submit" name="button">Вхожу!</button>
@@ -63,10 +68,7 @@
             </button>
           </div>
 
-          <div class="block_header_items">
-            <div class="_title">Профиль</div>
-            <a class="_button content_upload" href="templates/profile/edit.htm" type="button" name="button" data-page="2">Редактировать</a>
-          </div>
+          <div class="block_header_items"></div>
         </div>
         <div id="main_menu" class="block_main_menu">
           <nav class="main_menu">
@@ -126,23 +128,9 @@
         </div>
       </header>
 
-      <main class="page_profile">
-        <div class="_content">
-          <div class="row">
-            <div class="profile_img">
-              <img src="img/profile.png" alt="">
-            </div>
-            <div class="profile_info">
-              <div class="_name">ЕФИМОВА ВЕРОНИКА ВЛАДИМИРОВНА</div>
-              <div class="_points">777 <span>баллов</span></div>
-            </div>
-          </div>
-          Страница профиля - content
-        </div>
-      </main>
+      <main class="page_profile"></main>
 
-      <footer>
-      </footer>
+      <footer></footer>
     </section>
 
     <section class="page _2">
