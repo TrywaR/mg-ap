@@ -1,20 +1,66 @@
 // params
 page = 0 // Текущая страница
 page_url = '' // Адрес текущей страницы
-// site_url = 'https://alliance.paultik.ru' // Адрес сайта
+// site_url = 'https://alliance.paultik.ru/account/login/' // Адрес сайта
 site_url = 'http://m97731yi.beget.tech/' // Адрес сайта
+// test@trywar.ru
+// SZ0wSgL2
 session_key = '' // Ключ авторизации
 ajax_salt = {
   'app': 'app'
 }  // Необходимые параметры для ajax
 // params x
 
+// возвращает куки с указанным name,
+// или undefined, если ничего не найдено
+// function getCookie(name) {
+//   var matches = document.cookie.match(new RegExp(
+//     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+//   ));
+//   return matches ? decodeURIComponent(matches[1]) : undefined;
+// }
+
 // CSRF
+// function send_reply(){
+//   echo json_encode(array('reply'=>'here is my reply'));
+//   exit;
+// }
+// $.ajax({
+//   url:'https://alliance.paultik.ru/account/login/',
+//   data:{'func':'send_reply'},
+//   type:'GET',
+//   dateType:'json'
+// }).success(function(data){
+//   data=$.parseJSON(data);
+//   alert(data.reply);
+// }).error(function(jqxhr,error,status){
+//   alert('Error sending reply');
+// });
+
 // function CSRF(){
-//   $.post(site_url, function(data){
-//     var data = $('<div/>').html(data)
-//     console.log(data)
+//   $.ajax({
+//     type: 'GET',
+//     url: site_url,
+//     data: 'test',
+//     success: function(data, textStatus, request) {
+//       console.log(textStatus)
+//       console.log(request)
+//       // alert(request.getResponseHeader('Set-Cookie'))
+//     },
 //   })
+//   // $.get(site_url, function(data, textStatus, request){
+//   //   alert(request.getResponseHeader('Set-Cookie'));
+//   //   // console.log(data.status)
+//   // //   var data = $('<div/>').html(data)
+//   // //   var test = $(data).find('body').length > 0 ? $(data).find('body').html() : ''
+//   // //   // console.log(data)
+//   // //   // console.log(test)
+//   // //   // console.log('stest')
+//   // //   // stest = getCookie('csrftoken')
+//   // //   // console.log(stest)
+//   // //   // alert( document.cookie );
+//   // //    alert(data.reply);
+//   // })
 // }
 // CSRF()
 // CSRF x
@@ -30,20 +76,26 @@ if ( localStorage.getItem('session_key') ) {
 // page_navigator
 function page_navigator(page){
   console.log('page_navigator page: '+page)
-  $(document).find('#pages').css({
-    left: (page * -100) + 'vw'
-  })
+  if ( page > 1 ){
+    $(document).find('#pages').css({
+      left: ( ( page - 1 ) * -100) + 'vw'
+    })
+  }else{
+    $(document).find('#pages').css({
+      left: '0vw'
+    })
+  }
   localStorage.setItem('page', page)
 }
 // page_navigator(page)
 
-// content_upload
+// content_parse
 function content_parse(data, fix_page){
   current_page = fix_page ? fix_page : page
   console.log('content_parse')
   console.log('current_page: '+current_page)
   // Если вложенный ресурс
-  if ( current_page > 1 ) {
+  if ( current_page > 2 ) {
 
     // Определяем ссыль родителя
     arrPage_url = page_url.split('/')
@@ -52,11 +104,10 @@ function content_parse(data, fix_page){
 
     // Подтягиваем контент родителя
     $.post(parent_page_url, function(parent_data){
-      content_parse(parent_data, 1)
+      content_parse(parent_data, 2)
     })
 
     // Возвращяем как было и далее тянем внутряк
-    // page = 2
   }
 
   var data = $('<div/>').html(data)
@@ -72,7 +123,7 @@ function content_parse(data, fix_page){
 
   $(document).find('#main_menu li.' + main_class).addClass('_active_').siblings().removeClass('_active_')
 }
-// content_upload x
+// content_parse x
 
 // template_parse
 function template_parse(data, template){
@@ -88,6 +139,40 @@ function template_parse(data, template){
   })
 }
 // template_parse x
+
+// content_upload
+function content_upload(upload_url, upload_page){
+  $('body').addClass('_load_')
+
+  if (upload_url.indexOf('http') >= 0) {
+    console.log('С сайта')
+
+    $.ajax({
+      url: upload_url,
+      data: $(this).serialize(),
+      xhrFields: {
+        withCredentials: false
+      }
+    }).done(function(data) {
+      $(document).find('#pages .page._' + upload_page + '').html(data)
+      page_navigator(upload_page)
+    })
+
+  }
+  else{
+    console.log('С приложения')
+
+    $.post(upload_url, function(data){
+      content_parse(data, upload_page)
+      page_navigator(upload_page)
+    })
+  }
+
+  $('body').removeClass('_load_')
+
+  return false
+}
+// content_upload х
 
 // profile_progress
 function profile_progress(){
@@ -108,12 +193,6 @@ function profile_progress(){
 }
 // profile_progress x
 
-// authorization
-function authorization(){
-  // authorization_form
-}
-// authorization x
-
 $(function(){
   // page_navigator
   $(document).on('click', '#main_menu_back', function(){
@@ -122,35 +201,12 @@ $(function(){
   })
   // page_navigator x
 
-  // upload_content
+  // content_upload
   $(document).on('click', '.content_upload', function(){
     page_url = $(this).attr('href')
-    page = $(this).data().page ? $(this).data().page : 1
-    console.log('upload_content : '+page)
+    page = $(this).data().page ? $(this).data().page : 2
 
-    if (page_url.indexOf('http') >= 0) {
-      console.log('С сайта')
-
-      $.ajax({
-        url: page_url,
-        data: $(this).serialize(),
-        xhrFields: {
-          withCredentials: false
-        }
-      }).done(function(data) {
-        $(document).find('#pages .page._' + page + '').html(data)
-        page_navigator(page)
-      })
-
-    }
-    else{
-      console.log('С приложения')
-      $.post(page_url, function(data){
-        content_parse(data)
-        console.log(page)
-        page_navigator(page)
-      })
-    }
+    content_upload(page_url,page)
 
     $('#main_menu_show').removeClass('_active_')
     $('#main_menu').removeClass('_active_')
@@ -158,7 +214,7 @@ $(function(){
 
     return false
   })
-  // upload_content x
+  // content_upload x
 
   // main_menu
   $(document).on('click', '#main_menu_show', function(){
@@ -172,50 +228,4 @@ $(function(){
     $('body').removeClass('_no_active_')
   })
   // main_menu x
-
-  // profile
-  $(document).on('click', '#profile_exit', function() {
-    page_navigator(0)
-  })
-  // profile x
-
-  // authorization_form
-  $(document).find('#authorization_form').on('submit', function(){
-    // - Получаем ключ сессии
-    $.ajax({
-      url: site_url + 'app.php',
-      data: $(this).serialize(),
-      xhrFields: {
-        withCredentials: false
-      }
-    }).fail(function(data) {
-      $('#authorization_form_status').html('<p style="color:#ff7f7f;">' + data.status + '<br/>' + data.statusText + '</p>')
-    }).done(function(data) {
-      $('#authorization_form_status').html('')
-      session_key = data
-      localStorage.setItem('session_key', session_key)
-      ajax_salt['profile'] = 1
-
-      // -- Получаем инфу о профиле
-      $.ajax({
-        url: site_url + 'app.php',
-        data: ajax_salt,
-        xhrFields: {
-          withCredentials: false
-        }
-      }).fail(function(data) {
-        $('#authorization_form_status').html('<p style="color:#ff7f7f;">' + data.status + '<br/>' + data.statusText + '</p>')
-
-      }).done(function(data) {
-        $('#authorization_form_status').html('')
-        oProfile = jQuery.parseJSON(data)
-
-        template_parse(oProfile, 'profile/index')
-        page_navigator(1)
-      })
-    })
-
-    return false
-  })
-  // authorization_form х
 })

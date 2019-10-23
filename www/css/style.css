@@ -150,12 +150,6 @@ main ._content {
     display: flex;
     flex-direction: row;
     width: 100%; }
-  .page .page_login {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; }
 
 .block_input {
   text-align: center;
@@ -344,5 +338,14 @@ main ._content {
         background: url(../img/profile_progress/tree_yes_4.svg) no-repeat; }
       .page_profile .profile_progress .step._yes._5 > ._tree span:nth-child(2) {
         background: url(../img/profile_progress/tree_yes_5.svg) no-repeat; }
+
+.authorization_forms {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .authorization_forms .form_status._error {
+    color: #ff7b7b; }
 
 /*# sourceMappingURL=style.css.map */

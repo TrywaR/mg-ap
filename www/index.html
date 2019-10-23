@@ -18,46 +18,18 @@
     <!-- main -->
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.min.js"></script>
+    <script src="js/authorization.min.js"></script>
     <!-- main -->
 </head>
 <body>
   <div class="pages" id="pages">
-    <section class="page _0">
-      <main class="page_login">
-        <form action="" id="authorization_form">
-          <input type="hidden" name="form" value="authorization_form">
-          <input type="hidden" name="app" value="app">
-
-          <div class="block_input">
-            <label>
-              <p class="label">Имя</p>
-              <input type="text" class="input" name="name" value="" required="required">
-            </label>
-          </div>
-
-          <div class="block_input">
-            <label>
-              <p class="label">Пароль</p>
-              <input type="text" class="input" name="pass" value="" required="required">
-            </label>
-          </div>
-
-          <div class="block_input" id="authorization_form_status"></div>
-
-          <div class="block_buttons">
-            <button class="button" type="submit" name="button">Вхожу!</button>
-          </div>
-
-          <div class="block_sub_text">
-            <a href="">
-              Если вы забыли пароль, <br> нажмите сюда
-            </a>
-          </div>
-        </form>
-      </main>
+    <section class="page _1">
+      <header></header>
+      <main></main>
+      <footer></footer>
     </section>
 
-    <section class="page _1">
+    <section class="page _2">
       <header>
         <div class="block_header_buttons">
           <div class="block_header_fix">
@@ -74,7 +46,7 @@
           <nav class="main_menu">
             <ul>
               <li class="page_profile _active_">
-                <a class="content_upload" href="templates/profile.htm">
+                <a class="content_upload" href="templates/profile/index.htm">
                   Профиль
                 </a>
               </li>
@@ -127,13 +99,11 @@
           </nav>
         </div>
       </header>
-
-      <main class="page_profile"></main>
-
+      <main></main>
       <footer></footer>
     </section>
 
-    <section class="page _2">
+    <section class="page _3">
       <header>
         <div class="block_header_buttons">
           <div class="block_header_fix">
@@ -147,9 +117,7 @@
           </div>
         </div>
       </header>
-      <main>
-        Редактирование профиля
-      </main>
+      <main></main>
       <footer></footer>
     </section>
   </div>

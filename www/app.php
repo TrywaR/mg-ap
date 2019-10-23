@@ -1,7 +1,7 @@
 <?php
 // Плагин для MODX Revo чтобы обрабатывать запросы со сторонних платформ
 // Должно быть включено системное событие OnWebPageInit, если летит POST или GET c app разрешаем обработку
-if( isset($_REQUEST['app']) ){
+if( isset($_REQUEST['app']) && $_REQUEST['app'] == 'app' ){
   header('Access-Control-Allow-Origin: *');
   session_start();
 
