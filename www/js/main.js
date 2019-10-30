@@ -174,25 +174,6 @@ function content_upload(upload_url, upload_page){
 }
 // content_upload х
 
-// profile_progress
-function profile_progress(){
-  if ( $(document).find('.profile_progress').length > 0 ) {
-    // progress
-
-    $(document).find('.profile_progress .step._yes').each(function(index, elem){
-      height = 100
-      if ( $(this).find('._tree').data().progress )
-        height = $(this).find('._tree').data().progress
-
-      $(this).find('._tree span:eq(1)').css({
-        'height': height + '%',
-        'transition-delay': index + 's'
-      })
-    })
-  }
-}
-// profile_progress x
-
 $(function(){
   // page_navigator
   $(document).on('click', '#main_menu_back', function(){

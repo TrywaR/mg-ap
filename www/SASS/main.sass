@@ -1,6 +1,18 @@
 @import "config"
 @import "mixin"
 @import "reset"
+
+// Профиль
+@import "profile"
+// Участники
+@import "members"
+// Расписание
+@import "schedule"
+// Чаты
+@import "chats"
+// Контент
+@import "content"
+
 @import "../fonts/fonts"
 
 // body
@@ -55,24 +67,33 @@ header
     justify-content: space-between
 
     .main_menu_show
-      display: flex
-      flex-direction: column
-      justify-content: center
-      align-items: center
+      // display: flex
+      // flex-direction: column
+      // justify-content: center
+      // align-items: center
+      transform: rotate(0deg)
+      @include transition_standart
 
-      span
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        width: 15px
-        height: 1px
-        background: white
+      &:focus,
+      &:active
+        background: none ! important
+        outline: none ! important
+        border: none ! important
 
-        &:not(:last-child)
-          margin-bottom: 4px
+      // span
+      //   display: flex
+      //   flex-direction: column
+      //   justify-content: center
+      //   align-items: center
+      //   width: 25px
+      //   height: 2px
+      //   background: white
+      //
+      //   &:not(:last-child)
+      //     margin-bottom: 6px
 
       &._active_
+        transform: rotate(90deg)
         z-index: 1000
 
     .block_header_fix,
@@ -81,21 +102,45 @@ header
       flex-direction: row
       justify-content: space-between
       flex-grow: 1
-      padding: 0 .5rem
+      // padding: 1rem
 
       & > ._title,
       & > ._button
+        display: flex
+        align-items: center
+        justify-content: center
         color: white
         // flex-grow: 1
         white-space: nowrap
         background: none ! important
         outline: none ! important
         border: none ! important
-        padding: .5rem
+        padding: 1rem
+        height: 25px
+        font-size: 1.2rem
+        line-height: 1
+        box-sizing: content-box
         text-decoration: none
+
+      & > ._title
+        &.__center
+          // padding-right: 40px
+          margin-right: auto
 
       & > ._button
         text-align: right
+
+        &.__icon
+          display: flex
+          align-items: center
+          justify-content: center
+
+          img
+            height: 25px
+
+
+    .block_header_items
+      justify-content: flex-end
 
   .block_header
     padding: 1rem
@@ -106,13 +151,13 @@ header
 
 // main
 main
-  ._title
+  & > ._title
     padding: 1rem
     background: $color_main_dark
-    font-size: 1.1rem
+    font-size: 1.45rem
     font-weight: bold
 
-  ._content
+  & > ._content
     padding: 1rem
 // main x
 
@@ -147,76 +192,6 @@ footer
 // 0ther
 // 0ther x
 
-// forms
-// input_block
-.block_input
-  text-align: center
-  padding-bottom: 1.5rem
-// input_block x
-
-// label
-.label
-  color: white
-  font-size: 1rem
-  line-height: 1
-  margin-bottom: 1rem
-  text-align: center
-  box-sizing: border-box
-// label x
-
-// input
-.input
-  display: inline-block
-  background: rgba(0, 0, 0, 0.2)
-  border-radius: 8px
-  min-width: 220px
-  border: none ! important
-  outline: none ! important
-  box-shadow: none ! important
-  font-size: 1.1rem
-  line-height: 1.2
-  padding: 5px
-  text-align: center
-  color: white
-  box-sizing: border-box
-// input x
-
-// button
-.block_buttons
-  padding-top: 1.5rem
-  text-align: center
-
-.button
-  display: inline-block
-  padding: 7px 20px
-  min-width: 180px
-  text-align: center
-  border: none ! important
-  outline: none ! important
-  box-shadow: inset 0 0 0 1px white
-  background: none ! important
-  border-radius: 5px
-  font-size: 1rem
-  line-height: 1.2
-  color: white
-  font-family: 'DIN Pro'
-  box-sizing: border-box
-// button x
-
-// .block_sub_text
-.block_sub_text
-  margin-top: 1.2rem
-  text-align: center
-  color: white
-  font-size: 1rem
-  line-height: 1
-
-  a
-    color: white
-    text-decoration: none
-// .block_sub_text x
-// forms x
-
 // .block_main_menu
 .block_main_menu
   // display: none
@@ -229,7 +204,7 @@ footer
   transition: all .5s ease
   // z-index: -1
   z-index: -1
-  padding-top: 5vh
+  padding-top: calc( 25px + 2rem )
 
   &:after
     content: ''
@@ -256,7 +231,7 @@ footer
         padding: .5rem 1rem
 
         a
-          font-size: 1.05rem
+          font-size: 1.2rem
           line-height: 1
           text-decoration: none
           color: white
@@ -264,142 +239,6 @@ footer
         &._active_
           background: rgba(0, 0, 0, 0.2)
 // .block_main_menu x
-
-
-.page_profile
-  .profile_img
-    width: 30%
-
-  .profile_info
-    width: 70%
-    padding: 0 2rem 2rem
-
-    & > ._name
-      font-size: 1.1rem
-      line-height: 1.1
-      margin-bottom: 1rem
-
-    & > ._points
-      font-size: 1.2rem
-      line-height: 1.2
-
-  .profile_progress
-    width: 100%
-
-    .step
-      position: relative
-      z-index: 1
-      display: flex
-      flex-direction: row
-      align-items: center
-      padding-top: 1rem
-      padding-bottom: 1rem
-      height: 6rem
-      box-sizing: border-box
-      overflow: hidden
-      opacity: .5
-      text-decoration: none
-      color: white
-      @include transition_standart
-
-      & > ._tree
-        // position: relative
-        // z-index: 1
-        width: 35%
-        height: 4rem
-        @include transition_standart
-
-        span
-          content: ''
-          position: absolute
-          top: 0
-          left: 0
-          width: 30%
-          background-size: auto 6rem ! important
-          background-position: top left ! important
-          transition: all 1s ease 0s
-
-          &:nth-child(1)
-            height: 100%
-            z-index: -2
-            background: url(../img/profile_progress/tree_no.svg) no-repeat
-
-          &:nth-child(2)
-            height: 0%
-            z-index: 2
-
-      & > ._desc
-        position: relative
-        z-index: 1
-        width: 55%
-        box-sizing: border-box
-        padding-left: .5rem
-
-        &:after
-          content: ''
-          position: absolute
-          top: 0
-          bottom: 0
-          left: 0
-          width: .12rem
-          background: white
-
-        & > ._num
-          font-size: 1.4rem
-          line-height: .7
-          font-weight: bold
-          margin-bottom: .4rem
-
-        & > ._name
-          font-size: .7rem
-          margin-bottom: .2rem
-          font-weight: bold
-          text-transform: uppercase
-
-        & > ._txt
-          font-size: .7rem
-
-      & > ._icon
-        width: 10%
-        text-align: center
-        box-sizing: border-box
-
-        img
-          margin: auto
-          max-width: 80%
-
-      &._yes
-        opacity: 1
-
-        &._1
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_1.svg) no-repeat
-
-        &._2
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_2.svg) no-repeat
-
-        &._3
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_3.svg) no-repeat
-
-        &._4
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_4.svg) no-repeat
-
-        &._5
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_5.svg) no-repeat
 
 // authorization_forms
 .authorization_forms
