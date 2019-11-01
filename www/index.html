@@ -18,9 +18,20 @@
     <!-- main -->
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.min.js"></script>
-    <script src="js/authorization.min.js"></script>
     <script src="js/content.min.js"></script>
-    <script src="js/profile.min.js"></script>
+
+    <!-- Авторизация -->
+    <script src="js/authorizations/authorization.min.js"></script>
+    <!-- Профиль -->
+    <script src="js/profiles/profiles.min.js"></script>
+    <!-- Пользователи -->
+    <script src="js/members/members.min.js"></script>
+    <!-- Чат -->
+    <script src="js/chats/chat.min.js"></script>
+    <!-- Ондайн поддержка -->
+    <script src="js/online_support.min.js"></script>
+    <!-- Курсы -->
+    <script src="js/courses/course.min.js"></script>
     <!-- main -->
 </head>
 <body>
@@ -35,7 +46,7 @@
       <header>
         <div class="block_header_buttons">
           <div class="block_header_fix">
-            <a class="_button __icon main_menu_show" type="button" id="main_menu_show" name="button">
+            <a class="_button __icon main_menu_show" type="button" id="main_menu_show" name="button" href="">
               <img src="img/icons/menu.png" alt="">
             </a>
           </div>
@@ -46,7 +57,7 @@
           <nav class="main_menu">
             <ul>
               <li class="page_profile _active_">
-                <a class="content_upload" href="templates/profile/index.htm">
+                <a class="content_upload" href="templates/profiles/index.htm">
                   Профиль
                 </a>
               </li>
@@ -61,7 +72,7 @@
                 </a>
               </li>
               <li class="page_courses">
-                <a class="content_upload" href="templates/courses.htm">
+                <a class="content_upload" href="templates/courses/index.htm">
                   Курсы
                 </a>
               </li>

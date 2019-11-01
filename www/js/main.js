@@ -73,6 +73,18 @@ if ( localStorage.getItem('session_key') ) {
 }
 // LocalStorage x
 
+// scroll_to
+function scroll_to(elem, fix_page, fix_size){
+  scroll_val = elem ? elem.offset().top : 0
+  fix_page = fix_page ? fix_page : page
+  scroll_val = fix_size ? fix_size : scroll_val
+
+  $(document).find('.page._' + fix_page + '').animate({
+    scrollTop: scroll_val
+  }, 500)
+}
+// scroll_to x
+
 // page_navigator
 function page_navigator(page){
   console.log('page_navigator page: '+page)
@@ -85,6 +97,7 @@ function page_navigator(page){
       left: '0vw'
     })
   }
+  $(document).find('#pages .page._' + page + '').addClass('_active_').siblings().removeClass('_active_')
   localStorage.setItem('page', page)
 }
 // page_navigator(page)
@@ -117,7 +130,7 @@ function content_parse(data, fix_page){
   var footer = $(data).find('footer').length > 0 ? $(data).find('footer').html() : ''
 
   $(document).find('#pages .page._' + current_page + ' header .block_header_items').html(header)
-  $(document).find('#pages .page._' + current_page + ' main').html(main)
+  $(document).find('#pages .page._' + current_page + ' main').html(main).attr('class', '')
   $(document).find('#pages .page._' + current_page + ' main').addClass(main_class)
   $(document).find('#pages .page._' + current_page + ' footer').html(footer)
 
@@ -143,6 +156,7 @@ function template_parse(data, template){
 // content_upload
 function content_upload(upload_url, upload_page){
   $('body').addClass('_load_')
+  upload_page = upload_page ? upload_page : page
 
   if (upload_url.indexOf('http') >= 0) {
     console.log('С сайта')
@@ -164,6 +178,7 @@ function content_upload(upload_url, upload_page){
 
     $.post(upload_url, function(data){
       content_parse(data, upload_page)
+      scroll_to(0, upload_page)
       page_navigator(upload_page)
     })
   }
@@ -202,11 +217,16 @@ $(function(){
     $(this).toggleClass('_active_')
     $('#main_menu').toggleClass('_active_')
     $('body').toggleClass('_no_active_')
+
+    return false
   })
   $(document).on('click', '#main_menu li a', function(){
     $(this).parents('li').addClass('_active_').siblings().removeClass('_active_')
+    $('#main_menu_show').removeClass('_active_')
     $('#main_menu').removeClass('_active_')
     $('body').removeClass('_no_active_')
+
+    return false
   })
   // main_menu x
 })

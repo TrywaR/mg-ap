@@ -1,9 +1,10 @@
 $(function(){
   // collaps_block
-  $(document).on('click', '.collaps_block .collaps_btn', function(){
+  $(document).on('click', '.collaps_block .collaps_btn a', function(){
     $(this)
-    .toggleClass('_active_')
-    .parents('.collaps_block').toggleClass('_active_')
+      .parents('.collaps_block').toggleClass('_active_')
+      
+    return false
   })
   // collaps_block x
 })

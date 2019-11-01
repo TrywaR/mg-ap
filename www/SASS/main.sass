@@ -2,18 +2,34 @@
 @import "mixin"
 @import "reset"
 
-// Профиль
-@import "profile"
-// Участники
-@import "members"
-// Расписание
-@import "schedule"
-// Чаты
-@import "chats"
 // Контент
 @import "content"
-
 @import "../fonts/fonts"
+
+// Авторизация
+@import "authorizations/authorizations"
+
+// Профиль
+@import "profiles/profile"
+
+// Участники
+@import "members/members"
+@import "members/member"
+
+// Курсы
+@import "courses/courses"
+@import "courses/course"
+
+// Тренера
+@import "trainers/trainers"
+@import "trainers/trainer"
+
+// Расписание
+@import "schedule"
+
+// Чаты
+@import "chats/chats"
+@import "chats/chat"
 
 // body
 body
@@ -23,7 +39,7 @@ body
   line-height: 1
   z-index: 1
   min-height: 100vh
-  overflow-y: auto
+  overflow: hidden
   font-family: 'DIN Pro'
   color: white
   background: rgba(0, 0, 0, 0.5)
@@ -101,7 +117,7 @@ header
       display: flex
       flex-direction: row
       justify-content: space-between
-      flex-grow: 1
+      // flex-grow: 1
       // padding: 1rem
 
       & > ._title,
@@ -123,11 +139,14 @@ header
         text-decoration: none
 
       & > ._title
+        margin-right: auto
+
         &.__center
-          // padding-right: 40px
-          margin-right: auto
+          padding-right: 60px
+          margin-left: auto
 
       & > ._button
+        margin-left: auto
         text-align: right
 
         &.__icon
@@ -140,7 +159,8 @@ header
 
 
     .block_header_items
-      justify-content: flex-end
+      flex-grow: 1
+      justify-content: flex-start
 
   .block_header
     padding: 1rem
@@ -175,22 +195,19 @@ footer
   width: 300vw
   display: flex
   flex-direction: row
-  overflow-x: hidden
-  overflow-y: auto
+  overflow: hidden
   transition: all .5s ease
 
 .page
   width: 100vw
   height: 100vh
+  overflow-y: auto
 
   .row
     display: flex
     flex-direction: row
     width: 100%
 // page x
-
-// 0ther
-// 0ther x
 
 // .block_main_menu
 .block_main_menu
@@ -239,17 +256,3 @@ footer
         &._active_
           background: rgba(0, 0, 0, 0.2)
 // .block_main_menu x
-
-// authorization_forms
-.authorization_forms
-  height: 100vh
-  // margin-top: - $header_height
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-
-  .form_status
-    &._error
-      color: $color_error
-// authorization_forms x
