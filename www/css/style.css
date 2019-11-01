@@ -759,19 +759,11 @@ button {
   .page_course .thems .them > ._video_name {
     font-size: 1rem;
     line-height: 1; }
-.block_course .course_info,
-.page_course .course_info {
-  color: red; }
-  .block_course .course_info > ._name,
-  .page_course .course_info > ._name {
-    font-size: 1.3rem;
-    line-height: 1;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 1rem; }
-  .block_course .course_info > ._text,
-  .page_course .course_info > ._text {
-    padding: 1rem 0; }
+.block_course .course_info > ._text,
+.page_course .course_info > ._text {
+  font-size: 1rem;
+  line-height: 1.1;
+  padding: 1rem 0; }
 
 .block_trainers > ._title .input,
 .page_trainers > ._title .input {
@@ -884,8 +876,8 @@ button {
 .block_trainer .trainer_text,
 .page_trainer .trainer_text {
   width: 100%;
-  font-size: 0.9rem;
-  line-height: 1;
+  font-size: 1rem;
+  line-height: 1.1;
   margin-bottom: 2rem; }
   .block_trainer .trainer_text p,
   .page_trainer .trainer_text p {
@@ -1108,7 +1100,7 @@ button {
   padding: 1rem 2rem;
   height: 30px;
   background: #0584b8;
-  z-index: 999;
+  z-index: 998;
   transition: all 0.4s ease; }
   .chat_active .input {
     width: 100%;
@@ -1172,7 +1164,7 @@ header {
   left: 0;
   right: 0;
   background: #0584b8;
-  z-index: 2; }
+  z-index: 3; }
   header .block_header_buttons {
     display: flex;
     flex-direction: row;
@@ -1236,13 +1228,20 @@ header {
     font-size: 1.2rem;
     line-height: 1.2; }
 
-main > ._title {
-  padding: 1rem;
-  background: #0584b8;
-  font-size: 1.45rem;
-  font-weight: bold; }
-main > ._content {
-  padding: 1rem; }
+main {
+  position: relative;
+  z-index: 1; }
+  main > ._title {
+    padding: 1rem;
+    background: #0584b8;
+    font-size: 1.45rem;
+    font-weight: bold; }
+  main > ._content {
+    padding: 1rem; }
+
+footer {
+  position: relative;
+  z-index: 2; }
 
 .pages {
   position: fixed;
