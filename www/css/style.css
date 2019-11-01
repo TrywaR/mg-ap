@@ -404,9 +404,15 @@ button {
       background: #0584b8 url(../img/icons/user.png) no-repeat center center;
       background-size: 20px;
       border-radius: 50%;
-      height: 50px; }
+      height: 50px;
+      width: 50px;
+      min-width: 50px;
+      max-width: 50px; }
     .page_members .members .member > ._img img {
       height: 50px;
+      width: 50px;
+      max-width: 50px;
+      min-width: 50px;
       max-width: inherit;
       border-radius: 50%; }
   .page_members .members .member > ._name {
@@ -788,11 +794,16 @@ button {
       background: #0584b8 url(../img/icons/user.png) no-repeat center center;
       background-size: 20px;
       border-radius: 50%;
-      height: 50px; }
+      height: 50px;
+      width: 50px;
+      max-width: 50px;
+      min-width: 50px; }
     .block_trainers .trainers .trainer > ._img img,
     .page_trainers .trainers .trainer > ._img img {
       height: 50px;
-      max-width: inherit;
+      width: 50px;
+      max-width: 50px;
+      min-width: 50px;
       border-radius: 50%; }
   .block_trainers .trainers .trainer > ._name,
   .page_trainers .trainers .trainer > ._name {
