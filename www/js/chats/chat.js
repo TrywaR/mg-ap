@@ -44,7 +44,7 @@ function chat_init(){
   })
 
   // Скроллито
-  scroll_to(0, page, chat_messages.height())
+  scroll_to(0, chat_messages[0].scrollHeight)
 }
 
 // Чистка ввода пользователя
@@ -68,11 +68,11 @@ function chat_text_clean(string){
 // Отправка сообщений
 function chat_send() {
   if ( chat_input.val().length > 0 ) {
-    chat_messages.append('<div class="message __profile">'+chat_text_clean(chat_input.val())+'</div>')
+    chat_messages.append('<div class="message">'+chat_text_clean(chat_input.val())+'</div>')
     chat_input.val('')
     chat_button_send.removeClass('_active_')
 
-    scroll_to(0, page, chat_messages.height())
+    scroll_to(0, chat_messages[0].scrollHeight)
     chat_bot()
   }
 
@@ -121,9 +121,9 @@ function chat_bot(message){
           // Отправка ответа
           setTimeout(
             function(){
-              chat_messages.append('<div class="message">'+answer[Math.floor(Math.random() * 18)]+'</div>')
+              chat_messages.append('<div class="message __interlocutor">'+answer[Math.floor(Math.random() * 18)]+'</div>')
               interlocutor_status.html('в сети')
-              scroll_to(0, page, chat_messages.height())
+              scroll_to(0, chat_messages[0].scrollHeight)
 
               // Оффлайн
               setTimeout(

@@ -2,12 +2,12 @@
 function authorization(){
   // Если пользователь авторизирован
   if ( session_key ) {
-    content_upload('templates/profiles/index.htm', 2)
-    page_navigator(2)
+    active_buttons()
+    content_upload('templates/profile.htm')
   }
   else {
-    content_upload('templates/authorizations/authorization.htm', 1)
-    page_navigator(1)
+    active_buttons()
+    content_upload('templates/authorizations/authorization.htm')
   }
 }
 // authorization x
@@ -37,8 +37,7 @@ $(function(){
     if ( $(this).find('[name=password]').val() != 'demo' ) login = false
     if ( login ) {
       localStorage.setItem('session_key', session_key = 'demo')
-      content_upload('templates/profiles/index.htm', 2)
-      page_navigator(2)
+      authorization()
     }else{
       authorization_message(1,'Email или пароль введён не верно!')
     }
@@ -111,7 +110,8 @@ $(function(){
 
   // exit
   $(document).on('click', '#profile_exit', function() {
-    localStorage.setItem('session_key', session_key = '')
+    localStorage.removeItem('session_key')
+    session_key = ''
     authorization()
   })
   // exit x

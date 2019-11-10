@@ -6,102 +6,120 @@
 
   .chats
     // chat
-    .chat
-      position: relative
+  .chat
+    position: relative
+    display: flex
+    flex-direction: row
+    align-items: flex-start
+    z-index: 1
+    padding-bottom: 1rem
+    height: 12vh
+
+    & > ._img
+      height: 100%
+      width: 20%
+      min-width: 50px
+
+      img
+        width: 50px
+        height: 50px
+        max-width: inherit
+        max-height: 100%
+        border-radius: 50%
+        overflow: hidden
+
+      a
+        display: block
+        width: 100%
+        height: 100%
+
+      &.__default
+        background: $color_main_dark url(../img/icons/user.png) no-repeat center center
+        background-size: auto
+        background-size: 20px
+        border-radius: 50%
+        height: 50px
+        width: 50px
+        min-width: 50px
+        max-width: 50px
+
+    & > ._info
       display: flex
       flex-direction: row
-      align-items: flex-start
-      z-index: 1
-      padding-bottom: 1rem
-      height: 12vh
+      flex-wrap: wrap
+      width: 78%
+      height: 11vh
+      margin-left: 2%
+      padding-bottom: calc( 1vh - 1px )
+      border-bottom: 1px solid #FFFFFF
 
-      & > ._img
-        height: 100%
-        width: 20vw
+      & > ._name
+        flex-basis: 70%
+        height: 3vh
+        font-size: 2.8vh
+        font-weight: bold
+        overflow: hidden
+        white-space: nowrap
 
-        img
-          // width: 18vw
-          height: 18vw
-          max-width: inherit
-          max-height: 100%
-          border-radius: 50%
-          overflow: hidden
+      & > ._date
+        flex-basis: 30%
+        display: flex
+        align-items: flex-end
+        justify-content: flex-end
+        height: 3vh
+        font-size: 2vh
+        text-transform: lowercase
 
-      & > ._info
+      & > ._last_msg
+        position: relative
+        flex-basis: 100%
         display: flex
         flex-direction: row
-        flex-wrap: wrap
-        width: 78vw
-        height: 11vh
-        margin-left: 2vw
-        padding-bottom: calc( 1vh - 1px )
-        border-bottom: 1px solid #FFFFFF
+        align-items: flex-start
+        height: 8vh
+        font-size: 2.2vh
+        line-height: 1
+        z-index: 1
 
-        & > ._name
-          flex-basis: 50%
-          height: 3vh
-          font-size: 2.8vh
-          font-weight: bold
+        & > ._status
+          padding: .5rem
+          height: 2.5vh
+          width: 2.5vh
+          background-size: auto 2vh ! important
 
-        & > ._date
-          flex-basis: 50%
-          display: flex
-          align-items: flex-end
-          justify-content: flex-end
-          height: 3vh
-          font-size: 2vh
-          text-transform: lowercase
+          &[data-status="send"]
+            opacity: .5
+            background: url(../img/icons/chat_send.png) no-repeat 0 center
+          &[data-status="chek"]
+            background: url(../img/icons/chat_send.png) no-repeat 0 center, url(../img/icons/chat_chek.png) no-repeat center center
+            opacity: .5
+          &[data-status="read"]
+            background: url(../img/icons/chat_send.png) no-repeat 0 center, url(../img/icons/chat_chek.png) no-repeat center center
+            opacity: 1
 
-        & > ._last_msg
-          position: relative
-          flex-basis: 100%
-          display: flex
-          flex-direction: row
-          align-items: flex-start
-          height: 8vh
-          font-size: 2.2vh
+        & > ._txt
+          padding: .5rem .5rem .5rem 0rem
+          font-size: 2.5vh
           line-height: 1
-          z-index: 1
 
-          & > ._status
-            padding: .5rem
-            height: 2.5vh
-            width: 2.5vh
-            background-size: auto 2vh ! important
+        & > ._href
+          position: absolute
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          z-index: 2
 
-            &[data-status="send"]
-              opacity: .5
-              background: url(../img/icons/chat_send.png) no-repeat 0 center
-            &[data-status="chek"]
-              background: url(../img/icons/chat_send.png) no-repeat 0 center, url(../img/icons/chat_chek.png) no-repeat center center
-              opacity: .5
-            &[data-status="read"]
-              background: url(../img/icons/chat_send.png) no-repeat 0 center, url(../img/icons/chat_chek.png) no-repeat center center
-              opacity: 1
-
-          & > ._txt
-            padding: .5rem .5rem .5rem 0rem
-            font-size: 2.5vh
-            line-height: 1
-
-          & > ._href
-            position: absolute
-            top: 0
-            left: 0
-            right: 0
-            bottom: 0
-            z-index: 2
-
-            a
-              display: flex
-              align-items: flex-start
-              justify-content: flex-end
-              width: 100%
-              height: 10vh
-              text-decoration: none
-              color: white
-              text-align: right
-              background: url(../img/icons/income.png) no-repeat right 0.5rem
-              background-size: auto 2.5vh
+          a
+            display: flex
+            align-items: flex-start
+            justify-content: flex-end
+            width: 100%
+            height: 10vh
+            text-decoration: none
+            color: white
+            text-align: right
+            background: url(../img/icons/income.png) no-repeat right 0.5rem
+            background-size: auto 2.5vh
     // chat x
 // page_chats x

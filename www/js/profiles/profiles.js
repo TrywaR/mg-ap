@@ -14,5 +14,11 @@ function profile_progress(){
             'transition-delay': index / lenght + 's'
         })
     })
+
+  // Если на странице пользователя, собираем его инфу
+  if ( $(document).find('.main_profile').length > 0 )
+    $(document)
+      .find('.main_profile ._profile_info ._points span')
+        .html( localStorage.getItem('user_points') )
 }
 // profile_progress x

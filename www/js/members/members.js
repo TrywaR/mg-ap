@@ -16,3 +16,19 @@ function member_progress(){
     })
 }
 // member_progress x
+
+// member_search
+function member_search(){
+
+  $(document).on('change keyup input click', 'input.__search', function(){
+    what = $(this).val().toLowerCase()
+
+    $(document).find('.members .member').each(function(){
+      if( $(this).find('._name').html().toLowerCase().indexOf( what ) >= 0 )
+        $(this).show()
+      else
+        $(this).hide()
+    })
+  })
+}
+// member_search x

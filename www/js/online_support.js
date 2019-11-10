@@ -44,7 +44,7 @@ function support_init(){
   })
 
   // Скроллито
-  scroll_to(0, page, support_messages.height())
+  scroll_to(0, support_messages[0].scrollHeight)
 }
 
 // Чистка ввода пользователя
@@ -68,11 +68,11 @@ function support_text_clean(string){
 // Отправка сообщений
 function support_send() {
   if ( support_input.val().length > 0 ) {
-    support_messages.append('<div class="message __profile">'+support_text_clean(support_input.val())+'</div>')
+    support_messages.append('<div class="message">'+support_text_clean(support_input.val())+'</div>')
     support_input.val('')
     support_button_send.removeClass('_active_')
 
-    scroll_to(0, page, support_messages.height())
+    scroll_to(0, support_messages[0].scrollHeight)
     support_bot()
   }
 
@@ -121,9 +121,9 @@ function support_bot(message){
           // Отправка ответа
           setTimeout(
             function(){
-              support_messages.append('<div class="message">'+answer[Math.floor(Math.random() * 18)]+'</div>')
+              support_messages.append('<div class="message __interlocutor">'+answer[Math.floor(Math.random() * 18)]+'</div>')
               support_interlocutor_status.html('в сети')
-              scroll_to(0, page, support_messages.height())
+              scroll_to(0, support_messages[0].scrollHeight)
 
               // Оффлайн
               setTimeout(

@@ -1,8 +1,9 @@
 // params
-page = 0 // Текущая страница
 page_url = '' // Адрес текущей страницы
 // site_url = 'https://alliance.paultik.ru/account/login/' // Адрес сайта
 site_url = 'http://m97731yi.beget.tech/' // Адрес сайта
+pages_history = [] // История страниц
+pages_history_length = 2 // Количество страниц в истории
 // test@trywar.ru
 // SZ0wSgL2
 session_key = '' // Ключ авторизации
@@ -66,73 +67,141 @@ ajax_salt = {
 // CSRF x
 
 // LocalSWtorage
-if ( localStorage.getItem('page') ) page = localStorage.getItem('page')
+// Сессия для логирования
 if ( localStorage.getItem('session_key') ) {
   session_key = localStorage.getItem('session_key')
   ajax_salt['session_key'] = session_key
 }
+
+// Баллы пользователя
+user_points = 750
+if ( localStorage.getItem('user_points') )
+  user_points = localStorage.getItem('user_points')
+else
+  localStorage.setItem('user_points', user_points)
 // LocalStorage x
 
-// scroll_to
-function scroll_to(elem, fix_page, fix_size){
-  scroll_val = elem ? elem.offset().top : 0
-  fix_page = fix_page ? fix_page : page
-  scroll_val = fix_size ? fix_size : scroll_val
+// num2str
+function num2str(n, text_forms) {
+  var
+    n1 = n % 10,
+    n = Math.abs(n) % 100
 
-  $(document).find('.page._' + fix_page + '').animate({
+  if (n > 10 && n < 20)
+    return text_forms[2]
+  if (n1 > 1 && n1 < 5)
+    return text_forms[1]
+  if (n1 == 1)
+    return text_forms[0]
+
+  return text_forms[2]
+}
+// num2str(1, ['минута', 'минуты', 'минут'])
+// num2str
+
+// active_buttons
+function active_buttons(show){
+  if ( show != false )
+    show = true
+
+  if ( localStorage.getItem('session_key') && show ) {
+    $('body > header').show()
+    $('body > footer').show()
+  }
+  else{
+    $('body > header').hide()
+    $('body > footer').hide()
+  }
+}
+// active_buttons
+
+// scroll_to
+function scroll_to(elem, fix_size, scroll_time){
+  scroll_val = elem ? elem.offset().top : 0
+  scroll_val = fix_size ? fix_size : scroll_val
+  scroll_time = scroll_time != null ? scroll_time : 500
+
+  $(document).find('html,body').animate({
     scrollTop: scroll_val
-  }, 500)
+  }, scroll_time)
 }
 // scroll_to x
 
-// page_navigator
-function page_navigator(page){
-  console.log('page_navigator page: '+page)
-  if ( page > 1 ){
-    $(document).find('#pages').css({
-      left: ( ( page - 1 ) * -100) + 'vw'
-    })
-  }else{
-    $(document).find('#pages').css({
-      left: '0vw'
-    })
+// page_prev
+function page_prev(href, data){
+  // href - Шаблон предыдущей страницы
+  // data - Данные предыдущей страницы
+
+  if ( href ) {
+    // Проверяем урвоень вложенности
+    arrInner = href.split('/')
+
+    // Если вложенная то добавляем в историю
+    if ( arrInner.length > 2 ) {
+      // Если больше 1 в истории, ввыодим кнопку назад
+      if ( pages_history.length > 1 ) {
+        // Пишем историю
+        pages_history.push( href )
+
+        // Если в истории больше чем нужно, обрезаем историю
+        if ( pages_history.length >= pages_history_length ) {
+          // Обрезаем массив
+          pages_history = pages_history.slice(pages_history_length * - 1)
+          // Выводим кнопку
+          $(document).find('#main_menu_back').addClass('_active_')
+        }
+      }
+      // Если нет
+      else {
+        // Если 1, то добавляем ссылочку и скрываем кнопку
+        if ( pages_history.length == 1 ) {
+          // Добавляем в массив
+          pages_history.push( href )
+          // Скрываем кнопку
+          $(document).find('#main_menu_back').addClass('_active_')
+        }
+      }
+    }
+    // Если нет удаляеи из истории
+    else {
+      // Чистим историю
+      pages_history = []
+      // Скрываем кнопку назад
+      $(document).find('#main_menu_back').removeClass('_active_')
+    }
+
+    // Если массив пустой но ссылка есть, добавляем ссыль в историю
+    if ( pages_history.length == 0 && href.length > 0 ) {
+      pages_history.push( href )
+      // Скрываем кнопку
+      $(document).find('#main_menu_back').removeClass('_active_')
+    }
   }
-  $(document).find('#pages .page._' + page + '').addClass('_active_').siblings().removeClass('_active_')
-  localStorage.setItem('page', page)
+  else{
+    pages_history = []
+    // Скрываем кнопку
+    $(document).find('#main_menu_back').removeClass('_active_')
+  }
 }
-// page_navigator(page)
+// page_prev x
 
 // content_parse
-function content_parse(data, fix_page){
-  current_page = fix_page ? fix_page : page
-  console.log('content_parse')
-  console.log('current_page: '+current_page)
-  // Если вложенный ресурс
-  if ( current_page > 2 ) {
-
-    // Определяем ссыль родителя
-    arrPage_url = page_url.split('/')
-    arrPage_url[arrPage_url.length - 1] = 'index.htm'
-    parent_page_url = arrPage_url.join('/')
-
-    // Подтягиваем контент родителя
-    $.post(parent_page_url, function(parent_data){
-      content_parse(parent_data, 2)
-    })
-
-    // Возвращяем как было и далее тянем внутряк
-  }
-
+function content_parse(data){
   var data = $('<div/>').html(data)
   var header = $(data).find('header').length > 0 ? $(data).find('header').html() : ''
   var main = $(data).find('main').length > 0 ? $(data).find('main').html() : ''
   var main_class = $(data).find('main').length > 0 ? $(data).find('main').attr('class') : ''
   var footer = $(data).find('footer').length > 0 ? $(data).find('footer').html() : ''
 
-  $(document).find('#pages .page._' + current_page + ' header .block_header_items').html(header)
-  $(document).find('#pages .page._' + current_page + ' main').html(main).attr('class', '')
-  $(document).find('#pages .page._' + current_page + ' main').addClass(main_class)
-  $(document).find('#pages .page._' + current_page + ' footer').html(footer)
+  $(document).find('body header .block_header_items').html(header)
+  $(document).find('body main').html(main).attr('class', '')
+  $(document).find('body main').addClass(main_class)
+  $(document).find('body footer').html(footer)
+
+  // // parse
+  // $.each(data, function(key, value){
+  //   $(template_htm).find('main [data-key='+key+']').prepend(value)
+  // })
 
   $(document).find('#main_menu li.' + main_class).addClass('_active_').siblings().removeClass('_active_')
 }
@@ -154,10 +223,11 @@ function template_parse(data, template){
 // template_parse x
 
 // content_upload
-function content_upload(upload_url, upload_page){
+function content_upload(upload_url){
   $('body').addClass('_load_')
-  upload_page = upload_page ? upload_page : page
 
+  console.log('content_upload: ' + upload_url)
+  console.log(upload_url.indexOf('http'))
   if (upload_url.indexOf('http') >= 0) {
     console.log('С сайта')
 
@@ -168,41 +238,65 @@ function content_upload(upload_url, upload_page){
         withCredentials: false
       }
     }).done(function(data) {
-      $(document).find('#pages .page._' + upload_page + '').html(data)
-      page_navigator(upload_page)
+      $(document).find('body').html(data)
+      scroll_to(0,0,0)
+      page_prev(upload_url)
+      $('body').removeClass('_load_')
     })
-
   }
   else{
     console.log('С приложения')
 
     $.post(upload_url, function(data){
-      content_parse(data, upload_page)
-      scroll_to(0, upload_page)
-      page_navigator(upload_page)
+      content_parse(data)
+      scroll_to(0,0,0)
+      page_prev(upload_url)
+      $('body').removeClass('_load_')
     })
   }
 
-  $('body').removeClass('_load_')
 
   return false
 }
 // content_upload х
 
 $(function(){
-  // page_navigator
+  // fix_size
+  $(document)
+    .find('main')
+      .height(
+        $(document).height() - $(document).find('header').height()
+      )
+  // fix_size x
+
+  // page_prev
   $(document).on('click', '#main_menu_back', function(){
-    page--
-    page_navigator(page)
+    if (pages_history.length) {
+      content_upload(pages_history[pages_history.length - pages_history_length])
+      page_prev()
+      $(document).find('#main_menu_back').removeClass('_active_')
+    }
+    else {
+      console.log('ne ok 2')
+    }
   })
-  // page_navigator x
+  // page_prev x
 
   // content_upload
   $(document).on('click', '.content_upload', function(){
     page_url = $(this).attr('href')
-    page = $(this).data().page ? $(this).data().page : 2
 
-    content_upload(page_url,page)
+    if ( $(this).data('content') ) {
+
+      if ( $(this).data('params') ) {
+        content_upload(page_url, $(this).data('content'), $(this).data('params'))
+      }else{
+        content_upload(page_url, $(this).data('content'))
+      }
+
+    }else{
+      content_upload(page_url)
+    }
 
     $('#main_menu_show').removeClass('_active_')
     $('#main_menu').removeClass('_active_')

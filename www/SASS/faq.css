@@ -1,0 +1,16 @@
+.block_faq .faq > ._title,
+.page_faq .faq > ._title {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0rem; }
+.block_faq .faq > ._items,
+.page_faq .faq > ._items {
+  padding: 0 0 1rem; }
+  .block_faq .faq > ._items > ._item,
+  .page_faq .faq > ._items > ._item {
+    font-size: 1rem;
+    line-height: 1;
+    padding: 1rem 0;
+    border-bottom: 1px solid white; }
+
+/*# sourceMappingURL=faq.css.map */

@@ -60,6 +60,15 @@ main
 // collaps_block
 .collaps_block
   .collaps_btn
+    display: flex
+    flex-direction: row
+    text-transform: uppercase
+    font-weight: 700
+    font-size: 1.1rem
+    line-height: 1.5rem
+    cursor: pointer
+    margin-bottom: 1rem
+
     a
       display: flex
       flex-direction: row
@@ -163,6 +172,56 @@ main
     background-size: 15px auto
 // input x
 
+// checkbox and radio
+.input_checkbox
+  min-height: 30px
+  line-height: 30px
+
+  input
+    display: none
+
+    &[type=radio]
+      & + label
+        &:before,
+        &:after
+          border-radius: 50%
+
+    &:checked
+      & + label
+        &:before
+          display: block
+          transform: scale(1,1)
+
+  label
+    position: relative
+    z-index: 1
+    padding: 2px 2px 2px 30px
+
+    &:before,
+    &:after
+      content: ''
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      width: 20px
+      height: 20px
+      border: 2px solid white
+      border-radius: 3px
+
+    &:before
+      display: none
+      background: white url(../img/icons/checked.png) no-repeat center center
+      background-size: 60%
+      z-index: -1
+      transform: scale(0,0)
+      @include transition_standart
+
+    &:after
+      border: 2px solid white
+      z-index: -2
+// checkbox and radio x
+
 // button
 .block_buttons
   padding-top: 1.5rem
@@ -186,6 +245,7 @@ button
   color: white
   font-family: 'DIN Pro'
   box-sizing: border-box
+  text-decoration: none
 
   &:focus,
   &:active
