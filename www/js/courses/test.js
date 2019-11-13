@@ -15,8 +15,8 @@ function test_complit(tests){
       test_success++
 
       // Считаем количество балов
-      if ( $(this).data().points )
-        test_points += parseInt( $(this).data().points )
+      // if ( $(this).data().points )
+      //   test_points += parseInt( $(this).data().points )
     }
   })
 
@@ -41,18 +41,18 @@ function test_complit(tests){
   })
 
   // Вывод количества правильных ответов
-  tests
-    .next('.result')
-      .find('._circle ._data ._test_success_count span')
-        .html( test_success + ' / ' + tests.find('.test').length )
-
-  // Вывод баллов
-  tests
-    .next('.result')
-      .find('._circle ._data ._points span')
-        .html(
-          test_points + ' ' + num2str(test_points, ['Балла', 'Балла', 'Баллов'])
-        )
+  // tests
+  //   .next('.result')
+  //     .find('._circle ._data ._test_success_count span')
+  //       .html( test_success + ' / ' + tests.find('.test').length )
+  //
+  // // Вывод баллов
+  // tests
+  //   .next('.result')
+  //     .find('._circle ._data ._points span')
+  //       .html(
+  //         test_points + ' ' + num2str(test_points, ['Балла', 'Балла', 'Баллов'])
+  //       )
 
   // Сохраняем результат
   user_points = parseInt( localStorage.getItem('user_points') )
@@ -67,6 +67,12 @@ function test_complit(tests){
   if ( test_success ) {
     // Расчитываем процент правильных ответов
     test_success_precent = ( 100 * test_success ) / tests.find('.test').length
+    // Вывод процента правильных ответов
+    tests
+      .next('.result')
+        .find('._circle ._data ._test_success_percent span')
+          .html( test_success_precent )
+
     test_success_precent = divs.length * ( test_success_precent / 100 )
 
     // Закрашиваем в кругу нужное количество элементов
@@ -77,6 +83,7 @@ function test_complit(tests){
       })
     }, 500)
   }
+
 
   return false
 }

@@ -266,7 +266,9 @@ $(function(){
     .find('main')
       .height(
         $(document).height() - $(document).find('header').height()
-      )
+      ).css({
+        'padding-top': $(document).find('header').height() + 'px'
+      })
   // fix_size x
 
   // page_prev

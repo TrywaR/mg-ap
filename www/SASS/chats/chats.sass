@@ -2,9 +2,39 @@
 .block_chats,
 .page_chats
   & > ._title
+    .input
+      width: 100%
+
   & > ._content
 
   .chats
+    .chat
+      &:not(:first-child)
+      &:not(._hide_)
+        ._info
+          position: relative
+
+          &:before
+            content: ''
+            position: absolute
+            top: -.5rem
+            right: 0
+            width: 100%
+            height: 1px
+            background: white
+
+      &:first-child,
+      &._no_border_
+        ._info
+          &:before
+            display: none ! important
+
+    .sort_item
+      &:not(._hide_)
+        & + .chat
+          ._info
+            &:before
+              display: none ! important
     // chat
   .chat
     position: relative
@@ -12,13 +42,29 @@
     flex-direction: row
     align-items: flex-start
     z-index: 1
-    padding-bottom: 1rem
-    height: 12vh
+    left: 0vw
+    padding: .5rem 0
+    @include transition_standart
+    // height: 12vh
+
+    &._hide_
+      position: fixed
+      left: 100vw
+
+    & > ._checked
+      width: 10%
+      padding-top: 3vh
+      input
+
+      & + ._img
+        width: 50px
+
+        & + ._info
+          width: calc(88% - 50px)
 
     & > ._img
-      height: 100%
-      width: 20%
-      min-width: 50px
+      width: 50px
+      height: 50px
 
       img
         width: 50px
@@ -47,11 +93,10 @@
       display: flex
       flex-direction: row
       flex-wrap: wrap
-      width: 78%
-      height: 11vh
+      width: calc(98% - 50px)
+      // height: 11vh
       margin-left: 2%
       padding-bottom: calc( 1vh - 1px )
-      border-bottom: 1px solid #FFFFFF
 
       & > ._name
         flex-basis: 70%
@@ -76,7 +121,7 @@
         display: flex
         flex-direction: row
         align-items: flex-start
-        height: 8vh
+        // height: 8vh
         font-size: 2.2vh
         line-height: 1
         z-index: 1
@@ -115,7 +160,8 @@
             align-items: flex-start
             justify-content: flex-end
             width: 100%
-            height: 10vh
+            // height: 10vh
+            height: 100%
             text-decoration: none
             color: white
             text-align: right
@@ -123,3 +169,35 @@
             background-size: auto 2.5vh
     // chat x
 // page_chats x
+
+// chat_edit
+.chat_edit
+  position: fixed
+  bottom: -100vh
+  left: 0
+  right: 0
+  display: flex
+  flex-direction: row
+  align-items: flex-end
+  justify-content: flex-end
+  padding: 1rem 2rem
+  background: $color_main_dark
+  z-index: 998
+  @include transition_standart
+
+  button
+    color: white
+    text-decoration: none
+    padding: 0
+    margin: 0
+    border: none ! important
+    outline: none ! important
+    box-shadow: none ! important
+    background: none ! important
+    font-size: 1.1rem
+    line-height: 1
+    cursor: pointer
+
+  &._active_
+    bottom: 0vh
+// chat_edit x
