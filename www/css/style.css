@@ -327,19 +327,22 @@ button {
     z-index: 2; }
 .block_profile .profile_progress_perspective,
 .page_profile .profile_progress_perspective {
-  perspective: 150vw; }
+  perspective: 150vw;
+  width: 100%;
+  display: flex;
+  justify-content: center; }
 .block_profile .profile_progress,
 .page_profile .profile_progress {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 18vh 15vw;
-  margin: 0 -1rem; }
+  padding: 18vh 10vw;
+  width: 66vw; }
   .block_profile .profile_progress .step,
   .page_profile .profile_progress .step {
     position: relative;
     z-index: 1;
-    width: 35vw;
+    width: 33vw;
     padding: 1.5vw 1vw;
     box-sizing: border-box; }
     .block_profile .profile_progress .step > ._tree,
@@ -376,6 +379,7 @@ button {
       text-align: right;
       opacity: 0;
       transform: skewY(16deg);
+      z-index: 2;
       animation-name: desc;
       animation-delay: 0.5s;
       animation-duration: 0.5s;
@@ -455,7 +459,7 @@ button {
       .block_profile .profile_progress .step:nth-child(n+3) > ._desc,
       .page_profile .profile_progress .step:nth-child(n+3) > ._desc {
         top: 0;
-        left: -15vw; }
+        left: -17vw; }
     .block_profile .profile_progress .step:nth-child(1) > ._tree, .block_profile .profile_progress .step:nth-child(2) > ._tree,
     .page_profile .profile_progress .step:nth-child(1) > ._tree,
     .page_profile .profile_progress .step:nth-child(2) > ._tree {
