@@ -5,6 +5,7 @@
   & > ._content
 
   .prev_profile
+    // Превью (описание пользователя)
     position: relative
     z-index: 1
 
@@ -57,134 +58,250 @@
         bottom: 0
         z-index: 2
 
+  .profile_progress_perspective
+    perspective: 150vw
+    // overflow: hidden
+
   .profile_progress
-    width: 100%
+    // Прогресс пользователя
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    padding: 18vh 15vw
+    margin: 0 -1rem
 
     .step
+      // Шаг (Курс)
       position: relative
       z-index: 1
-      display: flex
-      flex-direction: row
-      align-items: center
-      padding-top: 1rem
-      padding-bottom: 1rem
-      height: 6rem
+      width: 35vw
+      padding: 1.5vw 1vw
       box-sizing: border-box
-      overflow: hidden
-      opacity: .5
-      text-decoration: none
-      color: white
-      @include transition_standart
 
       & > ._tree
-        // position: relative
-        // z-index: 1
-        width: 35%
-        height: 4rem
-        @include transition_standart
+        // Декоративный элемент
+        position: relative
+        display: block
+        width: 18vw
+        height: 18vw
+        margin-left: auto
+        border-radius: 3px
+        transform: rotateY(-15deg) skewY(20deg)
+        // box-shadow: inset 0 0 0 1px white
+        // border: 1px solid white
+        background: none
+        z-index: 1
 
-        span
-          content: ''
-          position: absolute
-          top: 0
-          left: 0
-          width: 30%
-          background-size: auto 6rem ! important
-          background-position: top left ! important
-          transition: all 1s ease 0s
-
-          &:nth-child(1)
-            height: 100%
-            z-index: -2
-            background: url(../img/profile_progress/tree_no_s_m.png) no-repeat
-
-          &:nth-child(2)
-            height: 0%
-            z-index: 2
+        svg
+          margin-top: -1rem
+          margin-right: -1rem
+          margin-left: 0
 
       & > ._desc
-        position: relative
-        z-index: 1
-        width: 55%
+        // Описание
+        position: absolute
+        top: -18vh
+        left: 0
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        justify-content: flex-end
+        align-items: center
+        align-content: flex-start
+        width: 31vw
+        height: 31vw
+        padding: 1.5vw
         box-sizing: border-box
-        padding-left: .5rem
+        text-align: right
+        opacity: 0
+        transform: skewY(16deg)
 
-        &:after
-          content: ''
-          position: absolute
-          top: 0
-          bottom: 0
-          left: 0
-          width: .12rem
-          background: white
+        animation-name: desc
+        animation-delay: .5s
+        animation-duration: .5s
+        animation-fill-mode: forwards
+        animation-timing-function: linear
+
+        & > ._icon
+          padding: 0 .3rem
+
+          img
+            width: 1.3rem
 
         & > ._num
-          font-size: 1.4rem
-          line-height: .7
           font-weight: bold
-          margin-bottom: .4rem
+          font-size: 1.3rem
+          line-height: 1
 
         & > ._name
-          font-size: .7rem
-          margin-bottom: .2rem
-          font-weight: bold
+          width: 100%
           text-transform: uppercase
+          font-size: .8rem
+          line-height: 1
+          font-weight: bold
+          padding: .15rem 0
 
         & > ._txt
-          font-size: .7rem
+          width: 100%
+          font-size: .6rem
+          line-height: 1
 
-      & > ._icon
-        width: 10%
-        text-align: center
-        box-sizing: border-box
-
-        img
-          margin: auto
-          max-width: 80%
+        & > ._href
+          a
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            z-index: 2
 
       & > ._href
-        position: absolute
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
-        z-index: 2
-
         a
-          display: block
-          width: 100%
-          height: 100%
+          position: absolute
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          z-index: 2
 
-      &._yes
+      &:nth-child(even)
+        transform: translateY(4vh)
+
+        & > ._tree
+          // Декоративный элемент
+          margin-right: auto
+          margin-left: inherit
+
+          svg
+            margin-left: -1rem
+            margin-right: 0
+
+        & > ._desc
+          // Описание
+          text-align: left
+          justify-content: flex-start
+
+          & > ._icon
+            order: 2
+            img
+          & > ._num
+            order: 1
+          & > ._name
+            order: 3
+          & > ._txt
+            order: 4
+
+      &:nth-child(n+3)
+        // После первых двух
+        z-index: -1
+        margin-top: .2rem
+
+        & > ._desc
+          // Описание
+          top: 0
+          left: -15vw
+
+          & > ._icon
+            img
+          & > ._num
+          & > ._name
+          & > ._txt
+
+      &:nth-child(1),
+      &:nth-child(2)
+        // Первые два
+        & > ._tree
+          position: relative
+          z-index: 1
+
+          svg
+            margin-top: 0
+
+          &:before
+            content: ''
+            position: absolute
+            top: calc( 3.5vh - 2.5px )
+            left: 0
+            right: 0
+            height: 5px
+            width: 5px
+            margin: auto
+            border-radius: 50%
+            background: white
+            margin: auto
+            z-index: 5
+            opacity: 0
+            animation-name: tree_arrow_point
+            animation-delay: 1.7s
+            animation-duration: 1.2s
+            animation-fill-mode: forwards
+            animation-timing-function: linear
+
+          &:after
+            content: ''
+            position: absolute
+            top: -4vh
+            left: 0
+            right: 0
+            height: 0vh
+            width: 1px
+            background: white
+            margin: auto
+            z-index: 4
+
+            animation-name: tree_arrow
+            animation-delay: 1.2s
+            animation-duration: .5s
+            animation-fill-mode: forwards
+            animation-timing-function: linear
+
+        & > ._desc
+          // Описание
+          & > ._icon
+            img
+          & > ._num
+          & > ._name
+          & > ._txt
+
+      &:nth-child(1)
+        & > ._tree
+          &:before,
+          &:after
+            left: 0
+            right: 0
+
+      &.__yes
         opacity: 1
 
-        &._1
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_1_s_m.png) no-repeat
+        & > ._tree
 
-        &._2
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_2_s_m.png) no-repeat
+@keyframes tree
+  0%
+    width: 100%
+  100%
+    width: 0%
 
-        &._3
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_3_s_m.png) no-repeat
+@keyframes desc
+  0%
+    transform: skewY(16deg)
+  100%
+    opacity: 1
+    transform: skewX(0deg)
 
-        &._4
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_4_s_m.png) no-repeat
+@keyframes tree_arrow
+  0%
+    height: 0vh
+  100%
+    height: 7vh
 
-        &._5
-          & > ._tree
-            span
-              &:nth-child(2)
-                background: url(../img/profile_progress/tree_yes_5_s_m.png) no-repeat
+@keyframes tree_arrow_point
+  0%
+    opacity: 0
+    transform: scale(0,0)
+  50%
+    opacity: .5
+    transform: scale(1.4,1.4)
+  100%
+    opacity: 1
+    transform: scale(1,1)
 // page_profile x

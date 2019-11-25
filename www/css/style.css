@@ -325,121 +325,220 @@ button {
     right: 0;
     bottom: 0;
     z-index: 2; }
+.block_profile .profile_progress_perspective,
+.page_profile .profile_progress_perspective {
+  perspective: 150vw; }
 .block_profile .profile_progress,
 .page_profile .profile_progress {
-  width: 100%; }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 18vh 15vw;
+  margin: 0 -1rem; }
   .block_profile .profile_progress .step,
   .page_profile .profile_progress .step {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    height: 6rem;
-    box-sizing: border-box;
-    overflow: hidden;
-    opacity: 0.5;
-    text-decoration: none;
-    color: white;
-    transition: all 0.4s ease; }
+    width: 35vw;
+    padding: 1.5vw 1vw;
+    box-sizing: border-box; }
     .block_profile .profile_progress .step > ._tree,
     .page_profile .profile_progress .step > ._tree {
-      width: 35%;
-      height: 4rem;
-      transition: all 0.4s ease; }
-      .block_profile .profile_progress .step > ._tree span,
-      .page_profile .profile_progress .step > ._tree span {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 30%;
-        background-size: auto 6rem !important;
-        background-position: top left !important;
-        transition: all 1s ease 0s; }
-        .block_profile .profile_progress .step > ._tree span:nth-child(1),
-        .page_profile .profile_progress .step > ._tree span:nth-child(1) {
-          height: 100%;
-          z-index: -2;
-          background: url(../img/profile_progress/tree_no_s_m.png) no-repeat; }
-        .block_profile .profile_progress .step > ._tree span:nth-child(2),
-        .page_profile .profile_progress .step > ._tree span:nth-child(2) {
-          height: 0%;
-          z-index: 2; }
+      position: relative;
+      display: block;
+      width: 18vw;
+      height: 18vw;
+      margin-left: auto;
+      border-radius: 3px;
+      transform: rotateY(-15deg) skewY(20deg);
+      background: none;
+      z-index: 1; }
+      .block_profile .profile_progress .step > ._tree svg,
+      .page_profile .profile_progress .step > ._tree svg {
+        margin-top: -1rem;
+        margin-right: -1rem;
+        margin-left: 0; }
     .block_profile .profile_progress .step > ._desc,
     .page_profile .profile_progress .step > ._desc {
-      position: relative;
-      z-index: 1;
-      width: 55%;
+      position: absolute;
+      top: -18vh;
+      left: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+      align-content: flex-start;
+      width: 31vw;
+      height: 31vw;
+      padding: 1.5vw;
       box-sizing: border-box;
-      padding-left: 0.5rem; }
-      .block_profile .profile_progress .step > ._desc:after,
-      .page_profile .profile_progress .step > ._desc:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: 0.12rem;
-        background: white; }
+      text-align: right;
+      opacity: 0;
+      transform: skewY(16deg);
+      animation-name: desc;
+      animation-delay: 0.5s;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: linear; }
+      .block_profile .profile_progress .step > ._desc > ._icon,
+      .page_profile .profile_progress .step > ._desc > ._icon {
+        padding: 0 0.3rem; }
+        .block_profile .profile_progress .step > ._desc > ._icon img,
+        .page_profile .profile_progress .step > ._desc > ._icon img {
+          width: 1.3rem; }
       .block_profile .profile_progress .step > ._desc > ._num,
       .page_profile .profile_progress .step > ._desc > ._num {
-        font-size: 1.4rem;
-        line-height: 0.7;
         font-weight: bold;
-        margin-bottom: 0.4rem; }
+        font-size: 1.3rem;
+        line-height: 1; }
       .block_profile .profile_progress .step > ._desc > ._name,
       .page_profile .profile_progress .step > ._desc > ._name {
-        font-size: 0.7rem;
-        margin-bottom: 0.2rem;
+        width: 100%;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        line-height: 1;
         font-weight: bold;
-        text-transform: uppercase; }
+        padding: 0.15rem 0; }
       .block_profile .profile_progress .step > ._desc > ._txt,
       .page_profile .profile_progress .step > ._desc > ._txt {
-        font-size: 0.7rem; }
-    .block_profile .profile_progress .step > ._icon,
-    .page_profile .profile_progress .step > ._icon {
-      width: 10%;
-      text-align: center;
-      box-sizing: border-box; }
-      .block_profile .profile_progress .step > ._icon img,
-      .page_profile .profile_progress .step > ._icon img {
-        margin: auto;
-        max-width: 80%; }
-    .block_profile .profile_progress .step > ._href,
-    .page_profile .profile_progress .step > ._href {
+        width: 100%;
+        font-size: 0.6rem;
+        line-height: 1; }
+      .block_profile .profile_progress .step > ._desc > ._href a,
+      .page_profile .profile_progress .step > ._desc > ._href a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2; }
+    .block_profile .profile_progress .step > ._href a,
+    .page_profile .profile_progress .step > ._href a {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 2; }
-      .block_profile .profile_progress .step > ._href a,
-      .page_profile .profile_progress .step > ._href a {
-        display: block;
-        width: 100%;
-        height: 100%; }
-    .block_profile .profile_progress .step._yes,
-    .page_profile .profile_progress .step._yes {
+    .block_profile .profile_progress .step:nth-child(even),
+    .page_profile .profile_progress .step:nth-child(even) {
+      transform: translateY(4vh); }
+      .block_profile .profile_progress .step:nth-child(even) > ._tree,
+      .page_profile .profile_progress .step:nth-child(even) > ._tree {
+        margin-right: auto;
+        margin-left: inherit; }
+        .block_profile .profile_progress .step:nth-child(even) > ._tree svg,
+        .page_profile .profile_progress .step:nth-child(even) > ._tree svg {
+          margin-left: -1rem;
+          margin-right: 0; }
+      .block_profile .profile_progress .step:nth-child(even) > ._desc,
+      .page_profile .profile_progress .step:nth-child(even) > ._desc {
+        text-align: left;
+        justify-content: flex-start; }
+        .block_profile .profile_progress .step:nth-child(even) > ._desc > ._icon,
+        .page_profile .profile_progress .step:nth-child(even) > ._desc > ._icon {
+          order: 2; }
+        .block_profile .profile_progress .step:nth-child(even) > ._desc > ._num,
+        .page_profile .profile_progress .step:nth-child(even) > ._desc > ._num {
+          order: 1; }
+        .block_profile .profile_progress .step:nth-child(even) > ._desc > ._name,
+        .page_profile .profile_progress .step:nth-child(even) > ._desc > ._name {
+          order: 3; }
+        .block_profile .profile_progress .step:nth-child(even) > ._desc > ._txt,
+        .page_profile .profile_progress .step:nth-child(even) > ._desc > ._txt {
+          order: 4; }
+    .block_profile .profile_progress .step:nth-child(n+3),
+    .page_profile .profile_progress .step:nth-child(n+3) {
+      z-index: -1;
+      margin-top: 0.2rem; }
+      .block_profile .profile_progress .step:nth-child(n+3) > ._desc,
+      .page_profile .profile_progress .step:nth-child(n+3) > ._desc {
+        top: 0;
+        left: -15vw; }
+    .block_profile .profile_progress .step:nth-child(1) > ._tree, .block_profile .profile_progress .step:nth-child(2) > ._tree,
+    .page_profile .profile_progress .step:nth-child(1) > ._tree,
+    .page_profile .profile_progress .step:nth-child(2) > ._tree {
+      position: relative;
+      z-index: 1; }
+      .block_profile .profile_progress .step:nth-child(1) > ._tree svg, .block_profile .profile_progress .step:nth-child(2) > ._tree svg,
+      .page_profile .profile_progress .step:nth-child(1) > ._tree svg,
+      .page_profile .profile_progress .step:nth-child(2) > ._tree svg {
+        margin-top: 0; }
+      .block_profile .profile_progress .step:nth-child(1) > ._tree:before, .block_profile .profile_progress .step:nth-child(2) > ._tree:before,
+      .page_profile .profile_progress .step:nth-child(1) > ._tree:before,
+      .page_profile .profile_progress .step:nth-child(2) > ._tree:before {
+        content: "";
+        position: absolute;
+        top: calc( 3.5vh - 2.5px );
+        left: 0;
+        right: 0;
+        height: 5px;
+        width: 5px;
+        margin: auto;
+        border-radius: 50%;
+        background: white;
+        margin: auto;
+        z-index: 5;
+        opacity: 0;
+        animation-name: tree_arrow_point;
+        animation-delay: 1.7s;
+        animation-duration: 1.2s;
+        animation-fill-mode: forwards;
+        animation-timing-function: linear; }
+      .block_profile .profile_progress .step:nth-child(1) > ._tree:after, .block_profile .profile_progress .step:nth-child(2) > ._tree:after,
+      .page_profile .profile_progress .step:nth-child(1) > ._tree:after,
+      .page_profile .profile_progress .step:nth-child(2) > ._tree:after {
+        content: "";
+        position: absolute;
+        top: -4vh;
+        left: 0;
+        right: 0;
+        height: 0vh;
+        width: 1px;
+        background: white;
+        margin: auto;
+        z-index: 4;
+        animation-name: tree_arrow;
+        animation-delay: 1.2s;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        animation-timing-function: linear; }
+    .block_profile .profile_progress .step:nth-child(1) > ._tree:before, .block_profile .profile_progress .step:nth-child(1) > ._tree:after,
+    .page_profile .profile_progress .step:nth-child(1) > ._tree:before,
+    .page_profile .profile_progress .step:nth-child(1) > ._tree:after {
+      left: 0;
+      right: 0; }
+    .block_profile .profile_progress .step.__yes,
+    .page_profile .profile_progress .step.__yes {
       opacity: 1; }
-      .block_profile .profile_progress .step._yes._1 > ._tree span:nth-child(2),
-      .page_profile .profile_progress .step._yes._1 > ._tree span:nth-child(2) {
-        background: url(../img/profile_progress/tree_yes_1_s_m.png) no-repeat; }
-      .block_profile .profile_progress .step._yes._2 > ._tree span:nth-child(2),
-      .page_profile .profile_progress .step._yes._2 > ._tree span:nth-child(2) {
-        background: url(../img/profile_progress/tree_yes_2_s_m.png) no-repeat; }
-      .block_profile .profile_progress .step._yes._3 > ._tree span:nth-child(2),
-      .page_profile .profile_progress .step._yes._3 > ._tree span:nth-child(2) {
-        background: url(../img/profile_progress/tree_yes_3_s_m.png) no-repeat; }
-      .block_profile .profile_progress .step._yes._4 > ._tree span:nth-child(2),
-      .page_profile .profile_progress .step._yes._4 > ._tree span:nth-child(2) {
-        background: url(../img/profile_progress/tree_yes_4_s_m.png) no-repeat; }
-      .block_profile .profile_progress .step._yes._5 > ._tree span:nth-child(2),
-      .page_profile .profile_progress .step._yes._5 > ._tree span:nth-child(2) {
-        background: url(../img/profile_progress/tree_yes_5_s_m.png) no-repeat; }
 
+@keyframes tree {
+  0% {
+    width: 100%; }
+  100% {
+    width: 0%; } }
+@keyframes desc {
+  0% {
+    transform: skewY(16deg); }
+  100% {
+    opacity: 1;
+    transform: skewX(0deg); } }
+@keyframes tree_arrow {
+  0% {
+    height: 0vh; }
+  100% {
+    height: 7vh; } }
+@keyframes tree_arrow_point {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0); }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.4, 1.4); }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1); } }
 .block_profile_edit .profile_img,
 .page_profile_edit .profile_img {
   margin-top: 1rem;
@@ -667,120 +766,6 @@ button {
           font-weight: inherit;
           line-height: 1;
           margin-left: 2%; }
-  .block_member .member_progress,
-  .page_member .member_progress {
-    width: 100%; }
-    .block_member .member_progress .step,
-    .page_member .member_progress .step {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      height: 6rem;
-      box-sizing: border-box;
-      overflow: hidden;
-      opacity: 0.5;
-      text-decoration: none;
-      color: white;
-      transition: all 0.4s ease; }
-      .block_member .member_progress .step > ._tree,
-      .page_member .member_progress .step > ._tree {
-        width: 35%;
-        height: 4rem;
-        transition: all 0.4s ease; }
-        .block_member .member_progress .step > ._tree span,
-        .page_member .member_progress .step > ._tree span {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 30%;
-          background-size: auto 6rem !important;
-          background-position: top left !important;
-          transition: all 1s ease 0s; }
-          .block_member .member_progress .step > ._tree span:nth-child(1),
-          .page_member .member_progress .step > ._tree span:nth-child(1) {
-            height: 100%;
-            z-index: -2;
-            background: url(../img/profile_progress/tree_no_s_m.png) no-repeat; }
-          .block_member .member_progress .step > ._tree span:nth-child(2),
-          .page_member .member_progress .step > ._tree span:nth-child(2) {
-            height: 0%;
-            z-index: 2; }
-      .block_member .member_progress .step > ._desc,
-      .page_member .member_progress .step > ._desc {
-        position: relative;
-        z-index: 1;
-        width: 55%;
-        box-sizing: border-box;
-        padding-left: 0.5rem; }
-        .block_member .member_progress .step > ._desc:after,
-        .page_member .member_progress .step > ._desc:after {
-          content: "";
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          width: 0.12rem;
-          background: white; }
-        .block_member .member_progress .step > ._desc > ._num,
-        .page_member .member_progress .step > ._desc > ._num {
-          font-size: 1.4rem;
-          line-height: 0.7;
-          font-weight: bold;
-          margin-bottom: 0.4rem; }
-        .block_member .member_progress .step > ._desc > ._name,
-        .page_member .member_progress .step > ._desc > ._name {
-          font-size: 0.7rem;
-          margin-bottom: 0.2rem;
-          font-weight: bold;
-          text-transform: uppercase; }
-        .block_member .member_progress .step > ._desc > ._txt,
-        .page_member .member_progress .step > ._desc > ._txt {
-          font-size: 0.7rem; }
-      .block_member .member_progress .step > ._icon,
-      .page_member .member_progress .step > ._icon {
-        width: 10%;
-        text-align: center;
-        box-sizing: border-box; }
-        .block_member .member_progress .step > ._icon img,
-        .page_member .member_progress .step > ._icon img {
-          margin: auto;
-          max-width: 80%; }
-      .block_member .member_progress .step > ._href,
-      .page_member .member_progress .step > ._href {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 2; }
-        .block_member .member_progress .step > ._href a,
-        .page_member .member_progress .step > ._href a {
-          display: block;
-          width: 100%;
-          height: 100%; }
-      .block_member .member_progress .step._yes,
-      .page_member .member_progress .step._yes {
-        opacity: 1; }
-        .block_member .member_progress .step._yes._1 > ._tree span:nth-child(2),
-        .page_member .member_progress .step._yes._1 > ._tree span:nth-child(2) {
-          background: url(../img/profile_progress/tree_yes_1_s_m.png) no-repeat; }
-        .block_member .member_progress .step._yes._2 > ._tree span:nth-child(2),
-        .page_member .member_progress .step._yes._2 > ._tree span:nth-child(2) {
-          background: url(../img/profile_progress/tree_yes_2_s_m.png) no-repeat; }
-        .block_member .member_progress .step._yes._3 > ._tree span:nth-child(2),
-        .page_member .member_progress .step._yes._3 > ._tree span:nth-child(2) {
-          background: url(../img/profile_progress/tree_yes_3_s_m.png) no-repeat; }
-        .block_member .member_progress .step._yes._4 > ._tree span:nth-child(2),
-        .page_member .member_progress .step._yes._4 > ._tree span:nth-child(2) {
-          background: url(../img/profile_progress/tree_yes_4_s_m.png) no-repeat; }
-        .block_member .member_progress .step._yes._5 > ._tree span:nth-child(2),
-        .page_member .member_progress .step._yes._5 > ._tree span:nth-child(2) {
-          background: url(../img/profile_progress/tree_yes_5_s_m.png) no-repeat; }
 
 .block_courses .course,
 .page_courses .course {
@@ -1471,8 +1456,7 @@ body {
   z-index: 1;
   min-height: 100vh;
   font-family: "DIN Pro";
-  color: white;
-  background: rgba(0, 0, 0, 0.5); }
+  color: white; }
   body:before, body:after {
     content: "";
     position: absolute;
@@ -1481,11 +1465,11 @@ body {
     right: 0;
     bottom: 0; }
   body:before {
-    background: url(../img/bg_img.png) no-repeat center 98%;
+    background: url(../img/bg_img2.svg) no-repeat center 90%;
     background-size: 100% auto;
     z-index: -1; }
   body:after {
-    background: linear-gradient(150deg, #009cdb 30%, #00477e 80%);
+    background: #211D56;
     z-index: -2; }
   body img {
     max-width: 100%; }
@@ -1540,7 +1524,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  background: #007daf;
+  background: #1a1745;
   display: none;
   z-index: 3; }
   header .block_header_buttons {
@@ -1647,7 +1631,7 @@ footer {
   left: -100%;
   bottom: 0;
   width: 90vw;
-  background: linear-gradient(150deg, #009cdb 30%, #00477e 80%);
+  background: #1a1745;
   transition: all 0.5s ease;
   z-index: -1;
   padding-top: calc( 25px + 2rem ); }

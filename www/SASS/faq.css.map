@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAQI;wBAAW;EACT,cAAc,EAAE,SAAS;EACzB,WAAW,EAAE,IAAI;EACjB,aAAa,EAAE,IAAI;AAErB;wBAAW;EACT,OAAO,EAAE,QAAQ;EAEjB;mCAAU;IACR,SAAS,EAAE,IAAI;IACf,WAAW,EAAE,CAAC;IACd,OAAO,EAAE,MAAM;IACf,aAAa,EAAE,eAAe",
-"sources": ["faq.sass"],
-"names": [],
-"file": "faq.css"
-}

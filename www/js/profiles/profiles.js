@@ -1,19 +1,21 @@
 // profile_progress
 function profile_progress(){
-  var lenght = $(document).find('.profile_progress .step._yes').length
+  var lenght = $(document).find('.profile_progress .step.__yes').length
   if ( lenght > 0 )
     $(document)
-      .find('.profile_progress .step._yes')
+      .find('.profile_progress .step')
         .each(function(index, elem){
-          var height = 100
-          if ( $(this).data().progress )
-            height = $(this).data().progress
-
-          $(this).find('._tree span:eq(1)').css({
-            'height': height + '%',
-            'transition-delay': index / lenght + 's'
+          if ( index ) {
+            if ($(this).hasClass('.__yes'))
+              $(this).find('._tree span:eq(1)').css({
+                'animation-delay': index + 's'
+              })
+              
+            $(this).find('._desc').css({
+              'animation-delay': index + 's'
+            })
+          }
         })
-    })
 
   // Если на странице пользователя, собираем его инфу
   if ( $(document).find('.main_profile').length > 0 )
