@@ -1531,13 +1531,17 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between; }
-    header .block_header_buttons .main_menu_back:not(._active_) {
-      display: none !important; }
+    header .block_header_buttons .main_menu_back {
+      background: url(../img/icons/back.svg) no-repeat center center !important;
+      background-size: auto 1.3rem !important; }
+      header .block_header_buttons .main_menu_back:not(._active_) {
+        display: none !important; }
     header .block_header_buttons .main_menu_show {
+      background: url(../img/icons/menu.svg) no-repeat center center !important;
+      background-size: auto 1.3rem !important;
       transform: rotate(0deg);
       transition: all 0.4s ease; }
       header .block_header_buttons .main_menu_show:focus, header .block_header_buttons .main_menu_show:active {
-        background: none !important;
         outline: none !important;
         border: none !important; }
       header .block_header_buttons .main_menu_show._active_ {
@@ -1558,7 +1562,7 @@ header {
         justify-content: flex-start;
         color: white;
         white-space: nowrap;
-        background: none !important;
+        background: none;
         outline: none !important;
         border: none !important;
         padding: 0.8rem 0.5rem;
