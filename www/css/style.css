@@ -367,8 +367,8 @@ button {
       .block_profile .profile_progress .step > ._tree svg,
       .page_profile .profile_progress .step > ._tree svg {
         position: relative;
-        margin-top: -1rem;
-        margin-right: -0.8rem;
+        margin-top: -20%;
+        margin-right: -20%;
         margin-left: 0;
         z-index: 1; }
     .block_profile .profile_progress .step > ._desc,
@@ -462,7 +462,7 @@ button {
         .block_profile .profile_progress .step:nth-child(even) > ._tree svg,
         .page_profile .profile_progress .step:nth-child(even) > ._tree svg {
           position: relative;
-          margin-left: -0.9rem;
+          margin-left: -20%;
           margin-right: 0;
           z-index: 2; }
       .block_profile .profile_progress .step:nth-child(even) > ._desc,
@@ -488,7 +488,7 @@ button {
       .block_profile .profile_progress .step:nth-child(n+3) > ._desc,
       .page_profile .profile_progress .step:nth-child(n+3) > ._desc {
         position: absolute;
-        top: -30%;
+        top: -40%;
         left: -60%;
         height: 100%; }
     .block_profile .profile_progress .step:nth-child(1) > ._tree, .block_profile .profile_progress .step:nth-child(2) > ._tree,
