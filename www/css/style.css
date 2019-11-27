@@ -359,29 +359,28 @@ button {
       .block_profile .profile_progress .step > ._tree svg,
       .page_profile .profile_progress .step > ._tree svg {
         margin-top: -1rem;
-        margin-right: -1rem;
+        margin-right: -0.9rem;
         margin-left: 0; }
     .block_profile .profile_progress .step > ._desc,
     .page_profile .profile_progress .step > ._desc {
       position: absolute;
-      top: -18vh;
       left: 0;
+      bottom: 120%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-end;
       align-items: center;
       align-content: flex-start;
-      width: 31vw;
-      height: 31vw;
-      padding: 1.5vw;
+      width: 100%;
+      padding: 0.5rem;
       box-sizing: border-box;
       text-align: right;
       opacity: 0;
       transform: skewY(16deg);
       z-index: 2;
       animation-name: desc;
-      animation-delay: 0.5s;
+      animation-delay: 1.3s;
       animation-duration: 0.5s;
       animation-fill-mode: forwards;
       animation-timing-function: linear; }
@@ -427,14 +426,15 @@ button {
       z-index: 2; }
     .block_profile .profile_progress .step:nth-child(even),
     .page_profile .profile_progress .step:nth-child(even) {
-      transform: translateY(4vh); }
+      transform: translateY(30%);
+      z-index: 3; }
       .block_profile .profile_progress .step:nth-child(even) > ._tree,
       .page_profile .profile_progress .step:nth-child(even) > ._tree {
         margin-right: auto;
         margin-left: inherit; }
         .block_profile .profile_progress .step:nth-child(even) > ._tree svg,
         .page_profile .profile_progress .step:nth-child(even) > ._tree svg {
-          margin-left: -1rem;
+          margin-left: -0.9rem;
           margin-right: 0; }
       .block_profile .profile_progress .step:nth-child(even) > ._desc,
       .page_profile .profile_progress .step:nth-child(even) > ._desc {
@@ -454,12 +454,14 @@ button {
           order: 4; }
     .block_profile .profile_progress .step:nth-child(n+3),
     .page_profile .profile_progress .step:nth-child(n+3) {
-      z-index: -1;
+      z-index: 2;
       margin-top: 0.2rem; }
       .block_profile .profile_progress .step:nth-child(n+3) > ._desc,
       .page_profile .profile_progress .step:nth-child(n+3) > ._desc {
         top: 0;
-        left: -17vw; }
+        left: -20vw;
+        width: inherit;
+        height: 100%; }
     .block_profile .profile_progress .step:nth-child(1) > ._tree, .block_profile .profile_progress .step:nth-child(2) > ._tree,
     .page_profile .profile_progress .step:nth-child(1) > ._tree,
     .page_profile .profile_progress .step:nth-child(2) > ._tree {
@@ -474,9 +476,9 @@ button {
       .page_profile .profile_progress .step:nth-child(2) > ._tree:before {
         content: "";
         position: absolute;
-        top: calc( 3.5vh - 2.5px );
         left: 0;
         right: 0;
+        bottom: 60%;
         height: 5px;
         width: 5px;
         margin: auto;
@@ -486,8 +488,8 @@ button {
         z-index: 5;
         opacity: 0;
         animation-name: tree_arrow_point;
-        animation-delay: 1.7s;
-        animation-duration: 1.2s;
+        animation-delay: 0s;
+        animation-duration: 0.5s;
         animation-fill-mode: forwards;
         animation-timing-function: linear; }
       .block_profile .profile_progress .step:nth-child(1) > ._tree:after, .block_profile .profile_progress .step:nth-child(2) > ._tree:after,
@@ -495,8 +497,8 @@ button {
       .page_profile .profile_progress .step:nth-child(2) > ._tree:after {
         content: "";
         position: absolute;
-        top: -4vh;
         left: 0;
+        bottom: 60%;
         right: 0;
         height: 0vh;
         width: 1px;
@@ -504,7 +506,7 @@ button {
         margin: auto;
         z-index: 4;
         animation-name: tree_arrow;
-        animation-delay: 1.2s;
+        animation-delay: 0.5s;
         animation-duration: 0.5s;
         animation-fill-mode: forwards;
         animation-timing-function: linear; }
@@ -530,9 +532,9 @@ button {
     transform: skewX(0deg); } }
 @keyframes tree_arrow {
   0% {
-    height: 0vh; }
+    height: 0%; }
   100% {
-    height: 7vh; } }
+    height: 60%; } }
 @keyframes tree_arrow_point {
   0% {
     opacity: 0;
@@ -1453,6 +1455,10 @@ button {
     padding: 1rem 0;
     border-bottom: 1px solid white; }
 
+html {
+  font-size: 16px;
+  line-height: 18px; }
+
 body {
   position: relative;
   font-size: 18px;
@@ -1668,5 +1674,14 @@ footer {
       color: white; }
     .block_main_menu .main_menu ul li._active_ {
       background: rgba(0, 0, 0, 0.2); }
+
+@media screen and (orientation: landscape) {
+  html {
+    font-size: 18px;
+    line-height: 22px; } }
+@media screen and (min-width: 776px) {
+  html {
+    font-size: 20px;
+    line-height: 24px; } }
 
 /*# sourceMappingURL=style.css.map */

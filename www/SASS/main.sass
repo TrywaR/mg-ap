@@ -36,6 +36,11 @@
 // faq
 @import "faq"
 
+// html
+html
+  font-size: 16px
+  line-height: 18px
+
 // body
 body
   position: relative
@@ -347,3 +352,15 @@ footer
         &._active_
           background: rgba(0, 0, 0, 0.2)
 // .block_main_menu x
+
+// Поворот
+@media screen and (orientation:landscape)
+  html
+    font-size: 18px
+    line-height: 22px
+
+// Большой экран
+@media screen and (min-width:776px)
+  html
+    font-size: 20px
+    line-height: 24px
