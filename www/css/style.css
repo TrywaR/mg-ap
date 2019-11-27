@@ -453,7 +453,7 @@ button {
         z-index: 5; }
     .block_profile .profile_progress .step:nth-child(even),
     .page_profile .profile_progress .step:nth-child(even) {
-      transform: translateY(1rem) translateZ(4px);
+      transform: translateY(10%) translateZ(4px);
       z-index: 3; }
       .block_profile .profile_progress .step:nth-child(even) > ._tree,
       .page_profile .profile_progress .step:nth-child(even) > ._tree {
