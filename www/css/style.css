@@ -325,47 +325,56 @@ button {
     right: 0;
     bottom: 0;
     z-index: 2; }
-.block_profile .profile_progress_perspective,
-.page_profile .profile_progress_perspective {
+.block_profile .block_profile_progress,
+.page_profile .block_profile_progress {
   perspective: 150vw;
   width: 100%;
-  display: flex;
-  justify-content: center; }
+  display: flex; }
 .block_profile .profile_progress,
 .page_profile .profile_progress {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 18vh 10vw;
-  width: 66vw; }
+  margin: auto;
+  width: 60vw; }
   .block_profile .profile_progress .step,
   .page_profile .profile_progress .step {
     position: relative;
+    display: flex;
+    flex-direction: column;
     z-index: 1;
-    width: 33vw;
-    padding: 1.5vw 1vw;
-    box-sizing: border-box; }
+    width: 30vw;
+    padding: 0.2rem;
+    box-sizing: border-box;
+    transform: translateZ(1px); }
     .block_profile .profile_progress .step > ._tree,
     .page_profile .profile_progress .step > ._tree {
       position: relative;
       display: block;
       width: 18vw;
       height: 18vw;
+      margin-bottom: auto;
       margin-left: auto;
-      border-radius: 3px;
-      transform: rotateY(-15deg) skewY(20deg);
-      background: none;
-      z-index: 1; }
+      transform: rotateY(-15deg) skewY(20deg) scale(0, 0);
+      z-index: 1;
+      order: 2;
+      opacity: 0;
+      animation-name: tree;
+      animation-delay: 0.5s;
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+      animation-timing-function: linear; }
       .block_profile .profile_progress .step > ._tree svg,
       .page_profile .profile_progress .step > ._tree svg {
+        position: relative;
         margin-top: -1rem;
-        margin-right: -0.9rem;
-        margin-left: 0; }
+        margin-right: -0.8rem;
+        margin-left: 0;
+        z-index: 1; }
     .block_profile .profile_progress .step > ._desc,
     .page_profile .profile_progress .step > ._desc {
-      position: absolute;
+      position: relative;
       left: 0;
-      bottom: 120%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -373,10 +382,12 @@ button {
       align-items: center;
       align-content: flex-start;
       width: 100%;
+      margin-bottom: 20%;
       padding: 0.5rem;
       box-sizing: border-box;
       text-align: right;
       opacity: 0;
+      order: 1;
       transform: skewY(16deg);
       z-index: 2;
       animation-name: desc;
@@ -408,25 +419,41 @@ button {
         width: 100%;
         font-size: 0.6rem;
         line-height: 1; }
-      .block_profile .profile_progress .step > ._desc > ._href a,
-      .page_profile .profile_progress .step > ._desc > ._href a {
+      .block_profile .profile_progress .step > ._desc > ._href,
+      .page_profile .profile_progress .step > ._desc > ._href {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 2; }
-    .block_profile .profile_progress .step > ._href a,
-    .page_profile .profile_progress .step > ._href a {
+        z-index: 4; }
+        .block_profile .profile_progress .step > ._desc > ._href a,
+        .page_profile .profile_progress .step > ._desc > ._href a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          text-decoration: none;
+          cursor: pointer;
+          z-index: 5; }
+    .block_profile .profile_progress .step > ._href,
+    .page_profile .profile_progress .step > ._href {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 2; }
+      z-index: 4; }
+      .block_profile .profile_progress .step > ._href a,
+      .page_profile .profile_progress .step > ._href a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        cursor: pointer;
+        z-index: 5; }
     .block_profile .profile_progress .step:nth-child(even),
     .page_profile .profile_progress .step:nth-child(even) {
-      transform: translateY(30%);
+      transform: translateY(1.2rem) translateZ(4px);
       z-index: 3; }
       .block_profile .profile_progress .step:nth-child(even) > ._tree,
       .page_profile .profile_progress .step:nth-child(even) > ._tree {
@@ -434,8 +461,10 @@ button {
         margin-left: inherit; }
         .block_profile .profile_progress .step:nth-child(even) > ._tree svg,
         .page_profile .profile_progress .step:nth-child(even) > ._tree svg {
+          position: relative;
           margin-left: -0.9rem;
-          margin-right: 0; }
+          margin-right: 0;
+          z-index: 2; }
       .block_profile .profile_progress .step:nth-child(even) > ._desc,
       .page_profile .profile_progress .step:nth-child(even) > ._desc {
         text-align: left;
@@ -455,18 +484,19 @@ button {
     .block_profile .profile_progress .step:nth-child(n+3),
     .page_profile .profile_progress .step:nth-child(n+3) {
       z-index: 2;
-      margin-top: 0.2rem; }
+      transform: translateZ(3px); }
       .block_profile .profile_progress .step:nth-child(n+3) > ._desc,
       .page_profile .profile_progress .step:nth-child(n+3) > ._desc {
-        top: 0;
-        left: -20vw;
-        width: inherit;
+        position: absolute;
+        top: -30%;
+        left: -60%;
         height: 100%; }
     .block_profile .profile_progress .step:nth-child(1) > ._tree, .block_profile .profile_progress .step:nth-child(2) > ._tree,
     .page_profile .profile_progress .step:nth-child(1) > ._tree,
     .page_profile .profile_progress .step:nth-child(2) > ._tree {
       position: relative;
-      z-index: 1; }
+      z-index: 1;
+      margin-top: auto; }
       .block_profile .profile_progress .step:nth-child(1) > ._tree svg, .block_profile .profile_progress .step:nth-child(2) > ._tree svg,
       .page_profile .profile_progress .step:nth-child(1) > ._tree svg,
       .page_profile .profile_progress .step:nth-child(2) > ._tree svg {
@@ -510,20 +540,20 @@ button {
         animation-duration: 0.5s;
         animation-fill-mode: forwards;
         animation-timing-function: linear; }
-    .block_profile .profile_progress .step:nth-child(1) > ._tree:before, .block_profile .profile_progress .step:nth-child(1) > ._tree:after,
-    .page_profile .profile_progress .step:nth-child(1) > ._tree:before,
-    .page_profile .profile_progress .step:nth-child(1) > ._tree:after {
-      left: 0;
-      right: 0; }
+    .block_profile .profile_progress .step:nth-child(2) > ._tree,
+    .page_profile .profile_progress .step:nth-child(2) > ._tree {
+      z-index: 3; }
     .block_profile .profile_progress .step.__yes,
     .page_profile .profile_progress .step.__yes {
       opacity: 1; }
 
 @keyframes tree {
   0% {
-    width: 100%; }
+    transform: rotateY(-15deg) skewY(20deg) scale(0, 0);
+    opacity: 0; }
   100% {
-    width: 0%; } }
+    transform: rotateY(-15deg) skewY(20deg) scale(1, 1);
+    opacity: 1; } }
 @keyframes desc {
   0% {
     transform: skewY(16deg); }
@@ -534,7 +564,7 @@ button {
   0% {
     height: 0%; }
   100% {
-    height: 60%; } }
+    height: 70%; } }
 @keyframes tree_arrow_point {
   0% {
     opacity: 0;
