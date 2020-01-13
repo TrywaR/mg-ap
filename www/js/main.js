@@ -1,12 +1,13 @@
 // params
 page_url = '' // Адрес текущей страницы
-// site_url = 'https://alliance.paultik.ru/account/login/' // Адрес сайта
-site_url = 'http://m97731yi.beget.tech/' // Адрес сайта
+site_url = 'https://alliance.paultik.ru/' // Адрес сайта
+// site_url = 'http://m97731yi.beget.tech/' // Адрес сайта
 pages_history = [] // История страниц
 pages_history_length = 2 // Количество страниц в истории
 // test@trywar.ru
 // SZ0wSgL2
 session_key = '' // Ключ авторизации
+csrftoken = '' // csrftoken
 ajax_salt = {
   'app': 'app'
 }  // Необходимые параметры для ajax
@@ -26,17 +27,20 @@ ajax_salt = {
 //   echo json_encode(array('reply'=>'here is my reply'));
 //   exit;
 // }
-// $.ajax({
-//   url:'https://alliance.paultik.ru/account/login/',
-//   data:{'func':'send_reply'},
-//   type:'GET',
-//   dateType:'json'
-// }).success(function(data){
-//   data=$.parseJSON(data);
-//   alert(data.reply);
-// }).error(function(jqxhr,error,status){
-//   alert('Error sending reply');
-// });
+
+// $(function(){
+//   $.ajax({
+//     url:'https://alliance.paultik.ru/account/login/',
+//     data:{'func':'send_reply'},
+//     type:'POST',
+//     dateType:'json'
+//   }).success(function(data){
+//     data=$.parseJSON(data);
+//     alert(data.reply);
+//   }).error(function(jqxhr,error,status){
+//     alert('Error sending reply');
+//   });
+// })
 
 // function CSRF(){
 //   $.ajax({
@@ -185,8 +189,8 @@ function page_prev(href, data){
 }
 // page_prev x
 
-// content_parse
-function content_parse(data){
+// template_parse
+function template_parse(data, template_url){
   var data = $('<div/>').html(data)
   var header = $(data).find('header').length > 0 ? $(data).find('header').html() : ''
   var main = $(data).find('main').length > 0 ? $(data).find('main').html() : ''
@@ -198,6 +202,8 @@ function content_parse(data){
   $(document).find('body main').addClass(main_class)
   $(document).find('body footer').html(footer)
 
+  content_parse(data, template_url)
+
   // // parse
   // $.each(data, function(key, value){
   //   $(template_htm).find('main [data-key='+key+']').prepend(value)
@@ -205,22 +211,39 @@ function content_parse(data){
 
   $(document).find('#main_menu li.' + main_class).addClass('_active_').siblings().removeClass('_active_')
 }
-// content_parse x
-
-// template_parse
-function template_parse(data, template){
-  arrTemplate = template.split('/')
-  sTemplatePath = 'templates/' + template + '.htm'
-
-  $.post(sTemplatePath, function(template_htm){
-    var template_htm = $('<div/>').html(template_htm)
-    $.each(data, function(key, value){
-      $(template_htm).find('main [data-key='+key+']').prepend(value)
-    })
-    content_parse(template_htm)
-  })
-}
 // template_parse x
+
+// content_parse
+function content_parse(data, template){
+  var
+  arrTemplate = template.split('/'),
+  sTemplatesPath = arrTemplate[arrTemplate.length - 1],
+  sTemplatePath = sTemplatesPath + '/item.htm',
+  sTemplateName = sTemplatesPath.substr(0, sTemplatesPath.length - 4),
+  sDataPath = '',
+  oJsonData = '',
+  templateHtml = $('<div/>').html($.post(sTemplatePath)),
+  contentHtml = ''
+
+  for (var i = 0; i < arrTemplate.length; i++)
+  if ( i === arrTemplate.length - 1 ) sDataPath += sTemplateName + '.json'
+  else sDataPath += arrTemplate[i] + '/'
+
+  $.post(sDataPath, function(sData){
+    oJsonData = $.parseJSON(sData)
+  })
+
+  $.each(oJsonData.items, function(index, item){
+    $.each(item, function(key, value){
+      if ( $(templateHtml).find('[data-key='+key+']').length > 0 )
+      $(templateHtml).find('[data-key='+key+']').prepend(value)
+    })
+    contentHtml += templateHtml
+  })
+
+  return contentHtml
+}
+// content_parse x
 
 // content_upload
 function content_upload(upload_url){
@@ -248,7 +271,7 @@ function content_upload(upload_url){
     console.log('С приложения')
 
     $.post(upload_url, function(data){
-      content_parse(data)
+      template_parse(data, upload_url)
       scroll_to(0,0,0)
       page_prev(upload_url)
       $('body').removeClass('_load_')
@@ -261,6 +284,15 @@ function content_upload(upload_url){
 // content_upload х
 
 $(function(){
+
+  // csrftoken
+  // $.get(site_url + 'account/login/', {'func':'send_reply'}, function(data){
+  //   var oData = $('<div/>').html(data)
+  //   csrftoken = oData.find('[name="csrfmiddlewaretoken"]').val()
+  //   console.log(csrftoken)
+  // })
+  // csrftoken x
+
   // fix_size
   $(document)
     .find('main')

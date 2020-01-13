@@ -6,8 +6,10 @@ function authorization(){
     content_upload('templates/profile.htm')
   }
   else {
+    // console.log('start')
     active_buttons()
     content_upload('templates/authorizations/authorization.htm')
+    // content_upload('https://alliance.paultik.ru/account/registration/')
   }
 }
 // authorization x
@@ -31,7 +33,13 @@ $(function(){
   // authorization_form
   $(document).on('submit', '#authorization_form', function(){
     // - Получаем ключ сессии
-    // demo
+    // - Параметры
+    var
+    // data = [], // Отправляемые данные
+    result_text = '', // Текст о результате
+    validate = 0 // Если есть ошибки
+
+    // - demo
     login = true
     if ( $(this).find('[name=email]').val() != 'demo' ) login = false
     if ( $(this).find('[name=password]').val() != 'demo' ) login = false
@@ -39,41 +47,36 @@ $(function(){
       localStorage.setItem('session_key', session_key = 'demo')
       authorization()
     }else{
-      authorization_message(1,'Email или пароль введён не верно!')
+      validate = 1
+      result_text = 'Email или пароль введён не верно!'
+      authorization_message(validate, result_text)
     }
+    // - demo x
 
-    // $.ajax({
-    //   url: site_url + 'app.php',
-    //   data: $(this).serialize(),
-    //   xhrFields: {
-    //     withCredentials: false
-    //   }
-    // }).fail(function(data) {
-    //   $('#authorization_form_status').html('<p style="color:#ff7f7f;">' + data.status + '<br/>' + data.statusText + '</p>')
-    // }).done(function(data) {
-    //   $('#authorization_form_status').html('')
-    //   session_key = data
-    //   localStorage.setItem('session_key', session_key)
-    //   ajax_salt['profile'] = 1
-    //
-    //   // -- Получаем инфу о профиле
-    //   $.ajax({
-    //     url: site_url + 'app.php',
-    //     data: ajax_salt,
-    //     xhrFields: {
-    //       withCredentials: false
-    //     }
-    //   }).fail(function(data) {
-    //     $('#authorization_form_status').html('<p style="color:#ff7f7f;">' + data.status + '<br/>' + data.statusText + '</p>')
-    //
-    //   }).done(function(data) {
-    //     $('#authorization_form_status').html('')
-    //     oProfile = jQuery.parseJSON(data)
-    //
-    //     template_parse(oProfile, 'profile/index')
-    //     page_navigator(1)
-    //   })
+    // - site_login
+    // -- add csrftoken
+    // data = $(this).serializeArray()
+    // data.push({
+    //   name: 'csrftoken',
+    //   value: csrftoken
     // })
+    // data = $.param(data)
+    //
+    // $.ajax({
+    //   url: site_url + 'account/login/',
+    //   data: data,
+    //   method: 'POST',
+    //   // headers: {
+    //   //   'X-CSRF-TOKEN': csrftoken
+    //   // }
+    // }).fail(function(data) {
+    //   authorization_message(1, '<p style="color:#ff7f7f;">' + data.status + '<br/>' + data.statusText + '</p>')
+    //
+    // }).done(function(data) {
+    //   authorization_message(1, '<p style="color:#ff7f7f;">' + data.status + '<br/>' + data.statusText + '</p>')
+    //
+    // })
+    // - site_login x
 
     return false
   })
