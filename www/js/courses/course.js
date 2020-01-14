@@ -1,6 +1,7 @@
 function course_init(){
-  $(document).on('click', '.them ._video ._prev', function(){
+  $(document).find('.them ._video ._prev').on('click', function(){
     console.log('video start')
+    $(this).remove()
     $(this).addClass('_active_').siblings().removeClass('_active_')
 
     if ( $(this).next('video').length > 0 )
