@@ -249,6 +249,9 @@ button {
     color: white;
     text-decoration: none; }
 
+.form_status {
+  text-align: center; }
+
 .padding_no {
   padding: 0 !important; }
 
@@ -265,13 +268,22 @@ button {
   .sort_item._hide_ {
     display: none; }
 
-.authorization_forms {
+.authorization_form {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; }
-  .authorization_forms .form_status._error {
+  .authorization_form .form_status._error {
+    color: #ff7b7b; }
+
+.registration_form {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .registration_form .form_status._error {
     color: #ff7b7b; }
 
 .block_profile .prev_profile,

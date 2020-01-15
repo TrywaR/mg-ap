@@ -1,4 +1,4 @@
-<main class="page_authorization authorization_forms">
+<main class="page_authorization authorization_form">
   <form id="authorization_form" class="authorization_form">
     <input type="hidden" name="form" value="authorization_form">
     <input type="hidden" name="app" value="app">
@@ -6,14 +6,14 @@
     <div class="block_input">
       <label>
         <p class="label">E-mail</p>
-        <input type="text" class="input" name="email" value="" required="required">
+        <input type="text" class="input" name="login" value="" required="required">
       </label>
     </div>
 
     <div class="block_input">
       <label>
         <p class="label">Пароль</p>
-        <input type="text" class="input" name="password" value="" required="required">
+        <input type="password" class="input" name="password" value="" required="required">
       </label>
     </div>
 
@@ -24,9 +24,16 @@
     </div>
 
     <div class="block_sub_text">
-      <a class="content_upload" href="templates/authorizations/password.htm">
-        Если вы забыли пароль, <br> нажмите сюда
-      </a>
+      <p>
+        <a class="content_upload" href="templates/authorizations/registration.htm">
+          Если у вас ещё нет аккаунта, <br/> нажмите сюда для регистрации.
+        </a>
+      </p>
+      <p>
+        <a class="content_upload" href="templates/authorizations/password.htm">
+          Если вы забыли пароль, <br/> нажмите сюда
+        </a>
+      </p>
     </div>
   </form>
 </main>
