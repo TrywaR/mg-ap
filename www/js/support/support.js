@@ -27,6 +27,36 @@ function support_init(){
       return false
     })
 
+    // telegram bot
+    // - Отправляем месседж
+    // - Параметры
+    var
+    bot_data = {}
+    bot_data.user_name = user.name
+    bot_data.user_lastName = user.lastName
+    bot_data.user_email = user.email
+    bot_data.app = 'app'
+    bot_data.telegram_bot = '0'
+    bot_data.messages = $(this).find('[name="text"]').val()
+
+    $.ajax({
+      url: '/app/app.php',
+      data: bot_data,
+      method: 'POST'
+    }).fail(function(data) {
+      console.log(data)
+      app_status(data)
+      
+      return false
+
+    }).done(function(data) {
+      console.log(data)
+      app_status(data,1)
+      return false
+    })
+
+    // telegram bot x
+
     return false
   })
   // form_support x

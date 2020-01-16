@@ -11,6 +11,14 @@ csrftoken = '' // csrftoken
 ajax_salt = {
   'app': 'app'
 }  // Необходимые параметры для ajax
+
+user = {} // Пользователь
+user.name = 'Demo'
+user.lastName = 'Demo'
+user.email = 'demo@demo.demo'
+if ( ! localStorage.getItem('user') ) {
+  localStorage.setItem('user', user)
+}
 // params x
 
 // возвращает куки с указанным name,

@@ -283,6 +283,7 @@ button {
   left: 0.5rem;
   right: 0.5rem;
   color: white;
+  z-index: 1;
   transition: all 0.4s ease; }
   .app_status .success,
   .app_status .error {
@@ -1525,6 +1526,9 @@ button {
     line-height: 1;
     padding: 1rem 0;
     border-bottom: 1px solid white; }
+
+.page_support .textarea {
+  width: 100%; }
 
 html {
   font-size: 16px;

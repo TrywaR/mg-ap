@@ -37,4 +37,24 @@ if( isset($_REQUEST['app']) && $_REQUEST['app'] == 'app' ){
     ];
     echo json_encode($oProfile);
   };
+
+  // telegram bot
+  if ( isset($_POST['telegram_bot']) ){
+    // - Стучим в телегу
+    // -- Параметры
+    $sApiKey = '1010857267:AAEev0Tys63VVOL5B1Xleu2YUkjEIEEwfU4';
+    $sChatId = '106964625';
+
+    $sTxt = '*Новое сообщение из приложения* %0A';
+    $sUrl = 'https://api.telegram.org/bot'.$sApiKey.'/sendMessage?chat_id='.$sChatId.'&parse_mode=Markdown&text='.$sTxt;
+    // -- Записываем данные с формы
+    foreach ($_POST as $key => $value)
+    if ( $value != '' && $value != '0' && $value != 'app' )
+    $sUrl .= '*'.$key.'*: '.$value.'%0A';
+    // -- Паша, отправь плз
+    $result = file_get_contents($sUrl);
+    echo 'Сообщение успешно отправленно';
+    // - Стучим в телегу х
+  }
+  // telegram bot x
 }
