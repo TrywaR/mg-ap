@@ -141,6 +141,7 @@ main
 // label x
 
 // input
+.textarea,
 .input
   display: inline-block
   background: rgba(0, 0, 0, 0.2)
@@ -171,6 +172,11 @@ main
     background: rgba(0, 0, 0, 0.2) url(../img/icons/search.png) no-repeat 10px center
     background-size: 15px auto
 // input x
+
+// .textarea
+.textarea
+  resize: none
+// .textarea x
 
 // checkbox and radio
 .input_checkbox
@@ -291,3 +297,29 @@ button
   &._hide_
     display: none
 // sort x
+
+// app_status
+.app_status
+  position: fixed
+  bottom: -100vh
+  left: .5rem
+  right: .5rem
+  color: white
+  @include transition_standart
+
+  .success,
+  .error
+    padding: .5rem
+    border-radius: .3rem
+    @include block_shadow
+    margin-bottom: .5rem
+
+  .success
+    background: $color_main
+
+  .error
+    background: $color_error
+
+  &._active_
+    bottom: .5rem
+// app_status x

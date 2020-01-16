@@ -283,6 +283,42 @@ function content_upload(upload_url){
 }
 // content_upload х
 
+// app_status
+// - Уведомления пользователю в приложухе
+function app_status(text, status){
+  var
+  message = ''
+
+  // - Парс джейсона
+  if ( text.responseJSON )
+  if ( text.responseJSON.detail )
+  text = text.responseJSON.detail
+
+  if ( text.responseText )
+  text = text.responseText
+
+  // status 0 - error, 1 - success
+  if ( ! status )
+  message = '<div class="error">' + text + '</div>'
+  else
+  message = '<div class="success">' + text + '</div>'
+
+  if ( text )
+  $(document)
+  .find('#app_status')
+  .append(message)
+  .addClass('_active_')
+
+  setTimeout(function () {
+    $(document)
+    .find('#app_status')
+    .removeClass('_active_')
+    .find('*')
+    .remove()
+  }, 5000);
+}
+// app_status x
+
 $(function(){
 
   // csrftoken
