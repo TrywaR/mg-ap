@@ -19,7 +19,7 @@
     <preference name="StatusBarBackgroundColor" value="#0584b8" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <allow-navigation href="https://*youtube.com/*"/>
-    <icon src="icon.png" />
+    <icon src="icon.new.png" />
     <splash src="splash.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
