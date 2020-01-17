@@ -105,7 +105,10 @@ $(function(){
       registration_message(1, '<p style="color:#ff7f7f;">' + data + '</p>')
 
     }).done(function(data) {
-      registration_message(1, '<p style="color:#ff7f7f;">' + '<br/>' + data.responseJSON.detail + '</p>')
+      console.log(data)
+      app_status('Аккаунт зарегистрирован',1)
+      content_upload('templates/authorizations/authorization.htm')
+      // registration_message(1, '<p style="color:#ff7f7f;">' + '<br/>' + data.responseJSON.detail + '</p>')
     })
     // - site_login x
 
