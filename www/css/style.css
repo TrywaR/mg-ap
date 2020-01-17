@@ -528,7 +528,7 @@ button {
         text-align: left;
         justify-content: flex-start;
         top: 40% !important;
-        left: 60% !important; }
+        left: 50% !important; }
         .block_profile .profile_progress .step:nth-child(even) > ._desc > ._icon,
         .page_profile .profile_progress .step:nth-child(even) > ._desc > ._icon {
           order: 2; }

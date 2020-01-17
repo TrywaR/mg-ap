@@ -64,6 +64,11 @@ $(function(){
   authorization()
   console.log('detected')
 
+  $(document).on ('input', '#authorization_form input[name="login"]', function(){
+    var text = $(this).val()
+    $(this).val( text.toLowerCase() )
+  })
+
   // authorization_form
   $(document).on('submit', '#authorization_form', function(){
     // - Получаем ключ сессии

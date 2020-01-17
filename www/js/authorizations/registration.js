@@ -12,7 +12,11 @@ function registration_message(type,txt){
 // registration_message x
 
 $(function(){
-  // registration_form
+  $(document).on ('input', '#registration_form input[name="login"]', function(){
+    var text = $(this).val()
+    $(this).val( text.toLowerCase() )
+  })
+
   $(document).on('submit', '#registration_form', function(){
     // - Получаем ключ сессии
     // - Параметры
