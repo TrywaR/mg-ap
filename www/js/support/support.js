@@ -9,6 +9,7 @@ function support_init(){
 
     data.token = session_key
     data.text = $(document).find('#form_support textarea').val()
+    data.user_email = user.email
 
     $.ajax({
       url: site_url + 'api/support/',
