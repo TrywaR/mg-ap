@@ -27,6 +27,7 @@ function support_init(){
     }).done(function(data) {
       console.log(data)
       app_status(data,1)
+      $(document).find('#form_support textarea').val('')
       return false
     })
 
@@ -47,14 +48,14 @@ function support_init(){
       data: bot_data,
       method: 'POST'
     }).fail(function(data) {
-      console.log(data)
-      app_status(data)
+      // console.log(data)
+      // app_status(data)
 
       return false
 
     }).done(function(data) {
-      console.log(data)
-      app_status(data,1)
+      // console.log(data)
+      // app_status(data,1)
       return false
     })
 
