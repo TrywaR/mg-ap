@@ -317,6 +317,8 @@ button {
   align-items: center; }
   .authorization_form .form_status._error {
     color: #ff7b7b; }
+  .authorization_form .block_sub_text {
+    text-decoration: underline; }
 
 .registration_form {
   height: 100vh;
@@ -326,6 +328,8 @@ button {
   align-items: center; }
   .registration_form .form_status._error {
     color: #ff7b7b; }
+  .registration_form .block_sub_text {
+    text-decoration: underline; }
 
 .block_profile .prev_profile,
 .page_profile .prev_profile {
