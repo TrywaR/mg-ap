@@ -8,6 +8,8 @@ function support_init(){
     validate = 0 // Если есть ошибки
 
     data.token = session_key
+    data.text = $(document).find('#form_support textarea').val()
+
     $.ajax({
       url: site_url + 'api/support/',
       data: data,
@@ -46,7 +48,7 @@ function support_init(){
     }).fail(function(data) {
       console.log(data)
       app_status(data)
-      
+
       return false
 
     }).done(function(data) {
