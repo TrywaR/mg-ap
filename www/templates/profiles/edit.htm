@@ -2,19 +2,19 @@
   <div class="_title __center">
     Изменить профиль
   </div>
-  <a class="_button content_upload" href="templates/profile.htm">
+  <a class="_button profile_info_save content_upload" id="profile_info_save" href="templates/profile.htm">
     Готово
   </a>
 </header>
 
 <main class="page_profile_edit">
   <div class="_content">
-    <div class="profile_img">
-      <label for="profile_img">
-        <img src="img/profile.png" alt="">
+    <div class="profile_img" id="profile_img">
+      <label for="profile_img __default">
+        <!-- <img src="img/profile.png" alt=""> -->
       </label>
 
-      <input type="file" name="img" id="profile_img">
+      <input type="file" name="img">
 
       <div class="_name">
 
@@ -24,22 +24,36 @@
     <div class="profile_info">
       <div class="_edit_block">
         <label for="input_name">
-          Фамилия
+          Имя
         </label>
-        <input id="input_name" type="text" class="input" placeholder="Ефимова" name="name">
+        <input id="input_name" type="text" class="input" placeholder="" name="first_name">
       </div>
       <div class="_edit_block">
         <label for="input_last_name">
-          Имя
+          Фамилия
         </label>
-        <input id="input_last_name" type="text" class="input" placeholder="Вероника" name="last_name">
+        <input id="input_last_name" type="text" class="input" placeholder="" name="last_name">
       </div>
       <div class="_edit_block">
+        <label for="input_email">
+          E-mail
+        </label>
+        <input disabled="disabled" id="input_email" type="email" class="input" placeholder="" name="email">
+      </div>
+      <!-- <div class="_edit_block">
         <label for="input_patronymic">
           Отчество
         </label>
-        <input id="input_patronymic" type="text" class="input" placeholder="Владимировна" name="patronymic">
-      </div>
+        <input id="input_patronymic" type="text" class="input" placeholder="" name="patronymic">
+      </div> -->
     </div>
   </div>
 </main>
+
+<footer>
+  <script>
+    $(function(){
+      profile_edit_init()
+    })
+  </script>
+</footer>

@@ -2,8 +2,39 @@
 function authorization(){
   // Если пользователь авторизирован
   if ( session_key ) {
+
     active_buttons()
-    content_upload('templates/profile.htm')
+    // - Получаем инфу о пользователя
+    // - Параметры
+    var
+    data = new Object(), // Отправляемые данные
+    result_text = '', // Текст о результате
+    validate = 0 // Если есть ошибки
+    // data.token = session_key
+
+    $.ajax({
+      url: site_url + 'api/v1/accounts/profile/',
+      data: data,
+      method: 'GET',
+      headers: {
+        "Authorization": "token " + session_key
+      }
+    }).fail(function(data) {
+      app_status(data)
+      return false
+
+    }).done(function(data) {
+      // - Подгружаем инфу о пользаке
+      user = data
+      localStorage.setItem('user', user)
+
+      // - Есди информация о пользователе не заполненна, отправляем его заполнять
+      if ( ! user.first_name )
+      content_upload('templates/profiles/edit.htm')
+      else
+      content_upload('templates/profiles/index.htm')
+      return false
+    })
   }
   else {
     // console.log('start')

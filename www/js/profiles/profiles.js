@@ -1,33 +1,15 @@
 // profile_init
 function profile_init(){
-  // - Получаем инфу о пользователя
-  // - Параметры
-  var
-  data = new Object(), // Отправляемые данные
-  result_text = '', // Текст о результате
-  validate = 0 // Если есть ошибки
+  $(document).find('#profile_info ._name').append( user.first_name )
+  $(document).find('#profile_info ._name').append( ' ' )
+  $(document).find('#profile_info ._name').append( user.last_name )
+  $(document).find('#profile_info ._points span').append( user.user_points )
 
-  data.token = session_key
-
-  console.log(data)
-
-  $.ajax({
-    url: site_url + 'api/v1/accounts/profile/',
-    data: data,
-    method: 'POST',
-    // headers: {
-    //   'X-CSRF-TOKEN': csrftoken
-    // }
-  }).fail(function(data) {
-    console.log(data)
-    app_status(data)
-
-    return false
-
-  }).done(function(data) {
-    console.log(data,1)
-    return false
-  })
+  if ( user.img_path ) {
+    var profile_img = '<img src="' + user.img_path + '">'
+    $(document).find('#profile_img label').append( profile_img )
+    $(document).find('#profile_img input').val( user.img_path )
+  }
 }
 // profile_init x
 
@@ -51,9 +33,9 @@ function profile_progress(){
         })
 
   // Если на странице пользователя, собираем его инфу
-  if ( $(document).find('.main_profile').length > 0 )
-    $(document)
-      .find('.main_profile ._profile_info ._points span')
-        .html( localStorage.getItem('user_points') )
+  // if ( $(document).find('.main_profile').length > 0 )
+  //   $(document)
+  //     .find('.main_profile ._profile_info ._points span')
+  //       .html( localStorage.getItem('user_points') )
 }
 // profile_progress x

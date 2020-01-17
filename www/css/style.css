@@ -80,10 +80,17 @@ main ul {
       border-radius: 50%;
       background: white; }
 main ol {
-  padding: 1rem 0; }
+  padding: 1rem 0;
+  list-style: decimal;
+  padding-left: 1.2rem; }
   main ol li {
-    padding-left: 1rem;
+    padding-left: 0;
     margin-bottom: 0.5rem; }
+    main ol li:after {
+      display: none; }
+    main ol li ol {
+      list-style: decimal-leading-zero;
+      padding-left: 1.8rem; }
 main p {
   margin-bottom: 1rem; }
 
@@ -181,6 +188,10 @@ main p {
   .input.__search {
     background: rgba(0, 0, 0, 0.2) url(../img/icons/search.png) no-repeat 10px center;
     background-size: 15px auto; }
+  .textarea[disabled],
+  .input[disabled] {
+    opacity: 0.5;
+    cursor: inherit; }
 
 .textarea {
   resize: none; }
@@ -644,7 +655,7 @@ button {
       right: 0;
       bottom: 0;
       z-index: 3;
-      background: rgba(0, 0, 0, 0.4); }
+      background: rgba(0, 0, 0, 0.2); }
     .block_profile_edit .profile_img label:after,
     .page_profile_edit .profile_img label:after {
       top: 40px;
@@ -680,6 +691,13 @@ button {
   .page_profile_edit .profile_info > ._edit_block input {
     width: 70%;
     text-align: left; }
+
+.profile_info_save {
+  opacity: 0.5;
+  cursor: inherit; }
+  .profile_info_save._active_ {
+    opacity: 1;
+    cursor: pointer; }
 
 .page_members > ._title .input {
   width: 100%; }
@@ -847,7 +865,89 @@ button {
 
 .block_courses .course,
 .page_courses .course {
-  padding-bottom: 1rem; }
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #FFFFFF; }
+  .block_courses .course .collaps_head,
+  .page_courses .course .collaps_head {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; }
+    .block_courses .course .collaps_head > ._icon,
+    .page_courses .course .collaps_head > ._icon {
+      position: relative;
+      z-index: 1;
+      min-width: 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .block_courses .course .collaps_head > ._icon img,
+      .page_courses .course .collaps_head > ._icon img {
+        height: 1.5rem; }
+        .block_courses .course .collaps_head > ._icon img:nth-child(1),
+        .page_courses .course .collaps_head > ._icon img:nth-child(1) {
+          display: block; }
+        .block_courses .course .collaps_head > ._icon img:nth-child(2),
+        .page_courses .course .collaps_head > ._icon img:nth-child(2) {
+          display: none; }
+      .block_courses .course .collaps_head > ._icon:after,
+      .page_courses .course .collaps_head > ._icon:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        z-index: -1; }
+    .block_courses .course .collaps_head > ._title,
+    .page_courses .course .collaps_head > ._title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+      padding-left: 1rem; }
+      .block_courses .course .collaps_head > ._title > a span,
+      .page_courses .course .collaps_head > ._title > a span {
+        display: none; }
+  .block_courses .course .collaps_content,
+  .page_courses .course .collaps_content {
+    padding: 0.5rem 0; }
+    .block_courses .course .collaps_content .item ._status,
+    .page_courses .course .collaps_content .item ._status {
+      position: relative;
+      z-index: 1;
+      width: 3.5rem;
+      min-width: 3.5rem;
+      height: 1rem; }
+      .block_courses .course .collaps_content .item ._status:after,
+      .page_courses .course .collaps_content .item ._status:after {
+        content: "";
+        position: absolute;
+        top: 0.3rem;
+        right: 0.6rem;
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: white; }
+    .block_courses .course .collaps_content .item ._text a,
+    .page_courses .course .collaps_content .item ._text a {
+      text-decoration: none;
+      color: white; }
+    .block_courses .course .collaps_content .item._passed_ ._status:after,
+    .page_courses .course .collaps_content .item._passed_ ._status:after {
+      background: #70F08C; }
+  .block_courses .course._passed_ .collaps_head ._icon img:nth-child(1),
+  .page_courses .course._passed_ .collaps_head ._icon img:nth-child(1) {
+    display: none; }
+  .block_courses .course._passed_ .collaps_head ._icon img:nth-child(2),
+  .page_courses .course._passed_ .collaps_head ._icon img:nth-child(2) {
+    display: block; }
   .block_courses .course > ._title,
   .page_courses .course > ._title {
     display: flex;
@@ -861,42 +961,8 @@ button {
   .page_courses .course .item {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #FFFFFF; }
-    .block_courses .course .item > ._status,
-    .page_courses .course .item > ._status {
-      position: relative;
-      z-index: 1;
-      min-width: 40px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center; }
-      .block_courses .course .item > ._status img,
-      .page_courses .course .item > ._status img {
-        height: 25px; }
-      .block_courses .course .item > ._status:after,
-      .page_courses .course .item > ._status:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 40px;
-        height: 40px;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 50%;
-        z-index: -1; }
-    .block_courses .course .item > ._text,
-    .page_courses .course .item > ._text {
-      padding: 0.5rem 0.5rem 0.5rem 1rem; }
-      .block_courses .course .item > ._text a,
-      .page_courses .course .item > ._text a {
-        text-decoration: none;
-        color: white; }
+    align-items: flex-start;
+    padding: 0.5rem 0; }
 
 .block_course .thems .them,
 .page_course .thems .them {

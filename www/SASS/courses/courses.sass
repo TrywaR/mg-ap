@@ -6,7 +6,99 @@
 
   .courses
   .course
-    padding-bottom: 1rem
+    margin-bottom: .5rem
+    padding-bottom: .5rem
+    border-bottom: 1px solid #FFFFFF
+
+    .collaps_head
+      display: flex
+      flex-direction: row
+      flex-wrap: nowrap
+
+      & > ._icon
+        position: relative
+        z-index: 1
+        min-width: 2.5rem
+        width: 2.5rem
+        height: 2.5rem
+        display: flex
+        align-items: center
+        justify-content: center
+
+        img
+          height: 1.5rem
+
+          &:nth-child(1)
+            display: block
+
+          &:nth-child(2)
+            display: none
+
+        &:after
+          content: ''
+          position: absolute
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          width: 2.5rem
+          height: 2.5rem
+          background: $color_main_dark
+          border-radius: 50%
+          z-index: -1
+
+      & > ._title
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-bottom: 0
+        padding-left: 1rem
+
+        & > a
+          span
+            display: none
+
+    .collaps_content
+      padding: .5rem 0
+
+      .item
+        ._status
+          position: relative
+          z-index: 1
+          width: 3.5rem
+          min-width: 3.5rem
+          height: 1rem
+
+          &:after
+            content: ''
+            position: absolute
+            top: .3rem
+            right: .6rem
+            width: .6rem
+            height: .6rem
+            border-radius: 50%
+            // background: $color_success
+            background: white
+
+        ._text
+          a
+            text-decoration: none
+            color: white
+
+        &._passed_
+          ._status
+            &:after
+              background: $color_success
+
+    &._passed_
+      .collaps_head
+        ._icon
+          img
+            &:nth-child(1)
+              display: none
+
+            &:nth-child(2)
+              display: block
 
     & > ._title
       display: flex
@@ -20,40 +112,7 @@
     .item
       display: flex
       flex-direction: row
-      align-items: center
+      align-items: flex-start
       padding: .5rem 0
-      border-bottom: 1px solid #FFFFFF
 
-      & > ._status
-        position: relative
-        z-index: 1
-        min-width: 40px
-        width: 40px
-        height: 40px
-        display: flex
-        align-items: center
-        justify-content: center
-
-        img
-          height: 25px
-
-        &:after
-          content: ''
-          position: absolute
-          top: 0
-          left: 0
-          right: 0
-          bottom: 0
-          width: 40px
-          height: 40px
-          background: $color_main_dark
-          border-radius: 50%
-          z-index: -1
-
-      & > ._text
-        padding: .5rem .5rem .5rem 1rem
-
-        a
-          text-decoration: none
-          color: white
 // .page_schedule x
