@@ -41,8 +41,32 @@ function profile_edit_init(){
 // profile_edit_init x
 
 $(function(){
+  $(document).on('click', '#profile_img label', function(){
+    $(document).find('#profile_img input').click()
+  })
+
   $(document).on('change', '#profile_img input', function(){
     $(this).next('._name').html(this.files[0].name)
+    var oFileImg = this.files[0]
+    // img
+    console.log(user)
+    user.img_path = $(document).find('#profile_img input').val()
+    $.ajax({
+      url: site_url + 'api/v1/mobile/' + user.id + '/upload-photo/',
+      data: oFileImg,
+      processData: false,
+      contentType: false,
+      method: 'PUT',
+      headers: {
+        "Authorization": "token " + session_key
+      }
+    }).fail(function(data) {
+      console.log(data)
+      app_status(data)
+    }).done(function(data) {
+      console.log(data)
+      app_status(data)
+    })
   })
 
   $(document).on('input', '.profile_info input', function(){
@@ -55,9 +79,7 @@ $(function(){
       user.first_name = $(document).find('#input_name').val()
       user.last_name = $(document).find('#input_last_name').val()
 
-      if ( $(document).find('#profile_img input').val() )
-      user.img_path = $(document).find('#profile_img input').val()
-
+      // Info
       $.ajax({
         url: site_url + 'api/v1/accounts/profile/',
         data: user,

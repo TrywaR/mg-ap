@@ -102,6 +102,7 @@
         animation-timing-function: linear
 
         svg
+          width: 20vw
           position: relative
           margin-top: -20%
           margin-right: -20%
@@ -148,7 +149,7 @@
         & > ._name
           width: 100%
           text-transform: uppercase
-          font-size: .8rem
+          font-size: .7rem
           line-height: 1
           font-weight: bold
           padding: .15rem 0
@@ -191,7 +192,7 @@
           z-index: 5
 
       &:nth-child(even)
-        transform: translateY(10%) translateZ(4px)
+        transform: translateY(17%) translateZ(4px)
         z-index: 3
 
         & > ._tree
@@ -209,6 +210,8 @@
           // Описание
           text-align: left
           justify-content: flex-start
+          top: 40% ! important
+          left: 60% ! important
 
           & > ._icon
             order: 2
@@ -223,6 +226,7 @@
       &:nth-child(n+3)
         // После первых двух
         z-index: 2
+        margin-top: -2%
         transform: translateZ(3px)
 
         & > ._desc
@@ -289,6 +293,9 @@
 
         & > ._desc
           // Описание
+          top: 0% ! important
+          left: auto ! important
+
           & > ._icon
             img
           & > ._num
