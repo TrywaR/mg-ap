@@ -55,7 +55,8 @@ $(function(){
       url: site_url + 'api/v1/mobile/' + user.id + '/upload-photo/',
       data: oFileImg,
       processData: false,
-      contentType: false,
+      // contentType: false,
+      contentType: 'multipart/form-data',
       method: 'PUT',
       headers: {
         "Authorization": "token " + session_key

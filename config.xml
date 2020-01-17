@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="itd" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Media Group | app</name>
+    <name>Закупки 5:0</name>
     <description>
         Это тестовое приложение созданное с помощью phonegap!
     </description>
     <author email="admin@trywar.ru" href="http://phonegap.com">
-        Media Group
+        Закупки 5:0
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
