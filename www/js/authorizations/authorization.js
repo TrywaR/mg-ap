@@ -25,9 +25,7 @@ function authorization(){
 
     }).done(function(data) {
       // - Подгружаем инфу о пользаке
-      console.log(data)
       user = data
-      user_points = user.user_points
       localStorage.setItem('user', user)
 
       // - Есди информация о пользователе не заполненна, отправляем его заполнять

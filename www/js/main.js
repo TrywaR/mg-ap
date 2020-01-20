@@ -88,7 +88,7 @@ if ( localStorage.getItem('session_key') ) {
 }
 
 // Баллы пользователя
-user_points = 0
+// user_points = 0
 // if ( localStorage.getItem('user_points') )
 //   user_points = localStorage.getItem('user_points')
 // else

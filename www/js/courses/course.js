@@ -11,15 +11,13 @@ function course_init(){
     // Добавление балов за курсы
     oVideo.onplaying = function(){
       VideoTimer = setTimeout(function () {
-        var new_point = parseInt( localStorage.getItem( 'user_points' ) ) + 10
         if ( ! localStorage.getItem( video_src ) ){
-          localStorage.setItem( 'user_points', new_point )
+          user.user_points = parseInt( user.user_points ) + 10
           localStorage.setItem( video_src , true )
 
           // Сохраняем
           data = {}
-          data.user_points = new_point
-          user.user_points = new_point
+          data.user_points = user.user_points
           data.email = user.email
           data.id = user.id
 
