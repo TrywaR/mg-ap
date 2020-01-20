@@ -46,28 +46,28 @@ $(function(){
   })
 
   $(document).on('change', '#profile_img input', function(){
-    $(this).next('._name').html(this.files[0].name)
-    var oFileImg = this.files[0]
-    // img
-    console.log(user)
-    user.img_path = $(document).find('#profile_img input').val()
-    $.ajax({
-      url: site_url + 'api/v1/mobile/' + user.id + '/upload-photo/',
-      data: oFileImg,
-      processData: false,
-      // contentType: false,
-      contentType: 'multipart/form-data',
-      method: 'PUT',
-      headers: {
-        "Authorization": "token " + session_key
-      }
-    }).fail(function(data) {
-      console.log(data)
-      app_status(data)
-    }).done(function(data) {
-      console.log(data)
-      app_status(data)
-    })
+    // $(this).next('._name').html(this.files[0].name)
+    // var oFileImg = this.files[0]
+    // // img
+    // console.log(user)
+    // user.img_path = $(document).find('#profile_img input').val()
+    // $.ajax({
+    //   url: site_url + 'api/v1/mobile/' + user.id + '/upload-photo/',
+    //   data: oFileImg,
+    //   processData: false,
+    //   // contentType: false,
+    //   contentType: 'multipart/form-data',
+    //   method: 'PUT',
+    //   headers: {
+    //     "Authorization": "token " + session_key
+    //   }
+    // }).fail(function(data) {
+    //   console.log(data)
+    //   app_status(data)
+    // }).done(function(data) {
+    //   console.log(data)
+    //   app_status(data)
+    // })
   })
 
   $(document).on('input', '.profile_info input', function(){

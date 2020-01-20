@@ -38,6 +38,19 @@ if( isset($_REQUEST['app']) && $_REQUEST['app'] == 'app' ){
     echo json_encode($oProfile);
   };
 
+  // version
+  if( isset($_REQUEST['ver']) ) {
+    // Версия клиента $_REQUEST['ver']
+    // Актуальная версия $version
+    $version = '1.1.0';
+
+    if ($_REQUEST['ver'] != $version ) {
+      echo $version;
+    }
+    die();
+  }
+  // version x
+
   // telegram bot
   if ( isset($_POST['telegram_bot']) ){
     // - Стучим в телегу

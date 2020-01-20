@@ -62,12 +62,13 @@ function authorization_message(type,txt){
 
 $(function(){
   authorization()
-  console.log('detected')
 
+  // Чистка ввода логина
   $(document).on ('input', '#authorization_form input[name="login"]', function(){
-    var text = $(this).val()
+    var text = $(this).val().replace(/\s/g, '')
     $(this).val( text.toLowerCase() )
   })
+  // Чистка ввода логина х
 
   // authorization_form
   $(document).on('submit', '#authorization_form', function(){
@@ -162,8 +163,9 @@ $(function(){
 
   // exit
   $(document).on('click', '#profile_exit', function() {
-    localStorage.removeItem('session_key')
+    localStorage.clear()
     session_key = ''
+    user = {}
     authorization()
   })
   // exit x

@@ -34,6 +34,18 @@
           transform: scale(1,1)
           @include transition_standart
 
+          &:before
+            content: ''
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            background: rgb(233, 233, 233) url(../img/video_prev_img.jpg) no-repeat center center
+            background-size: cover
+            z-index: 1
+            opacity: .5
+
           &:after
             content: ''
             position: absolute
@@ -51,6 +63,9 @@
             z-index: 2
 
           &.__chek
+            &:before
+              opacity: .1
+
             &:after
               background: url(../img/icons/courses_video_chek.png) no-repeat center center
               background-size: auto 15px

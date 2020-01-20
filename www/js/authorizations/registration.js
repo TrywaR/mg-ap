@@ -12,10 +12,12 @@ function registration_message(type,txt){
 // registration_message x
 
 $(function(){
-  $(document).on ('input', '#registration_form input[name="login"]', function(){
-    var text = $(this).val()
+  // Чистка ввода почты
+  $(document).on ('input', '#registration_form input[name="email"]', function(){
+    var text = $(this).val().replace(/\s/g, '')
     $(this).val( text.toLowerCase() )
   })
+  // Чистка ввода почты х
 
   $(document).on('submit', '#registration_form', function(){
     // - Получаем ключ сессии

@@ -1,6 +1,8 @@
 // params
 page_url = '' // Адрес текущей страницы
 site_url = 'https://alliance.paultik.ru/' // Адрес сайта
+version = '1.1.0' // Версия приложения
+download_url = 'https://mgappallianztc.com/' // Адрес загрузки контента
 // site_url = 'http://m97731yi.beget.tech/' // Адрес сайта
 pages_history = [] // История страниц
 pages_history_length = 2 // Количество страниц в истории
@@ -86,7 +88,7 @@ if ( localStorage.getItem('session_key') ) {
 }
 
 // Баллы пользователя
-user_points = 750
+user_points = 0
 if ( localStorage.getItem('user_points') )
   user_points = localStorage.getItem('user_points')
 else
@@ -133,7 +135,7 @@ function scroll_to(elem, fix_size, scroll_time){
   scroll_val = fix_size ? fix_size : scroll_val
   scroll_time = scroll_time != null ? scroll_time : 500
 
-  $(document).find('html,body').animate({
+  $(document).find('main').animate({
     scrollTop: scroll_val
   }, scroll_time)
 }
@@ -328,6 +330,42 @@ function app_status(text, status){
 // app_status x
 
 $(function(){
+  // Проверка версии
+  $.ajax({
+    url: download_url  + 'app/app.php',
+    data: 'app=app&ver=' + version,
+    xhrFields: {
+      withCredentials: false
+    }
+  }).done(function(data) {
+    $(document)
+    .find('#block_version')
+    .find('#current_version')
+    .find('span')
+    .html(version)
+
+    // Если есть обновление
+    console.log(data)
+    if ( data ) {
+      $(document)
+      .find('#block_version')
+      .find('#actual_version')
+      .addClass('_active_')
+      .find('span')
+      .html(data)
+      $(document)
+
+      .find('#main_menu_show')
+      .addClass('_status_')
+
+      // $(document)
+      // .find('#block_version')
+      // .find('#actual_version')
+      // .find('a')
+      // .attr( 'href', download_url + 'app/app.php?update=' + version )
+    }
+  })
+  // Проверка версии x
 
   // csrftoken
   // $.get(site_url + 'account/login/', {'func':'send_reply'}, function(data){
@@ -355,7 +393,7 @@ $(function(){
       $(document).find('#main_menu_back').removeClass('_active_')
     }
     else {
-      console.log('ne ok 2')
+      // console.log('ne ok 2')
     }
   })
   // page_prev x
