@@ -1045,6 +1045,10 @@ button {
       .page_course .thems .them > ._video > ._prev._active_ {
         transform: scale(0, 0);
         visibility: hidden; }
+        .block_course .thems .them > ._video > ._prev._active_:before, .block_course .thems .them > ._video > ._prev._active_:after,
+        .page_course .thems .them > ._video > ._prev._active_:before,
+        .page_course .thems .them > ._video > ._prev._active_:after {
+          display: none; }
   .block_course .thems .them > ._video_name,
   .page_course .thems .them > ._video_name {
     font-size: 1rem;

@@ -17,12 +17,16 @@ function course_init(){
           localStorage.setItem( video_src , true )
 
           // Сохраняем
+          data = {}
+          data.user_points = new_point
           user.user_points = new_point
+          data.email = user.email
+          data.id = user.id
 
           // Info
           $.ajax({
             url: site_url + 'api/v1/accounts/profile/',
-            data: user,
+            data: data,
             method: 'POST',
             headers: {
               "Authorization": "token " + session_key
@@ -61,7 +65,7 @@ function course_init(){
   // decoration
   $(document).find('.them ._video ._prev').on('click', function(){
     // console.log('video start')
-    $(this).remove()
+    // $(this).remove()
     $(this).addClass('_active_').siblings().removeClass('_active_')
 
     if ( $(this).next('video').length > 0 )

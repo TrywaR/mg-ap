@@ -89,10 +89,10 @@ if ( localStorage.getItem('session_key') ) {
 
 // Баллы пользователя
 user_points = 0
-if ( localStorage.getItem('user_points') )
-  user_points = localStorage.getItem('user_points')
-else
-  localStorage.setItem('user_points', user_points)
+// if ( localStorage.getItem('user_points') )
+//   user_points = localStorage.getItem('user_points')
+// else
+//   localStorage.setItem('user_points', user_points)
 // LocalStorage x
 
 // num2str
@@ -131,13 +131,13 @@ function active_buttons(show){
 
 // scroll_to
 function scroll_to(elem, fix_size, scroll_time){
-  scroll_val = elem ? elem.offset().top : 0
-  scroll_val = fix_size ? fix_size : scroll_val
-  scroll_time = scroll_time != null ? scroll_time : 500
-
-  $(document).find('main').animate({
-    scrollTop: scroll_val
-  }, scroll_time)
+  // scroll_val = elem ? elem.offset().top : 0
+  // scroll_val = fix_size ? fix_size : scroll_val
+  // scroll_time = scroll_time != null ? scroll_time : 500
+  //
+  // $(document).find('main').animate({
+  //   scrollTop: scroll_val
+  // }, scroll_time)
 }
 // scroll_to x
 
