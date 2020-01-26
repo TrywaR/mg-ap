@@ -1,98 +1,31 @@
 // params
 page_url = '' // Адрес текущей страницы
-site_url = 'https://alliance.paultik.ru/' // Адрес сайта
+site_url = 'https://mgappallianztc.com/' // Адрес сайта
 version = '1.1.0' // Версия приложения
 download_url = 'https://mgappallianztc.com/' // Адрес загрузки контента
-// site_url = 'http://m97731yi.beget.tech/' // Адрес сайта
 pages_history = [] // История страниц
 pages_history_length = 2 // Количество страниц в истории
-// test@trywar.ru
-// SZ0wSgL2
 session_key = '' // Ключ авторизации
-csrftoken = '' // csrftoken
+user = {} // Обьект с информацией о пользователе
 ajax_salt = {
   'app': 'app'
 }  // Необходимые параметры для ajax
 
-user = {} // Пользователь
-user.name = 'Demo'
-user.lastName = 'Demo'
-user.email = 'demo@demo.demo'
-if ( ! localStorage.getItem('user') ) {
-  localStorage.setItem('user', user)
-}
+// user = {} // Пользователь
+// if ( ! localStorage.getItem('user') ) {
+//   localStorage.setItem('user', user)
+// }
 // params x
 
-// возвращает куки с указанным name,
-// или undefined, если ничего не найдено
-// function getCookie(name) {
-//   var matches = document.cookie.match(new RegExp(
-//     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-//   ));
-//   return matches ? decodeURIComponent(matches[1]) : undefined;
-// }
-
-// CSRF
-// function send_reply(){
-//   echo json_encode(array('reply'=>'here is my reply'));
-//   exit;
-// }
-
-// $(function(){
-//   $.ajax({
-//     url:'https://alliance.paultik.ru/account/login/',
-//     data:{'func':'send_reply'},
-//     type:'POST',
-//     dateType:'json'
-//   }).success(function(data){
-//     data=$.parseJSON(data);
-//     alert(data.reply);
-//   }).error(function(jqxhr,error,status){
-//     alert('Error sending reply');
-//   });
-// })
-
-// function CSRF(){
-//   $.ajax({
-//     type: 'GET',
-//     url: site_url,
-//     data: 'test',
-//     success: function(data, textStatus, request) {
-//       console.log(textStatus)
-//       console.log(request)
-//       // alert(request.getResponseHeader('Set-Cookie'))
-//     },
-//   })
-//   // $.get(site_url, function(data, textStatus, request){
-//   //   alert(request.getResponseHeader('Set-Cookie'));
-//   //   // console.log(data.status)
-//   // //   var data = $('<div/>').html(data)
-//   // //   var test = $(data).find('body').length > 0 ? $(data).find('body').html() : ''
-//   // //   // console.log(data)
-//   // //   // console.log(test)
-//   // //   // console.log('stest')
-//   // //   // stest = getCookie('csrftoken')
-//   // //   // console.log(stest)
-//   // //   // alert( document.cookie );
-//   // //    alert(data.reply);
-//   // })
-// }
-// CSRF()
-// CSRF x
-
-// LocalSWtorage
+// LocalStorage
 // Сессия для логирования
 if ( localStorage.getItem('session_key') ) {
   session_key = localStorage.getItem('session_key')
   ajax_salt['session_key'] = session_key
 }
 
-// Баллы пользователя
-// user_points = 0
-// if ( localStorage.getItem('user_points') )
-//   user_points = localStorage.getItem('user_points')
-// else
-//   localStorage.setItem('user_points', user_points)
+if ( localStorage.getItem('user') )
+user = $.parseJSON(localStorage.getItem('user'))
 // LocalStorage x
 
 // num2str
@@ -131,13 +64,13 @@ function active_buttons(show){
 
 // scroll_to
 function scroll_to(elem, fix_size, scroll_time){
-  // scroll_val = elem ? elem.offset().top : 0
-  // scroll_val = fix_size ? fix_size : scroll_val
-  // scroll_time = scroll_time != null ? scroll_time : 500
-  //
-  // $(document).find('main').animate({
-  //   scrollTop: scroll_val
-  // }, scroll_time)
+  scroll_val = elem ? elem.offset().top : 0
+  scroll_val = fix_size ? fix_size : scroll_val
+  scroll_time = scroll_time != null ? scroll_time : 500
+
+  $(document).find('main').animate({
+    scrollTop: scroll_val
+  }, scroll_time)
 }
 // scroll_to x
 
@@ -295,25 +228,21 @@ function content_upload(upload_url){
 
 // app_status
 // - Уведомления пользователю в приложухе
-function app_status(text, status){
-  var
-  message = ''
+function app_status( oData ){
+  var message = ''
 
-  // - Парс джейсона
-  if ( text.responseJSON )
-  if ( text.responseJSON.detail )
-  text = text.responseJSON.detail
+  // - Ошибка входа
+  if ( oData.error )
+  message = '<div class="error">' + oData.error + '</div>'
 
-  if ( text.responseText )
-  text = text.responseText
+  // - Уведомление
+  if ( oData.alert )
+  message = '<div class="success">' + oData.alert + '</div>'
 
-  // status 0 - error, 1 - success
-  if ( ! status )
-  message = '<div class="error">' + text + '</div>'
-  else
-  message = '<div class="success">' + text + '</div>'
+  // - Успех
+  if ( oData.success )
+  message = '<div class="success">' + oData.success + '</div>'
 
-  if ( text )
   $(document)
   .find('#app_status')
   .append(message)
@@ -366,14 +295,6 @@ $(function(){
     }
   })
   // Проверка версии x
-
-  // csrftoken
-  // $.get(site_url + 'account/login/', {'func':'send_reply'}, function(data){
-  //   var oData = $('<div/>').html(data)
-  //   csrftoken = oData.find('[name="csrfmiddlewaretoken"]').val()
-  //   console.log(csrftoken)
-  // })
-  // csrftoken x
 
   // fix_size
   $(document)

@@ -54,6 +54,14 @@
       color: $color_select
       font-size: 1.2rem
 
+    &._loading_
+      label
+        &:after
+          animation: circle ease-in-out 5s
+          animation-iteration-count: infinite
+          animation-duration: 5s
+          transform-origin: 50% 50%
+
   .profile_info
 
     & > ._edit_block
@@ -77,3 +85,9 @@
     opacity: 1
     cursor: pointer
 // page_profile_edit x
+
+@keyframes circle
+  0%
+    transform:  rotate(0deg)
+  100%
+    transform:  rotate(360deg)

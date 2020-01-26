@@ -1,64 +1,144 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TrywaR [ dev ]</title>
-
-    <!-- color theme -->
-  	<meta name="theme-color" content="#000000">
-  	<meta name="msapplication-navbutton-color" content="#000000">
-  	<meta name="apple-mobile-web-app-status-bar-style" content="#000000">
-  	<!-- color theme x-->
+    <title>Академия закупок 5:0</title>
 
     <!-- jquery -->
-    <script src="lib/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="lib/jqeury/jquery-3.4.1.min.js"></script>
+    <!-- <script src="lib/jqeury/jquery.cookie.js"></script> -->
     <!-- jquery x -->
 
-    <!-- fontawesome -->
-    <script src="lib/fontawesome/js/all.min.js" charset="utf-8"></script>
-    <!-- fontawesome x -->
+    <!-- bootstrap -->
+    <!-- <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"> -->
+    <!-- <script src="lib/bootstrap/css/bootstrap.min.js"></script> -->
+    <!-- bootstrap x -->
 
     <!-- main -->
-    <link rel="stylesheet" href="css/main.min.css">
-    <script src="js/main.min.js" charset="utf-8"></script>
-    <!-- main x -->
+    <link rel="stylesheet" href="css/style.min.css?v=4.25">
+    <script src="js/main.min.js?v=4.25"></script>
+    <script src="js/content.min.js?v=4.25"></script>
+    <!-- main -->
+
+    <!-- Авторизация -->
+    <script src="js/authorizations/authorization.min.js?v=4.25"></script>
+    <script src="js/authorizations/password-new_form.min.js?v=4.25"></script>
+    <!-- Регистрация -->
+    <script src="js/authorizations/registration.min.js?v=4.25"></script>
+    <!-- Профиль -->
+    <script src="js/profiles/profiles.min.js?v=4.25"></script>
+    <script src="js/profiles/edit.min.js?v=4.25"></script>
+    <!-- Пользователи -->
+    <script src="js/members/members.min.js?v=4.25"></script>
+    <!-- Тренеры -->
+    <script src="js/trainers/trainers.min.js?v=4.25"></script>
+    <!-- Чат -->
+    <script src="js/chats/chats.min.js?v=4.25"></script>
+    <script src="js/chats/chat.min.js?v=4.25"></script>
+    <!-- Поддержка -->
+    <script src="js/support/support.min.js?v=4.25"></script>
+    <!-- Ондайн поддержка -->
+    <!-- <script src="js/support/online_support.min.js?v=4.25"></script> -->
+    <!-- Курсы -->
+    <script src="js/courses/course.min.js?v=4.25"></script>
+    <script src="js/courses/test.min.js?v=4.25"></script>
 </head>
-<body>
-    <header>
-      <div class="top_bar">
-        <div class="_col">
-          <button id="main_menu_show" class="icon_shich" type="button" name="button">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-times"></i>
-            Меню
-          </button>
-        </div>
-        <div class="_col">
-          TrywaR.ru
-        </div>
+<body class="_load_">
+  <header>
+    <div class="block_header_buttons">
+      <div class="block_header_fix">
+        <button class="_button __icon main_menu_show" id="main_menu_show">
+          <span id="main_menu_status" class="main_menu_status">!</span>
+          <!-- <img src="img/icons/menu.svg" alt=""> -->
+        </button>
+
+        <button class="_button __icon main_menu_back" id="main_menu_back">
+          <!-- <img src="img/icons/back.svg" alt=""> -->
+        </button>
       </div>
-      <div class="main_menu" id="main_menu">
+
+      <div class="block_header_items"></div>
+    </div>
+
+    <div id="main_menu" class="block_main_menu">
+      <nav class="main_menu">
         <ul>
-          <li><a class="content_upload" href="/pages/home.htm">Главная</a></li>
-          <li><a class="content_upload" href="https://trywar.ru/app.txt">Подгрузка с сайта</a></li>
-          <li><a class="content_upload" href="/pages/about.htm">Подгрузка контента со страницы</a></li>
-          <li><a href="/pages/about.htm">Внутренняя страница</a></li>
-          <li><a href="https://trywar.ru" target="_blank">Перейти на сайт</a></li>
+          <li class="page_profile _active_">
+            <a class="content_upload" href="templates/profile.htm">
+              Профиль
+            </a>
+          </li>
+          <!-- <li class="page_chats">
+            <a class="content_upload" href="templates/chats.htm">
+              Чаты
+            </a>
+          </li> -->
+          <li class="page_schedule">
+            <a class="content_upload" href="templates/schedule.htm">
+              Расписание
+            </a>
+          </li>
+          <li class="page_courses">
+            <a class="content_upload" href="templates/courses/index.htm">
+              Курсы
+            </a>
+          </li>
+          <!-- <li class="page_members">
+            <a class="content_upload" href="templates/members.htm" data-content="templates/members/data.json">
+              Участники
+            </a>
+          </li> -->
+          <!-- <li class="page_trainers">
+            <a class="content_upload" href="templates/trainers.htm">
+              Тренеры
+            </a>
+          </li> -->
+          <li class="page_online_support">
+            <a class="content_upload" href="templates/support/support.htm">
+              Поддержка
+            </a>
+          </li>
+          <!-- <li class="page_online_support">
+            <a class="content_upload" href="templates/support/online_support.htm">
+              Онлайн поддержка
+            </a>
+          </li> -->
+          <!-- <li class="page_faq">
+            <a class="content_upload" href="templates/faq.htm">
+              F.A.Q
+            </a>
+          </li> -->
+          <li class="page_privacy">
+            <a class="content_upload" href="templates/privacy.htm">
+              О программе
+            </a>
+          </li>
+          <li class="page_privacy">
+            <a id="profile_exit">
+              Выход
+            </a>
+          </li>
         </ul>
+      </nav>
+
+      <div id="block_version" class="block_version">
+        <div id="current_version" class="current_version">
+          Текущая версия <span></span>
+        </div>
+
+        <div id="actual_version" class="actual_version">
+          Доступная версия
+          <span></span>
+          <!-- <a class="button" href="">Обновить</a> -->
+        </div>
       </div>
-    </header>
-    <main>
-        <h1>
-          Хелло ворд!
-        </h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-    </main>
-    <footer>
-      TrywaR [ dev ]
-    </footer>
+    </div>
+  </header>
+  <main></main>
+  <footer></footer>
+  <div class="loader"></div>
+  <div id="app_status" class="app_status"></div>
 </body>
 </html>

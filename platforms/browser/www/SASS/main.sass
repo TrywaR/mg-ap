@@ -2,217 +2,427 @@
 @import "mixin"
 @import "reset"
 
+// Контент
+@import "content"
+@import "../fonts/fonts"
+
+// Авторизация
+@import "authorizations/authorizations"
+
+// Регистрация
+@import "authorizations/registration"
+
+// Профиль
+@import "profiles/profile"
+@import "profiles/edit"
+
+// Участники
+@import "members/members"
+@import "members/member"
+
+// Курсы
+@import "courses/courses"
+@import "courses/course"
+@import "courses/test"
+
+// Тренера
+@import "trainers/trainers"
+@import "trainers/trainer"
+
+// Расписание
+@import "schedule"
+
+// Чаты
+@import "chats/chats"
+@import "chats/chat"
+
+// faq
+@import "faq"
+
+// Поддержка
+@import "support/support"
+
+// html
+html
+  font-size: 16px
+  line-height: 18px
+
 // body
 body
   position: relative
-  display: block
-  padding: 6vh 0 4vh
-  font: 16px / 1 'Roboto' , sans-serif
+  // padding-top: $header_height
+  font-size: 18px
+  line-height: 1
   z-index: 1
-  filter: blur(0rem)
-  background: rgb(20,20,20)
-  overflow: hidden
-  @include text_effect
-  @include transition_standart
+  min-height: 100vh
+  font-family: 'DIN Pro'
+  color: white
 
-  &:before
+  &:before,
+  &:after
     content: ''
     position: absolute
     top: 0
     left: 0
     right: 0
     bottom: 0
-    background: rgba(0,0,0,.8)
+
+  &:before
+    // background: url(../img/bg_img.png) no-repeat center 98%
+    background: url(../img/bg_img2.svg) no-repeat center 90%
+    background-size: 100% auto
     z-index: -1
-    @include transition_standart
+
+  &:after
+    // background: linear-gradient(150deg, #009cdb 30%, #00477e 80%)
+    background: #211D56
+    z-index: -2
+
+  img
+    max-width: 100%
+
+  &._load_
+    .loader
+      transform: scale(1,1)
+      visibility: visible
+      opacity: 1
+// body x
+
+// loader
+.loader
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100vw
+  height: 100vh
+  z-index: 1000
+  visibility: hidden
+  opacity: 0
+  transform: scale(1.2,1.2)
+  background: $color_main_dark
+  transition: visibility .5s ease .5s, opacity .3s ease .3s
 
   &:after
     content: ''
     position: absolute
     top: 0
     left: 0
+    right: 0
     bottom: 0
-    width: 100%
-    background: url(../img/bg.jpg) no-repeat center center
-    background-size: cover
-    z-index: -2
+    margin: auto
+    width: 50px
+    height: 50px
+    border: 3px solid transparent
+    border-left-color: $color_active
+    border-right-color: $color_active
+    border-radius: 50%
+    z-index: 1001
+
+    animation: circle ease-in-out 1.5s
+    animation-iteration-count: infinite
+    transform-origin: 50% 50%
     @include transition_standart
-    @include block_shadow
-    filter: blur(.1rem)
-    transform: scale(1,1)
 
-  &._no_active_
-    main
-      left: 10vw
-      filter: blur(.1rem)
-      transform: scale(.9,.9)
-
-    &:after
-      left: 15vw
-      filter: blur(.2rem)
-      transform: scale(.8,.8)
-
-  h1
-    font-size: 1.5rem
-    margin-bottom: 1rem
-
-  h2
-    font-size: 1.3rem
-    margin-bottom: .5rem
-
-// body x
+@keyframes circle
+  0%
+    transform:  rotate(0deg) scale(1,1)
+  60%
+    transform:  rotate(-360deg) scale(1.2,1.2)
+  100%
+    transform:  rotate(0deg) scale(1,1)
+// loader x
 
 // header
 header
-  position: relative
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  // background: rgba(0, 0, 0, 0.2)
+  background: $color_header_bg
+  // height: $header_height
+  display: none
   z-index: 3
 
-  .top_bar
-    position: fixed
-    top: 0
-    left: 0
-    right: 0
-
+  .block_header_buttons
     display: flex
     flex-direction: row
-    justify-content: center
-    align-items: center
-    height: 6vh
+    justify-content: space-between
 
-    color: white
-    background: black
+    .main_menu_back
+      background: url(../img/icons/back.svg) no-repeat center center ! important
+      background-size: auto 1.3rem ! important
 
-    ._col
+      &:not(._active_)
+        display: none ! important
+
+    .main_menu_show
+      // display: flex
+      // flex-direction: column
+      // justify-content: center
+      // align-items: center
+      position: relative
+      background: url(../img/icons/menu.svg) no-repeat center center ! important
+      background-size: auto 1.3rem ! important
+      transform: rotate(0deg)
+      @include transition_standart
+      z-index: 1
+
+      &:focus,
+      &:active
+        // background: none ! important
+        outline: none ! important
+        border: none ! important
+
+      // span
+      //   display: flex
+      //   flex-direction: column
+      //   justify-content: center
+      //   align-items: center
+      //   width: 25px
+      //   height: 2px
+      //   background: white
+      //
+      //   &:not(:last-child)
+      //     margin-bottom: 6px
+
+      &._status_
+        .main_menu_status
+          top: .5rem
+
+      &._active_
+        transform: rotate(90deg)
+        z-index: 1000
+
+        .main_menu_status
+          top: -2rem ! important
+
+      .main_menu_status
+        position: absolute
+        top: -2rem
+        right: 0
+        width: 1rem
+        height: 1rem
+        font-size: .8rem
+        font-weight: bolder
+        text-align: center
+        line-height: 1rem
+        border-radius: 50%
+        background: $color_success
+        color: white
+        z-index: 2
+        @include transition_standart
+
+    .block_header_fix,
+    .block_header_items
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+      padding: 0
+      // max-width: 65%
+      overflow: hidden
+      // flex-grow: 1
+      // padding: 1rem
+
+      & > ._title,
+      & > ._button
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        color: white
+        // flex-grow: 1
+        white-space: nowrap
+        background: none
+        outline: none ! important
+        border: none ! important
+        padding: .8rem .5rem
+        height: 1.4rem
+        font-size: 1.2rem
+        line-height: 1
+        box-sizing: content-box
+        text-decoration: none
+        max-width: 100%
+        overflow: hidden
+
+      & > ._title
+        margin-right: auto
+
+        &.__center
+          // padding-right: 60px
+          margin-left: auto
+
+      & > ._button
+        // margin-left: auto
+        text-align: right
+
+        &.__icon
+          display: flex
+          align-items: center
+          justify-content: center
+          width: 2rem
+
+          img
+            // width: 2rem
+            max-width: 100%
+            max-height: 100%
+
+
+    .block_header_items
       flex-grow: 1
-      padding: .5rem
-      @include text_effect_more
+      justify-content: flex-end
+      width: 100%
+      padding-right: .5rem
 
-  .main_menu
-    position: fixed
-    top: 5vh
-    left: -100vw
-    bottom: 4vh
-    background: rgba(0,0,0,.95)
-    color: white
-    width: 90vw
-    @include transition_standart
+    .block_header_fix
+      max-width: 6.5rem
+      padding-left: .5rem
 
-    ul
-      padding: 1rem
+  .block_header
+    padding: 1rem
+    font-size: 1.2rem
+    line-height: 1.2
 
-      li
-        display: block
-        box-sizing: border-box
-
-        a
-          display: block
-          padding: .5rem 0
-          color: $color_active
-
-        &:not(:last-child)
-          border-bottom: .12rem solid rgba(100,100,100,.1)
-
-    &._active_
-      left: 0vw
 // header x
 
 // main
 main
   position: relative
-  left: 0
-  width: 100%
-  height: 90vh
-  padding: 1vh 1vw
-  filter: blur(0rem)
-  transform: scale(1,1)
-  box-sizing: border-box
   z-index: 1
-  @include transition_standart
   overflow-y: scroll
+
+  & > ._title
+    padding: 1rem
+    background: $color_main_dark
+    font-size: 1.45rem
+    font-weight: bold
+
+  & > ._content
+    padding: 1rem
+    height: 100%
+    box-sizing: border-box
 // main x
 
 // footer
 footer
-  position: fixed
-  bottom: 0
-  left: 0
-  right: 0
-  height: 4vh
-  display: flex
-  flex-direction: row
-  justify-content: center
-  align-items: center
-  background: black
-  text-align: center
-  filter: blur(0rem)
-  box-sizing: border-box
+  display: none
+  position: relative
   z-index: 2
-  font-size: .8rem
-  @include text_effect_more
-  @include transition_standart
 // footer x
 
-// icon_shich
-.icon_shich
+// page
+.pages
+//   position: fixed
+//   top: 0
+//   left: 0
+//   right: 0
+//   bottom: 0
+//   width: 300vw
+//   display: flex
+//   flex-direction: row
+//   overflow: hidden
+//   transition: all .5s ease
+//
+// .page
+//   width: 100vw
+//   height: 100vh
+//   overflow-y: auto
+
+.row
   display: flex
   flex-direction: row
-  padding-left: 1.5rem
-  position: relative
-  z-index: 1
-  overflow: hidden
+  width: 100%
+// page x
 
-  i,
-  svg
-    position: absolute
-    left: .3rem
-    height: 100%
-    font-size: .9rem
-    @include transition_standart
+// .block_main_menu
+.block_main_menu
+  // display: none
+  position: fixed
+  top: 0
+  left: -100%
+  bottom: 0
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  width: 90vw
+  // background: linear-gradient(150deg, #009cdb 30%, #00477e 80%)
+  background: $color_header_bg
+  transition: all .5s ease
+  // z-index: -1
+  z-index: -1
+  padding-top: calc( 25px + 2rem )
 
-    &:nth-child(1)
-      bottom: 0%
-    &:nth-child(2)
-      bottom: -100%
+  &:after
+    content: ''
+    position: fixed
+    top: 0
+    right: -10vw
+    bottom: 0
+    width: 10vw
+    background: rgba(0, 0, 0, 0.5)
+    transition: all .5s ease .1s
+    z-index: -1
 
   &._active_
-    i,
-    svg
-      &:nth-child(1)
-        bottom: 100%
-      &:nth-child(2)
-        bottom: 0%
-// icon_shich x
+    left: 0
+    z-index: 999
 
-// forms
-button
-  padding: .2rem 1rem
-  margin: 0
-  border: 0 ! important
-  outline: 0 ! important
-  background: none ! important
-  box-shadow: 0 0 0 .1rem $color_active
-  color: $color_active
-  text-decoration: none
-// forms x
+    &:after
+      right: 0
 
-// .article_item
-.article_item
-  margin-bottom: .5rem
-  padding: .5rem
-  border-bottom: .1rem solid rgba(80,80,80,.1)
+  .main_menu
+    ul
+      li
+        color: white
+        padding: .5rem 1rem
 
-  ._title
-    @include text_effect
+        a
+          font-size: 1.2rem
+          line-height: 1
+          text-decoration: none
+          color: white
 
-  ._content
-    @include text_effect_more
+        &._active_
+          background: rgba(0, 0, 0, 0.2)
 
-  ._link
-    display: block
-    @include text_effect
-    padding-top: .5rem
-    font-size: .8rem
-    text-align: right
-    color: $color_active
-    text-decoration: underline
-// .article_item x
+  .block_version
+    padding: .5rem 1rem 1rem
+    font-size: .9rem
+
+    .current_version
+      color: rgba(255,255,255,.5)
+      margin-bottom: .5rem
+
+    .actual_version
+      display: none
+      align-items: center
+      flex-wrap: nowrap
+      flex-direction: row
+      // justify-content: space-between
+      color: white
+
+      span
+        padding: 0 .5rem
+
+      a
+        min-width: inherit
+
+      .button
+        min-width: inherit
+
+      &._active_
+        display: flex
+// .block_main_menu x
+
+// Поворот
+@media screen and (orientation:landscape)
+  html
+    font-size: 18px
+    line-height: 22px
+
+// Большой экран
+@media screen and (min-width:776px)
+  html
+    font-size: 20px
+    line-height: 24px

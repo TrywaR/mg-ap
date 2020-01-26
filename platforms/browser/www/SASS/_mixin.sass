@@ -1,11 +1,15 @@
 //@include transition_standart
 @mixin transition_standart()
-  transition: all .5s ease
+  transition: all .4s ease
 
 //@include text_effect
 @mixin text_effect()
   color: transparent
-  text-shadow: 0 0 .05rem $color_select
+  text-shadow: 0 0 .1rem $color_select
+
+//@include text_active_size
+@mixin text_active_size()
+  font-size: 1.4rem
 
 //@include text_effect_more
 @mixin text_effect_more()
@@ -15,6 +19,10 @@
 //@include block_shadow
 @mixin block_shadow()
   box-shadow: 0 .1rem .5rem 0 rgba(0,0,0,.9)
+
+//@include border_bottom
+@mixin border_bottom()
+  border-bottom: .1rem solid rgba(80,80,80,.1)
 
 //@include block_margin_bottom
 @mixin block_margin_bottom()

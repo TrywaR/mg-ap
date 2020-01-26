@@ -691,6 +691,12 @@ button {
     text-align: center;
     color: #00c800;
     font-size: 1.2rem; }
+  .block_profile_edit .profile_img._loading_ label:after,
+  .page_profile_edit .profile_img._loading_ label:after {
+    animation: circle ease-in-out 5s;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    transform-origin: 50% 50%; }
 .block_profile_edit .profile_info > ._edit_block,
 .page_profile_edit .profile_info > ._edit_block {
   display: flex;
@@ -712,6 +718,11 @@ button {
     opacity: 1;
     cursor: pointer; }
 
+@keyframes circle {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 .page_members > ._title .input {
   width: 100%; }
 .page_members .members .member {

@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="itd" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="itd" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>TrywaR [ dev ]</name>
+    <name>Закупки 5:0</name>
     <description>
-        Это тестовое приложение созданное с помощью phonegap!
+        Это тестовое приложение!
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        TrywaR
+    <author email="admin@mgspb.com" href="http://phonegap.com">
+        Закупки 5:0
     </author>
     <content src="index.html" />
     <allow-navigation href="https://*youtube.com/*" />
-    <icon src="icon.png" />
+    <icon src="icon.new.png" />
     <splash src="splash.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -25,5 +25,6 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#0584b8" />
     <preference name="SplashMaintainAspectRatio" value="true" />
 </widget>

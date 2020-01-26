@@ -3,12 +3,19 @@ function profile_init(){
   $(document).find('#profile_info ._name').append( user.first_name )
   $(document).find('#profile_info ._name').append( ' ' )
   $(document).find('#profile_info ._name').append( user.last_name )
-  $(document).find('#profile_info ._points span').append( user.user_points )
+  $(document).find('#profile_info ._points span').append( user.points )
 
-  if ( user.img_path ) {
-    var profile_img = '<img src="' + user.img_path + '">'
-    $(document).find('#profile_img label').append( profile_img )
-    $(document).find('#profile_img input').val( user.img_path )
+  if ( user.image ) {
+    var image_path = '';
+
+    if ( user.image.substring(0,1) === '/' )
+    image_path = user.image.substring(1)
+    else
+    image_path = user.image
+
+    var profile_img = '<img src="' + site_url + image_path + '">'
+    $(document).find('#profile_img').removeClass('__default')
+    $(document).find('#profile_img').append( profile_img )
   }
 }
 // profile_init x
