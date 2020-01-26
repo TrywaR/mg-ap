@@ -32,7 +32,7 @@ function profile_edit_init(){
   $(document).find('#input_email').val( user.email )
 
   if ( user.image ) {
-    var profile_img = '<img src="' + site_url + user.image.substring(1) + '">'
+    var profile_img = '<img src="' + site_url + user.image.substring(1).replace('/image/', '/image_min/') + '">'
     $(document).find('#profile_img label').removeClass('__default')
     $(document).find('#profile_img label').append( profile_img )
     $(document).find('#profile_img input').attr('val', user.image)
@@ -88,7 +88,7 @@ $(function(){
           // localStorage.setItem('user', JSON.stringify(user))
 
           $(document).find('#profile_img').find('input').attr('val', data)
-          $(document).find('#profile_img').find('img').attr('src', site_url + data.substring(1) )
+          $(document).find('#profile_img').find('img').attr('src', site_url + data.substring(1).replace('/image/', '/image_min/') )
 
           var oData = {}
           oData.success = 'Изображение успешно загруженно'

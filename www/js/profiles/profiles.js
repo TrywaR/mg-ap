@@ -6,14 +6,7 @@ function profile_init(){
   $(document).find('#profile_info ._points span').append( user.points )
 
   if ( user.image ) {
-    var image_path = '';
-
-    if ( user.image.substring(0,1) === '/' )
-    image_path = user.image.substring(1)
-    else
-    image_path = user.image
-
-    var profile_img = '<img src="' + site_url + image_path + '">'
+    var profile_img = '<img src="' + site_url + user.image.substring(1).replace('/image/', '/image_min/') + '">'
     $(document).find('#profile_img').removeClass('__default')
     $(document).find('#profile_img').append( profile_img )
   }
