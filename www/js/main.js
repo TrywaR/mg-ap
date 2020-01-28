@@ -132,100 +132,6 @@ function page_prev(href, data){
 }
 // page_prev x
 
-// template_parse
-function template_parse(data, template_url){
-  var data = $('<div/>').html(data)
-  var header = $(data).find('header').length > 0 ? $(data).find('header').html() : ''
-  var main = $(data).find('main').length > 0 ? $(data).find('main').html() : ''
-  var main_class = $(data).find('main').length > 0 ? $(data).find('main').attr('class') : ''
-  var footer = $(data).find('footer').length > 0 ? $(data).find('footer').html() : ''
-
-  $(document).find('body header .block_header_items').html(header)
-  $(document).find('body main').html(main).attr('class', '')
-  $(document).find('body main').addClass(main_class)
-  $(document).find('body footer').html(footer)
-
-  content_parse(data, template_url)
-
-  // // parse
-  // $.each(data, function(key, value){
-  //   $(template_htm).find('main [data-key='+key+']').prepend(value)
-  // })
-
-  $(document).find('#main_menu li.' + main_class).addClass('_active_').siblings().removeClass('_active_')
-}
-// template_parse x
-
-// content_parse
-function content_parse(data, template){
-  var
-  arrTemplate = template.split('/'),
-  sTemplatesPath = arrTemplate[arrTemplate.length - 1],
-  sTemplatePath = sTemplatesPath + '/item.htm',
-  sTemplateName = sTemplatesPath.substr(0, sTemplatesPath.length - 4),
-  sDataPath = '',
-  oJsonData = '',
-  templateHtml = $('<div/>').html($.post(sTemplatePath)),
-  contentHtml = ''
-
-  for (var i = 0; i < arrTemplate.length; i++)
-  if ( i === arrTemplate.length - 1 ) sDataPath += sTemplateName + '.json'
-  else sDataPath += arrTemplate[i] + '/'
-
-  $.post(sDataPath, function(sData){
-    oJsonData = $.parseJSON(sData)
-  })
-
-  $.each(oJsonData.items, function(index, item){
-    $.each(item, function(key, value){
-      if ( $(templateHtml).find('[data-key='+key+']').length > 0 )
-      $(templateHtml).find('[data-key='+key+']').prepend(value)
-    })
-    contentHtml += templateHtml
-  })
-
-  return contentHtml
-}
-// content_parse x
-
-// content_upload
-function content_upload(upload_url){
-  $('body').addClass('_load_')
-
-  console.log('content_upload: ' + upload_url)
-  console.log(upload_url.indexOf('http'))
-  if (upload_url.indexOf('http') >= 0) {
-    console.log('С сайта')
-
-    $.ajax({
-      url: upload_url,
-      data: $(this).serialize(),
-      xhrFields: {
-        withCredentials: false
-      }
-    }).done(function(data) {
-      $(document).find('body').html(data)
-      scroll_to(0,0,0)
-      page_prev(upload_url)
-      $('body').removeClass('_load_')
-    })
-  }
-  else{
-    console.log('С приложения')
-
-    $.post(upload_url, function(data){
-      template_parse(data, upload_url)
-      scroll_to(0,0,0)
-      page_prev(upload_url)
-      $('body').removeClass('_load_')
-    })
-  }
-
-
-  return false
-}
-// content_upload х
-
 // app_status
 // - Уведомления пользователю в приложухе
 function app_status( oData ){
@@ -261,11 +167,8 @@ function app_status( oData ){
 $(function(){
   // Проверка версии
   $.ajax({
-    url: download_url  + 'app/app.php',
+    url: site_url,
     data: 'app=app&ver=' + version,
-    xhrFields: {
-      withCredentials: false
-    }
   }).done(function(data) {
     $(document)
     .find('#block_version')
@@ -274,7 +177,6 @@ $(function(){
     .html(version)
 
     // Если есть обновление
-    console.log(data)
     if ( data ) {
       $(document)
       .find('#block_version')
@@ -318,30 +220,6 @@ $(function(){
     }
   })
   // page_prev x
-
-  // content_upload
-  $(document).on('click', '.content_upload', function(){
-    page_url = $(this).attr('href')
-
-    if ( $(this).data('content') ) {
-
-      if ( $(this).data('params') ) {
-        content_upload(page_url, $(this).data('content'), $(this).data('params'))
-      }else{
-        content_upload(page_url, $(this).data('content'))
-      }
-
-    }else{
-      content_upload(page_url)
-    }
-
-    $('#main_menu_show').removeClass('_active_')
-    $('#main_menu').removeClass('_active_')
-    $('body').removeClass('_no_active_')
-
-    return false
-  })
-  // content_upload x
 
   // main_menu
   $(document).on('click', '#main_menu_show', function(){

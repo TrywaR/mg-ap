@@ -2,6 +2,40 @@
 function authorization(){
   // Если пользователь авторизирован
   if ( session_key ) {
+    // - Проверка ключа сесси, и обновление данных о пользователе
+    var
+    form = {'form': 'session_validation'},
+    data = $.extend(user, ajax_salt, form)
+    
+    $.ajax({
+      url: site_url,
+      data: data,
+      method: 'POST',
+
+    }).fail(function(data) {
+      var oData = {}
+      oData.error = 'Ошибка соединения'
+      app_status( oData )
+      return false
+
+    }).done(function(data) {
+      var oData = $.parseJSON(data)
+
+      // - Успешно вошли, 300 чашек чаю, этому господину
+      if ( ! oData.error ) {
+        user = oData
+        localStorage.setItem('user', JSON.stringify(user))
+      }
+      // - Сессия устарела
+      else {
+        app_status( oData )
+        localStorage.clear()
+        session_key = ''
+        user = {}
+        authorization()
+      }
+    })
+
     active_buttons()
 
     if ( ! user.first_name )
@@ -51,7 +85,7 @@ $(function(){
   // authorization_form
   $(document).on('submit', '#authorization_form', function(){
 
-    // - Получаем ключ сессии
+    // - Получаем ключ сессии, и информацию о пользователе
     $.ajax({
       url: site_url,
       data: $(this).serializeArray(),

@@ -1,4 +1,27 @@
 function course_init(){
+  // content
+  var courses = {'courses': ''}
+
+  $.ajax({
+    url: site_url,
+    data: $.extend(user, ajax_salt, courses),
+    method: 'POST',
+
+  }).fail(function(data) {
+    var oData = {}
+    oData.error = 'Ошибка соединения'
+    app_status( oData )
+    return false
+
+  }).done(function(data) {
+    console.log(data)
+    var oData = $.parseJSON(data)
+
+    // - Сообщаем результат
+    // app_status( oData )
+  })
+  // content x
+
   // point saver
   $(document)
   .find('.them')
