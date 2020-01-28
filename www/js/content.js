@@ -1,19 +1,31 @@
 // template_parse
 function template_parse(data, template_url){
+  // Парсим шаблон
   var data = $('<div/>').html(data)
   var header = $(data).find('header').length > 0 ? $(data).find('header').html() : ''
   var main = $(data).find('main').length > 0 ? $(data).find('main').html() : ''
   var main_class = $(data).find('main').length > 0 ? $(data).find('main').attr('class') : ''
   var footer = $(data).find('footer').length > 0 ? $(data).find('footer').html() : ''
 
-  // Подставляем данные
-  content_parse(main)
+  // Передаём параметры из урла
+  arrPageParams = [] // Обнуляем параметры страницы
+  var arrUrl = template_url.split('?')
+  if ( arrUrl[1] ) {
+    // - Если есть параметры
+    var arrParams = arrUrl[1].split('&')
+    $.each(arrParams, function(index, param){
+      arrParam = param.split('=')
+      arrPageParams[arrParam[0]] = arrParam[1]
+    })
+  }
 
+  // Вставляем результат
   $(document).find('body header .block_header_items').html(header)
   $(document).find('body main').html(main).attr('class', '')
   $(document).find('body main').addClass(main_class)
   $(document).find('body footer').html(footer)
 
+  // Подсвечиваем пункт в меню
   $(document).find('#main_menu li.' + main_class).addClass('_active_').siblings().removeClass('_active_')
 }
 // template_parse x
@@ -21,19 +33,17 @@ function template_parse(data, template_url){
 // content_parse
 function content_parse( oElem ){
   // - Вставляем шаблоны и данные
-  sResultHtml = ''
   if ( $( oElem ).find( '[data-items]' ).length > 0 ) {
     $( oElem )
     .find( '[data-items]' )
     .each( function( index, dataItemsElem ){
       // - Парамтеры
       var
-      // sResultHtml = '',
+      sResultHtml = '',
       sTemplatePath = 'templates/' + $( this ).data().template + '.htm',
       sElemName = $( this ).data().items,
       sWrapClass = '',
-      oData = {}
-      oData.items = $( this ).data().items
+      oData = { 'items': sElemName }
 
       // - Получаем шаблон
       $.ajax({
@@ -73,7 +83,13 @@ function content_parse( oElem ){
               $( oTemplateTemp )
               .find( '[data-key=' + key + ']' )
               .html( value )
+
+              var data_attr = 'data-' + key
+              $( oTemplateTemp )
+              .find( '[' + data_attr + ']' )
+              .attr( data_attr, value )
             })
+
 
             sResultHtml += '<div class="' + sWrapClass + ' ' + sActive + '">'
             sResultHtml += $(oTemplateTemp).html()
@@ -85,9 +101,6 @@ function content_parse( oElem ){
 
             sActive = ''
 
-            // --- Если есть вложенные данные, пускаем по кругу
-            if ( $( oFindElem ).find('[data-items]').length > 0 )
-            content_parse( oFindElem )
           })
         })
       })

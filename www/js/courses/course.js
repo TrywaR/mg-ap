@@ -1,4 +1,43 @@
 function course_init(){
+  if ( arrPageParams['id'] ) {
+    // Параметры
+    var
+    sResultHtml = '',
+    oData = {
+      'course': true,
+      'id': arrPageParams['id']
+    }
+
+    // Загружаем курс
+    $.ajax({
+      url: site_url,
+      data: $.extend( oData, ajax_salt ),
+      method: 'POST',
+
+    }).fail(function(data) {
+      app_status( {'error': 'Ошибка соединения'} )
+      return false
+
+    }).done(function(data) {
+      var jsonCourse = $.parseJSON(data)
+      app_status( jsonCourse )
+
+      // Подставляем данные в страницу
+      $.each( jsonCourse, function(key, value) {
+        $( document )
+        .find( '[data-key=' + key + ']' )
+        .html( value )
+
+        var data_attr = 'data-' + key
+        $( document )
+        .find( '[' + data_attr + ']' )
+        .attr( data_attr, value )
+      })
+    })
+  }
+}
+
+function video_init(){
   // content
   var courses = {'courses': ''}
 

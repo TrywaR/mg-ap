@@ -1,121 +1,84 @@
+function theme_html(oTheme){
+  // - html темы
+  var
+  sPassed = '',
+  sThemeHtml = ''
+
+  sThemeHtml += '<div class="item theme">'
+    sThemeHtml += '<div class="_status"></div>'
+    sThemeHtml += '<div class="_text">'
+      sThemeHtml += '<a class="content_upload" href="templates/courses/course.htm?id=' + oTheme.course_id + '">'
+        sThemeHtml += oTheme.name
+      sThemeHtml += '</a>'
+    sThemeHtml += '</div>'
+  sThemeHtml += '</div>'
+
+  return sThemeHtml
+}
+
+function course_html(oCourse, index){
+  // - html курса
+  var
+  sActive = '',
+  sPassed = '',
+  sCourseHtml = ''
+
+  if ( index == 0 ) sActive = '_active_'
+
+  sCourseHtml += '<div class="course collaps_block ' + sActive + '">'
+    sCourseHtml += '<div class="collaps_head">'
+      sCourseHtml += '<div class="_icon">'
+        sCourseHtml += '<img src="img/icons/courses_status.svg" alt="">'
+        sCourseHtml += '<img src="img/icons/courses_status_passed.svg" alt="">'
+      sCourseHtml += '</div>'
+      sCourseHtml += '<div class="_title collaps_btn">'
+        sCourseHtml += '<a href="">'
+          sCourseHtml += oCourse.sort + '. ' + oCourse.name + '<span>+</span>'
+        sCourseHtml += '</a>'
+      sCourseHtml += '</div>'
+    sCourseHtml += '</div>'
+
+    sCourseHtml += '<div class="collaps_content">'
+    $.each(oCourse.themes, function(index, oTheme){
+      sCourseHtml += theme_html(oTheme)
+    })
+    sCourseHtml += '</div>'
+  sCourseHtml += '</div>'
+
+  return sCourseHtml
+}
+
 function courses_init(){
-  // var courses = {'courses': ''}
-  //
-  // $.ajax({
-  //   url: site_url,
-  //   data: $.extend( courses, ajax_salt ),
-  //   method: 'POST',
-  //
-  // }).fail(function(data) {
-  //   var oData = {}
-  //   oData.error = 'Ошибка соединения'
-  //   app_status( oData )
-  //   return false
-  //
-  // }).done(function(data) {
-  //   var oData = $.parseJSON(data)
-  //   content_parse(oData, 'templates/courses/item.htm', 'course collaps_block')
-  // })
+  // Параметры
+  var
+  sResultHtml = '',
+  oData = {
+    'courses': true ,
+    'themes': true
+  }
 
-  // content
-  // -- Парамтеры
-  // var
-  // courses_template = {}, // Шаблон курса
-  // courses_date = {}, // Данные курса
-  // courses_date_all_html = '' // Данные курса
+  // Загружаем курсы
+  $.ajax({
+    url: site_url,
+    data: $.extend( oData, ajax_salt ),
+    method: 'POST',
 
-  // -- Подтягиваем шаблон для курса
-  // $.post('templates/courses/item.htm', function(data){
-  //   courses_template = $.parseHTML(data)
-  //
-  //   // --- Получаем данные
-  //   var courses = {'courses': ''}
-  //   $.ajax({
-  //     url: site_url,
-  //     data: $.extend( courses, ajax_salt ),
-  //     method: 'POST',
-  //
-  //   }).fail(function(data) {
-  //     var oData = {}
-  //     oData.error = 'Ошибка соединения'
-  //     app_status( oData )
-  //     return false
-  //
-  //   }).done(function(data) {
-  //     var oData = $.parseJSON(data)
-  //
-  //     // ---- Обрабатываем результат
-  //     if ( ! oData.error ) {
-  //       courses_date = oData
-  //
-  //       // ----- Вставляем данные в шаблон
-  //       var active = '_active_' // Раскрыт только первый элемент
-  //       $.each(courses_date, function(index, item){
-  //         var course = courses_template
-  //
-  //         // ------ Заполняем данные
-  //         $.each(item, function(key, value){
-  //           $(course)
-  //           .find( '[data-key=' + key + ']' )
-  //           .html( value )
-  //         })
-  //
-  //         // ------ Выводим данные
-  //         $(document)
-  //         .find( '#courses' )
-  //         .append( '<div class="course collaps_block ' + active + '">' + $(course).html() + '</div>' )
-  //
-  //         // ------ Раскрыт только первый элемент
-  //         active = ''
-  //       })
-  //     }
-  //     else
-  //     // Ошбика
-  //     app_status( oData )
-  //   })
-  // })
-  // content x
+  }).fail(function(data) {
+    app_status( {'error': 'Ошибка соединения'} )
+    return false
 
-  // - Парамтеры
-  // oData - Данные курсы
-  // sTemplatePath - Путь к шаблону
-  // sWrapClass - Классы | Класс обёртки результатов
-  // var
-  // oTemplate = {} // Шаблон курса
-  // sResultHtml = '' // Возвращаемый результат
-  //
-  // // -- Подтягиваем шаблон для курса
-  // sResultHtml = $.post(sTemplatePath, function(data){
-  //   oTemplate = $.parseHTML(data)
-  //
-  //   // --- Обрабатываем данные
-  //   if ( ! oData.error ) {
-  //     // ---- Вставляем данные в шаблон
-  //     var sActive = '_active_' // Раскрыт только первый элемент
-  //     $.each(oData, function(index, elem){
-  //       var oTemplateTemp = oTemplate
-  //
-  //       // ----- Заполняем данные
-  //       $.each(elem, function(key, value){
-  //         $(oTemplateTemp)
-  //         .find( '[data-key=' + key + ']' )
-  //         .html( value )
-  //       })
-  //
-  //       // ----- Выводим данные
-  //       // console.log(oTemplateTemp)
-  //       sResultHtml += '<div class="' + sWrapClass + ' ' + sActive + '">'
-  //       sResultHtml += $(oTemplateTemp).html()
-  //       sResultHtml += '</div>'
-  //       // console.log(sResultHtml)
-  //
-  //       // ----- Раскрыт только первый элемент
-  //       sActive = ''
-  //     })
-  //   }
-  //   else
-  //   // Ошбика
-  //   app_status( oData )
-  // })
-  // return sResultHtml
+  }).done(function(data) {
+    var jsonCourses = $.parseJSON(data)
+    app_status( jsonCourses )
+
+    // - Обрабатываем данные
+    $.each( jsonCourses, function( index, oCourse ){
+      sResultHtml += course_html(oCourse, index)
+    })
+
+    // - Выводим данные
+    $(document)
+    .find('#courses')
+    .html(sResultHtml)
+  })
 }

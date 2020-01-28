@@ -6,16 +6,14 @@
 
 <main class="page_course">
   <div class="_content">
-    <div class="course" id="course" data-id="123">
+    <div class="course" id="course" data-id="22">
       <div class="course_info">
         <div class="_name">
           <h1>
-            1. Курс «Введение в закупки».
+            <span data-key="sort"></span>. <span data-key="name"></span>
           </h1>
         </div>
-        <div class="_text">
-          Курс «Введение в закупки».
-        </div>
+        <div class="_text" data-key="description"></div>
       </div>
 
       <div class="course_buttons">
@@ -58,3 +56,11 @@
     </div>
   </div>
 </main>
+
+<footer>
+  <script>
+    $(function(){
+      course_init()
+    })
+  </script>
+</footer>

@@ -1,5 +1,6 @@
 // params
 page_url = '' // Адрес текущей страницы
+arrPageParams = {} // Параметры загружаемой страницы
 site_url = 'https://mgappallianztc.com/' // Адрес сайта
 version = '1.1.0' // Версия приложения
 download_url = 'https://mgappallianztc.com/' // Адрес загрузки контента

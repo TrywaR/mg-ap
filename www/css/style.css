@@ -936,9 +936,6 @@ button {
       justify-content: center;
       margin-bottom: 0;
       padding-left: 1rem; }
-      .block_courses .course .collaps_head > ._title > a span,
-      .page_courses .course .collaps_head > ._title > a span {
-        display: none; }
   .block_courses .course .collaps_content,
   .page_courses .course .collaps_content {
     padding: 0.5rem 0; }
