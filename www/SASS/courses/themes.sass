@@ -1,0 +1,57 @@
+// .block_themes
+.block_themes,
+.page_themes
+  & > ._title
+
+  & > ._themes
+    .item
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      align-items: flex-start
+      padding: .5rem 0
+      margin-bottom: .5rem
+      padding-bottom: .5rem
+      border-bottom: 1px solid #FFFFFF
+
+      ._status
+        position: relative
+        z-index: 1
+        width: 5%
+        min-width: 5%
+        height: 1rem
+
+        &:after
+          content: ''
+          position: absolute
+          top: .3rem
+          right: .6rem
+          width: .6rem
+          height: .6rem
+          border-radius: 50%
+          // background: $color_success
+          background: white
+
+      ._text
+        width: 95%
+        min-width: 95%
+
+        a
+          text-decoration: none
+          color: white
+
+      ._buttons
+        width: 100%
+        padding: 2rem 0
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: space-between
+
+        .button
+          min-width: inherit
+
+      &._passed_
+        ._status
+          &:after
+            background: $color_success

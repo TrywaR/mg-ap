@@ -3,7 +3,7 @@ function profile_init(){
   $(document).find('#profile_info ._name').append( user.first_name )
   $(document).find('#profile_info ._name').append( ' ' )
   $(document).find('#profile_info ._name').append( user.last_name )
-  $(document).find('#profile_info ._points span').append( user.points )
+  $(document).find('#profile_info ._points').append( user.points + ' ' + num2str(user.points, ['балл', 'балла', 'баллов']) )
 
   if ( user.image ) {
     var profile_img = '<img src="' + site_url + user.image.substring(1).replace('/image/', '/image_min/') + '">'

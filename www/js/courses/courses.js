@@ -1,29 +1,9 @@
-function theme_html(oTheme){
-  // - html темы
-  var
-  sPassed = '',
-  sThemeHtml = ''
-
-  sThemeHtml += '<div class="item theme">'
-    sThemeHtml += '<div class="_status"></div>'
-    sThemeHtml += '<div class="_text">'
-      sThemeHtml += '<a class="content_upload" href="templates/courses/course.htm?id=' + oTheme.course_id + '">'
-        sThemeHtml += oTheme.name
-      sThemeHtml += '</a>'
-    sThemeHtml += '</div>'
-  sThemeHtml += '</div>'
-
-  return sThemeHtml
-}
-
-function course_html(oCourse, index){
+function course_html(oCourse){
   // - html курса
   var
   sActive = '',
   sPassed = '',
   sCourseHtml = ''
-
-  if ( index == 0 ) sActive = '_active_'
 
   sCourseHtml += '<div class="course collaps_block ' + sActive + '">'
     sCourseHtml += '<div class="collaps_head">'
@@ -32,16 +12,10 @@ function course_html(oCourse, index){
         sCourseHtml += '<img src="img/icons/courses_status_passed.svg" alt="">'
       sCourseHtml += '</div>'
       sCourseHtml += '<div class="_title collaps_btn">'
-        sCourseHtml += '<a href="">'
-          sCourseHtml += oCourse.sort + '. ' + oCourse.name + '<span>+</span>'
+        sCourseHtml += '<a class="content_upload" href="templates/courses/course.htm?id=' + oCourse.id + '">'
+          sCourseHtml += oCourse.sort + '. ' + oCourse.name
         sCourseHtml += '</a>'
       sCourseHtml += '</div>'
-    sCourseHtml += '</div>'
-
-    sCourseHtml += '<div class="collaps_content">'
-    $.each(oCourse.themes, function(index, oTheme){
-      sCourseHtml += theme_html(oTheme)
-    })
     sCourseHtml += '</div>'
   sCourseHtml += '</div>'
 
@@ -53,8 +27,7 @@ function courses_init(){
   var
   sResultHtml = '',
   oData = {
-    'courses': true ,
-    'themes': true
+    'courses': true
   }
 
   // Загружаем курсы

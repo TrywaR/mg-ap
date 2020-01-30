@@ -4,83 +4,17 @@
   & > ._title
   & > ._content
 
-  .thems
-    .them
+  .block_course
+    & > ._description
+      font-size: 1rem
+      line-height: 1.1
       padding: 1rem 0
-      margin-bottom: 1rem
-      border-bottom: 1px solid #FFFFFF
 
-      & > ._name
-        text-transform: uppercase
-        font-size: 1.1rem
-        line-height: 1
-        font-weight: bold
-        margin-bottom: 1rem
+  .block_themes
+    display: none
 
-      & > ._video
-        position: relative
-        margin-bottom: 1rem
-        z-index: 1
-
-        & > ._prev
-          position: absolute
-          top: 0
-          left: 0
-          right: 0
-          bottom: 0
-          z-index: 2
-          background: $color_vide_bg
-          color: white
-          transform: scale(1,1)
-          @include transition_standart
-
-          &:before
-            content: ''
-            position: absolute
-            top: 0
-            left: 0
-            right: 0
-            bottom: 0
-            background: rgb(233, 233, 233) url(../img/video_prev_img.jpg) no-repeat center center
-            background-size: cover
-            z-index: 1
-            opacity: .5
-
-          &:after
-            content: ''
-            position: absolute
-            top: 0
-            left: 0
-            right: 0
-            bottom: 0
-            width: 50px
-            height: 50px
-            margin: auto
-            border-radius: 50%
-            border: 1px solid white
-            background: url(../img/icons/courses_video_play.png) no-repeat 55% center
-            background-size: auto 15px
-            z-index: 2
-
-          &.__chek
-            &:before
-              opacity: .1
-
-            &:after
-              background: url(../img/icons/courses_video_chek.png) no-repeat center center
-              background-size: auto 15px
-
-          &._active_
-            transform: scale(0,0)
-            visibility: hidden
-
-            &:before,
-            &:after
-              display: none
-
-      & > ._video_name
-        font-size: 1rem
-        line-height: 1
+    &._show_
+      display: block
 
   .practice
     &.__passed
