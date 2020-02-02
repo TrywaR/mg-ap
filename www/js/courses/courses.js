@@ -12,7 +12,7 @@ function course_html(oCourse){
         sCourseHtml += '<img src="img/icons/courses_status_passed.svg" alt="">'
       sCourseHtml += '</div>'
       sCourseHtml += '<div class="_title collaps_btn">'
-        sCourseHtml += '<a class="content_upload" href="templates/courses/course.htm?id=' + oCourse.id + '">'
+        sCourseHtml += '<a class="content_upload" href="courses/course.htm?id=' + oCourse.id + '">'
           sCourseHtml += oCourse.sort + '. ' + oCourse.name
         sCourseHtml += '</a>'
       sCourseHtml += '</div>'

@@ -140,6 +140,9 @@ $(function(){
 
         if ( ! oData.error )
         localStorage.setItem('user', JSON.stringify(user))
+
+        // + Кнопка меню активна, для первых прибывших
+        $('#main_menu_show').removeClass('_no_active_')
       })
     }
     // Не сохраняем

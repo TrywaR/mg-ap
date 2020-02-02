@@ -12,7 +12,7 @@ function theme_html(oTheme){
     // Если есть видео, добавляем ссылки
     if ( oTheme.video_length ) {
       sThemeHtml += '<div class="_buttons">'
-      sThemeHtml += '<a class="content_upload button theory_href" href="templates/courses/theory.htm?id=' + oTheme.id + '">Пройти теорию</a>'
+      sThemeHtml += '<a class="content_upload button theory_href" href="courses/theory.htm?id=' + oTheme.id + '">Пройти теорию</a>'
       // sThemeHtml += '<a class="content_upload button practice_href" href="templates/courses/course/practice.htm">Пройти практику</a>'
       sThemeHtml += '</div>'
     }

@@ -1832,6 +1832,9 @@ header {
         border: none !important; }
       header .block_header_buttons .main_menu_show._status_ .main_menu_status {
         top: 0.5rem; }
+      header .block_header_buttons .main_menu_show._no_active_ {
+        cursor: inherit;
+        opacity: 0.5; }
       header .block_header_buttons .main_menu_show._active_ {
         transform: rotate(90deg);
         z-index: 1000; }

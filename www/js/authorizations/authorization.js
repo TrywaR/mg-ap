@@ -38,20 +38,38 @@ function authorization(){
 
     active_buttons()
 
+    // + Правим ссылку на страницу пользователя в меню
     $(document).find('#profile_page a').data('id', user.id)
 
-    if ( ! user.first_name )
-    content_upload('profiles/edit.htm')
-    else
-    content_upload('profile.htm', {'form': 'session_validation'})
-    // content_upload('templates/profiles/index.htm')
-    // content_upload('templates/profiles/index.htm')
-    return false
+    // + Если приложение уже запускалось, начинаем с последней открытой страницы
+    if ( arrPagesHistory.length > 0 ) {
+      // + Берём последнюю запись
+      var oLastPageHistory = arrPagesHistory[arrPagesHistory.length - 1]
+      // + Удаляем последнюю запись
+      arrPagesHistory = arrPagesHistory.slice(0, arrPagesHistory.length - 2)
+      // + Загружаем последнюю страницу
+      content_upload(
+        oLastPageHistory['url'],
+        oLastPageHistory
+      )
+    }
+    // + Если нет, смотрим что загрузить
+    else {
+      if ( ! user.first_name ){
+        content_upload('profiles/edit.htm?pages_history_not=true')
+        $('#main_menu_show').addClass('_no_active_')
+      }
+      else
+      content_upload('profile.htm?pages_history_not=true', {'form': 'session_validation'})
+      // content_upload('templates/profiles/index.htm')
+      // content_upload('templates/profiles/index.htm')
+    }
 
+    return false
   }
   else {
     active_buttons()
-    content_upload('templates/authorizations/authorization.htm')
+    content_upload('authorizations/authorization.htm')
   }
 }
 // authorization x

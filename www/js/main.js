@@ -4,29 +4,41 @@ arrPageParams = {} // Параметры загружаемой страницы
 site_url = 'https://mgappallianztc.com/' // Адрес сайта
 version = '1.1.0' // Версия приложения
 download_url = 'https://mgappallianztc.com/' // Адрес загрузки контента
-pages_history = [] // История страниц
-pages_history_length = 2 // Количество страниц в истории
+
+arrPagesHistory = [] // История страниц
+intPagesHistoryLimit = 3 // Максимальное количество страниц в истории
+
+// content_history = [] // История страниц
+// content_history_length = 2 // Количество страниц в истории
 session_key = '' // Ключ авторизации
 user = {} // Обьект с информацией о пользователе
 ajax_salt = {
   'app': 'app'
 }  // Необходимые параметры для ajax
-
 // user = {} // Пользователь
 // if ( ! localStorage.getItem('user') ) {
 //   localStorage.setItem('user', user)
 // }
 // params x
 
+// Элементы и классы
+oButtonBack = $(document).find('#main_menu_back') // Кнопка назад
+// Элементы и классы x
+
 // LocalStorage
-// Сессия для логирования
+// + Сессия для логирования
 if ( localStorage.getItem('session_key') ) {
   session_key = localStorage.getItem('session_key')
   ajax_salt['session_key'] = session_key
 }
 
+// + Пользователь
 if ( localStorage.getItem('user') )
-user = $.parseJSON(localStorage.getItem('user'))
+user = $.parseJSON( localStorage.getItem('user') )
+
+// + История посещений, чтобы начать с того места где закончили
+if ( localStorage.getItem('arrPagesHistory') )
+arrPagesHistory = $.parseJSON( localStorage.getItem('arrPagesHistory') )
 // LocalStorage x
 
 // num2str
@@ -74,64 +86,6 @@ function scroll_to(elem, fix_size, scroll_time){
   }, scroll_time)
 }
 // scroll_to x
-
-// page_prev
-function page_prev(href, data){
-  // href - Шаблон предыдущей страницы
-  // data - Данные предыдущей страницы
-
-  if ( href ) {
-    // Проверяем урвоень вложенности
-    arrInner = href.split('/')
-
-    // Если вложенная то добавляем в историю
-    if ( arrInner.length > 2 ) {
-      // Если больше 1 в истории, ввыодим кнопку назад
-      if ( pages_history.length > 1 ) {
-        // Пишем историю
-        pages_history.push( href )
-
-        // Если в истории больше чем нужно, обрезаем историю
-        if ( pages_history.length >= pages_history_length ) {
-          // Обрезаем массив
-          pages_history = pages_history.slice(pages_history_length * - 1)
-          // Выводим кнопку
-          $(document).find('#main_menu_back').addClass('_active_')
-        }
-      }
-      // Если нет
-      else {
-        // Если 1, то добавляем ссылочку и скрываем кнопку
-        if ( pages_history.length == 1 ) {
-          // Добавляем в массив
-          pages_history.push( href )
-          // Скрываем кнопку
-          $(document).find('#main_menu_back').addClass('_active_')
-        }
-      }
-    }
-    // Если нет удаляеи из истории
-    else {
-      // Чистим историю
-      pages_history = []
-      // Скрываем кнопку назад
-      $(document).find('#main_menu_back').removeClass('_active_')
-    }
-
-    // Если массив пустой но ссылка есть, добавляем ссыль в историю
-    if ( pages_history.length == 0 && href.length > 0 ) {
-      pages_history.push( href )
-      // Скрываем кнопку
-      $(document).find('#main_menu_back').removeClass('_active_')
-    }
-  }
-  else{
-    pages_history = []
-    // Скрываем кнопку
-    $(document).find('#main_menu_back').removeClass('_active_')
-  }
-}
-// page_prev x
 
 // app_status
 // - Уведомления пользователю в приложухе
@@ -209,18 +163,8 @@ $(function(){
       })
   // fix_size x
 
-  // page_prev
-  $(document).on('click', '#main_menu_back', function(){
-    if (pages_history.length) {
-      content_upload(pages_history[pages_history.length - pages_history_length])
-      page_prev()
-      $(document).find('#main_menu_back').removeClass('_active_')
-    }
-  })
-  // page_prev x
-
   // main_menu
-  $(document).on('click', '#main_menu_show', function(){
+  $(document).on('click', '#main_menu_show:not(._no_active_)', function(){
     $(this).toggleClass('_active_')
     $('#main_menu').toggleClass('_active_')
     $('body').toggleClass('_no_active_')
