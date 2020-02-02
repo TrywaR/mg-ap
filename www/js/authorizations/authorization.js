@@ -3,12 +3,8 @@ function authorization(){
   // Если пользователь авторизирован
   if ( session_key ) {
     // - Проверка ключа сесси, и обновление данных о пользователе
-    var
-    oData = {'form': 'session_validation'},
-    oData = $.extend(user, ajax_salt, oData)
-
     $.when(
-      content_download(oData)
+      content_download({'form': 'session_validation'})
 
     ).done( function( resultData ){
       var oData = $.parseJSON(resultData)
