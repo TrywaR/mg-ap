@@ -6,7 +6,7 @@ function authorization(){
     var
     form = {'form': 'session_validation'},
     data = $.extend(user, ajax_salt, form)
-    
+
     $.ajax({
       url: site_url,
       data: data,
@@ -38,10 +38,14 @@ function authorization(){
 
     active_buttons()
 
+    $(document).find('#profile_page a').data('id', user.id)
+
     if ( ! user.first_name )
-    content_upload('templates/profiles/edit.htm')
+    content_upload('profiles/edit.htm')
     else
-    content_upload('templates/profiles/index.htm')
+    content_upload('profile.htm', {'form': 'session_validation'})
+    // content_upload('templates/profiles/index.htm')
+    // content_upload('templates/profiles/index.htm')
     return false
 
   }

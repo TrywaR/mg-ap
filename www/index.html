@@ -19,34 +19,36 @@
     <!-- main -->
     <link rel="stylesheet" href="css/style.min.css?v=4.25">
     <script src="js/main.min.js?v=4.25"></script>
-    <script src="js/content.min.js?v=4.25"></script>
+    <script src="js/content.js?v=4.25"></script>
     <!-- main -->
 
     <!-- Авторизация -->
-    <script src="js/authorizations/authorization.min.js?v=4.25"></script>
-    <script src="js/authorizations/password-new_form.min.js?v=4.25"></script>
+    <script defer src="js/authorizations/authorization.min.js?v=4.25"></script>
+    <script defer src="js/authorizations/password-new_form.min.js?v=4.25"></script>
     <!-- Регистрация -->
-    <script src="js/authorizations/registration.min.js?v=4.25"></script>
+    <script defer src="js/authorizations/registration.min.js?v=4.25"></script>
     <!-- Профиль -->
-    <script src="js/profiles/profiles.min.js?v=4.25"></script>
-    <script src="js/profiles/edit.min.js?v=4.25"></script>
+    <script defer src="js/profiles/profiles.min.js?v=4.25"></script>
+    <script defer src="js/profiles/edit.min.js?v=4.25"></script>
     <!-- Пользователи -->
-    <script src="js/members/members.min.js?v=4.25"></script>
+    <script defer src="js/members/members.min.js?v=4.25"></script>
     <!-- Тренеры -->
-    <script src="js/trainers/trainers.min.js?v=4.25"></script>
+    <script defer src="js/trainers/trainers.min.js?v=4.25"></script>
     <!-- Чат -->
-    <script src="js/chats/chats.min.js?v=4.25"></script>
-    <script src="js/chats/chat.min.js?v=4.25"></script>
+    <script defer src="js/chats/chats.min.js?v=4.25"></script>
+    <script defer src="js/chats/chat.min.js?v=4.25"></script>
     <!-- Поддержка -->
-    <script src="js/support/support.min.js?v=4.25"></script>
+    <script defer src="js/support/support.min.js?v=4.25"></script>
+    <!-- Страницы -->
+    <script defer src="js/pages/pages.min.js?v=4.25"></script>
     <!-- Ондайн поддержка -->
-    <!-- <script src="js/support/online_support.min.js?v=4.25"></script> -->
+    <!--  defer<script src="js/support/online_support.min.js?v=4.25"></script> -->
     <!-- Курсы -->
-    <script src="js/courses/courses.min.js?v=4.25"></script>
-    <script src="js/courses/course.min.js?v=4.25"></script>
-    <script src="js/courses/video.min.js?v=4.25"></script>
-    <script src="js/courses/theory.min.js?v=4.25"></script>
-    <script src="js/courses/test.min.js?v=4.25"></script>
+    <script defer src="js/courses/courses.min.js?v=4.25"></script>
+    <script defer src="js/courses/course.min.js?v=4.25"></script>
+    <script defer src="js/courses/video.min.js?v=4.25"></script>
+    <script defer src="js/courses/theory.min.js?v=4.25"></script>
+    <script defer src="js/courses/test.min.js?v=4.25"></script>
     <!-- Курсы x-->
 </head>
 <body class="_load_">
@@ -69,58 +71,58 @@
     <div id="main_menu" class="block_main_menu">
       <nav class="main_menu">
         <ul>
-          <li class="page_profile _active_">
-            <a class="content_upload" href="templates/profile.htm">
+          <li class="page_profile" id="profile_page">
+            <a class="content_upload" href="profile.htm" data-users="user">
               Профиль
             </a>
           </li>
           <!-- <li class="page_chats">
-            <a class="content_upload" href="templates/chats.htm">
+            <a class="content_upload" href="chats.htm">
               Чаты
             </a>
           </li> -->
           <li class="page_schedule">
-            <a class="content_upload" href="templates/schedule.htm">
+            <a class="content_upload" href="schedule.htm">
               Расписание
             </a>
           </li>
           <li class="page_courses">
-            <a class="content_upload" href="templates/courses/index.htm">
+            <a class="content_upload" href="courses/index.htm">
               Курсы
             </a>
           </li>
           <!-- <li class="page_members">
-            <a class="content_upload" href="templates/members.htm" data-content="templates/members/data.json">
+            <a class="content_upload" href="members.htm" data-content="members/data.json">
               Участники
             </a>
           </li> -->
           <!-- <li class="page_trainers">
-            <a class="content_upload" href="templates/trainers.htm">
+            <a class="content_upload" href="trainers.htm">
               Тренеры
             </a>
           </li> -->
           <li class="page_online_support">
-            <a class="content_upload" href="templates/support/support.htm">
+            <a class="content_upload" href="support/support.htm">
               Поддержка
             </a>
           </li>
           <!-- <li class="page_online_support">
-            <a class="content_upload" href="templates/support/online_support.htm">
+            <a class="content_upload" href="support/online_support.htm">
               Онлайн поддержка
             </a>
           </li> -->
           <!-- <li class="page_faq">
-            <a class="content_upload" href="templates/faq.htm">
+            <a class="content_upload" href="faq.htm">
               F.A.Q
             </a>
           </li> -->
           <li class="page_privacy">
-            <a class="content_upload" href="templates/privacy.htm">
+            <a class="content_upload" href="privacy.htm">
               О программе
             </a>
           </li>
-          <li class="page_privacy">
-            <a id="profile_exit">
+          <li class="app_exit" id="profile_exit">
+            <a href="">
               Выход
             </a>
           </li>

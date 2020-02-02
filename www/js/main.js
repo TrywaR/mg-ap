@@ -216,9 +216,6 @@ $(function(){
       page_prev()
       $(document).find('#main_menu_back').removeClass('_active_')
     }
-    else {
-      // console.log('ne ok 2')
-    }
   })
   // page_prev x
 
@@ -227,14 +224,6 @@ $(function(){
     $(this).toggleClass('_active_')
     $('#main_menu').toggleClass('_active_')
     $('body').toggleClass('_no_active_')
-
-    return false
-  })
-  $(document).on('click', '#main_menu li a', function(){
-    $(this).parents('li').addClass('_active_').siblings().removeClass('_active_')
-    $('#main_menu_show').removeClass('_active_')
-    $('#main_menu').removeClass('_active_')
-    $('body').removeClass('_no_active_')
 
     return false
   })
