@@ -14,7 +14,6 @@ function menu_add(oData){
 
 // content_template
 function content_template( sUrl ){
-  console.log('content_template')
   // sUrl - Открываемая страница
   // sTemplatePath - Путь к шаблону
 
@@ -53,7 +52,6 @@ function content_template( sUrl ){
 
 // content_download
 function content_download( oData ){
-  console.log('content_download')
   // oData - Какие данные запросить
 
   // Получаем данные

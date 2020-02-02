@@ -4,22 +4,14 @@ function authorization(){
   if ( session_key ) {
     // - Проверка ключа сесси, и обновление данных о пользователе
     var
-    form = {'form': 'session_validation'},
-    data = $.extend(user, ajax_salt, form)
+    oData = {'form': 'session_validation'},
+    oData = $.extend(user, ajax_salt, oData)
 
-    $.ajax({
-      url: site_url,
-      data: data,
-      method: 'POST',
+    $.when(
+      content_download(oData)
 
-    }).fail(function(data) {
-      var oData = {}
-      oData.error = 'Ошибка соединения'
-      app_status( oData )
-      return false
-
-    }).done(function(data) {
-      var oData = $.parseJSON(data)
+    ).done( function( resultData ){
+      var oData = $.parseJSON(resultData)
 
       // - Успешно вошли, 300 чашек чаю, этому господину
       if ( ! oData.error ) {
@@ -59,14 +51,14 @@ function authorization(){
         content_upload('profiles/edit.htm?pages_history_not=true')
         $('#main_menu_show').addClass('_no_active_')
       }
-      else
-      content_upload('profile.htm?pages_history_not=true', {'form': 'session_validation'})
-      // content_upload('templates/profiles/index.htm')
-      // content_upload('templates/profiles/index.htm')
+      else {
+        content_upload('profile.htm?pages_history_not=true', {'user': user.id})
+      }
     }
 
     return false
   }
+  // Перекидываем на авторизацию
   else {
     active_buttons()
     content_upload('authorizations/authorization.htm')
