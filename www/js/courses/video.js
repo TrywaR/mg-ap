@@ -54,8 +54,10 @@ function video_checker(){
               app_status( jsonUser )
 
               // Обновляем информацию о пользователе
-              if ( jsonUser.id > 0 )
-              user = jsonUser
+              if ( jsonUser.id > 0 ) {
+                user = jsonUser
+                localStorage.setItem('user', JSON.stringify(user))
+              }
             }
           })
 

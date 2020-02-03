@@ -6,7 +6,7 @@ version = '1.1.0' // Версия приложения
 download_url = 'https://mgappallianztc.com/' // Адрес загрузки контента
 
 arrPagesHistory = [] // История страниц
-intPagesHistoryLimit = 3 // Максимальное количество страниц в истории
+intPagesHistoryLimit = 4 // Максимальное количество страниц в истории
 
 // content_history = [] // История страниц
 // content_history_length = 2 // Количество страниц в истории

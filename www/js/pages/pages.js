@@ -23,18 +23,20 @@ function pages_init(){
 
 $(function(){
   // - Выводим в меню
-  $.when( content_download({'pages': 'when', 'menu_show': 1}) )
-  .then( function(resultData){
-    if ( resultData ) {
-      jsonPages = $.parseJSON( resultData )
-      $.each( jsonPages, function(index, elem){
-        var oData = {
-          'title': elem.title,
-          'href': 'pages/index.htm?id=' + elem.id,
-          'class': elem.id
-        }
-        menu_add(oData)
-      })
-    }
-  })
+  if ( session_key ) {
+    $.when( content_download({'pages': 'when', 'menu_show': 1}) )
+    .then( function(resultData){
+      if ( resultData ) {
+        jsonPages = $.parseJSON( resultData )
+        $.each( jsonPages, function(index, elem){
+          var oData = {
+            'title': elem.title,
+            'href': 'pages/index.htm?id=' + elem.id,
+            'class': elem.id
+          }
+          menu_add(oData)
+        })
+      }
+    })
+  }
 })

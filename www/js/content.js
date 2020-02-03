@@ -53,25 +53,32 @@ function content_template( sUrl ){
 // content_download
 function content_download( oData ){
   // oData - Какие данные запросить
+  if (
+    session_key
+    && oData
+  ) {
+    // Получаем данные
+    return $.ajax({
+      url: site_url,
+      data: $.extend( oData, ajax_salt ),
+      method: 'POST'
 
-  // Получаем данные
-  return $.ajax({
-    url: site_url,
-    data: $.extend( oData, ajax_salt ),
-    method: 'POST'
+    })
+    .fail(function(data){
+      app_status({'error': 'Ошибка соединения'})
 
-  })
-  .fail(function(data){
-    app_status({'error': 'Ошибка соединения'})
+    })
+    .done(function( data ){
+      if ( data ) {
+        ajaxResult = $.parseJSON( data )
+        app_status(ajaxResult)
+      }
 
-  })
-  .done(function( data ){
-    if ( data ) {
-      ajaxResult = $.parseJSON( data )
-      app_status(ajaxResult)
-    }
-
-  })
+    })
+  }
+  else {
+    return false
+  }
 }
 // content_download x
 

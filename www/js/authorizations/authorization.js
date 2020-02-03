@@ -48,7 +48,7 @@ function authorization(){
         $('#main_menu_show').addClass('_no_active_')
       }
       else {
-        content_upload('profile.htm?pages_history_not=true', {'user': user.id})
+        content_upload('profile.htm?pages_history_not=true', {'users': 'users', 'id': user.id})
       }
     }
 
@@ -57,7 +57,7 @@ function authorization(){
   // Перекидываем на авторизацию
   else {
     active_buttons()
-    content_upload('authorizations/authorization.htm')
+    content_upload('authorizations/authorization.htm?pages_history_not=true')
   }
 }
 // authorization x
