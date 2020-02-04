@@ -56,6 +56,7 @@ function content_download( oData ){
   if (
     session_key
     && oData
+    // && ! oData['url']
   ) {
     // Получаем данные
     return $.ajax({
@@ -166,7 +167,7 @@ function content_history(){
   if ( arrPageParams['url'] ) {
     // + Если страница открыта с кнопок меню, обнуляем историю
     if ( arrPageParams['pages_history_clear'] ) {
-      arrPageParams['pages_history_clear'] = false
+      // arrPageParams['pages_history_clear'] = false
       arrPagesHistory = []
     }
 

@@ -28,28 +28,27 @@ $(function(){
   // Чистка ввода почты х
 
   $(document).on('submit', '#registration_form', function(){
-
+    console.log($(this).serializeArray())
     $.ajax({
       url: site_url,
-      data: $(this).serializeArray(),
-      method: 'POST',
-    }).fail(function(data) {
-      var oData = {}
-      oData.error = 'Ошибка соединения'
-      registration_message( oData )
-      return false
+      data: $.extend( $(this).serializeArray(), ajax_salt ),
+      method: 'POST'
 
-    }).done(function(data) {
-      var oData = $.parseJSON(data)
+    })
+    .fail(function(data){
+      app_status({'error': 'Ошибка соединения'})
 
-      // - Успешно вошли, 300 чашек чаю, этому господину
-      if ( ! oData.error ) {
-        app_status( oData )
-        content_upload('templates/authorizations/authorization.htm')
-      }
-      // - Выводим ошибки
-      else {
-        registration_message( oData )
+    })
+    .done(function( data ){
+      if ( data ) {
+        ajaxResult = $.parseJSON( data )
+        if ( ! ajaxResult.error ) {
+          app_status(ajaxResult)
+          authorization()
+        }
+        else {
+          registration_message( ajaxResult )
+        }
       }
     })
 

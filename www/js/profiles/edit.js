@@ -13,13 +13,16 @@ function profile_edit_validate() {
 
   if ( $(document).find('#input_name').val() == user.first_name )
   if ( $(document).find('#input_last_name').val() == user.last_name )
-  if ( $(document).find('#profile_img input').attr('val') == user.image )
   validate = false
 
+  if ( $(document).find('#profile_img input').attr('val') )
+  if ( $(document).find('#profile_img input').attr('val') != user.image )
+  validate = true
+
   if ( validate )
-  $(document).find('#profile_info_save').addClass('_active_ content_upload')
+  $(document).find('#profile_info_save').addClass('_active_')
   else
-  $(document).find('#profile_info_save').removeClass('_active_ content_upload')
+  $(document).find('#profile_info_save').removeClass('_active_')
 }
 // profile_edit_validate x
 
@@ -86,6 +89,10 @@ $(function(){
         if ( data.indexOf('uploads') + 1 ) {
           // user.image = oData;
           // localStorage.setItem('user', JSON.stringify(user))
+          if ($(document).find('#profile_img label').hasClass('__default')) {
+            $(document).find('#profile_img label').removeClass('__default')
+            $(document).find('#profile_img label').append('<img></img>')
+          }
 
           $(document).find('#profile_img').find('input').attr('val', data)
           $(document).find('#profile_img').find('img').attr('src', site_url + data.substring(1).replace('/image/', '/image_min/') )
@@ -127,22 +134,23 @@ $(function(){
         method: 'POST',
 
       }).fail(function(data) {
-        var oData = {}
-        oData.error = 'Ошибка соединения'
-        authorization_message( oData )
+        app_status( {'error': 'Ошибка соединения' } )
         return false
 
       }).done(function(data) {
-        var oData = $.parseJSON(data)
+        if (data) {
+          var oData = $.parseJSON(data)
+          // - Сообщаем результат
+          app_status( oData )
 
-        // - Сообщаем результат
-        app_status( oData )
+          if ( ! oData.error ){
+            localStorage.setItem('user', JSON.stringify(user))
+            $(document).find('#profile_info_save').removeClass('_active_')
+          }
 
-        if ( ! oData.error )
-        localStorage.setItem('user', JSON.stringify(user))
-
-        // + Кнопка меню активна, для первых прибывших
-        $('#main_menu_show').removeClass('_no_active_')
+          // + Кнопка меню активна, для первых прибывших
+          $('#main_menu_show').removeClass('_no_active_')
+        }
       })
     }
     // Не сохраняем

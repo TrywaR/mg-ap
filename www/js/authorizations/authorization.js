@@ -86,7 +86,7 @@ $(function(){
   authorization()
 
   // Чистка ввода логина
-  $(document).on ('input', '#authorization_form input[name="login"]', function(){
+  $(document).on ('input', '#authorization_form input[name="email"]', function(){
     var text = $(this).val().replace(/\s/g, '')
     $(this).val( text.toLowerCase() )
   })
