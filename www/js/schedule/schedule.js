@@ -6,7 +6,7 @@ function schedule_time_html(oCourses, intTime){
   sTimeHtml = ''
 
   sTimeHtml += '<div class="_text">'
-    sTimeHtml += '<a class="content_upload" href="templates/courses/single.htm">'
+    sTimeHtml += '<a class="content_upload" href="courses/course.htm?id=' + oCourses.id + '">'
       sTimeHtml += oCourses.name + '<br/> <small>Срок прохождения до '
       sTimeHtml += oCourses.stop_day + ' '
       sTimeHtml += oCourses.stop_month + '</small>'
