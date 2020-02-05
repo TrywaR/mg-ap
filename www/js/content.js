@@ -2,7 +2,7 @@ function menu_add(oData){
   var
   htmlNewMenuItem =
   '<li class="page_' + oData.class + '">' +
-    '<a class="content_upload" href="' + oData.href + '">' +
+    '<a class="content_upload" data-pages_history_clear="true" href="' + oData.href + '">' +
       oData.title +
     '</a>' +
   '</li>'
