@@ -1435,6 +1435,10 @@ button {
       .page_schedule .month .day > ._text a {
         text-decoration: none;
         color: white; }
+        .block_schedule .month .day > ._text a small,
+        .page_schedule .month .day > ._text a small {
+          margin-top: 0.5rem;
+          font-size: 0.9rem; }
 
 .block_chats > ._title .input,
 .page_chats > ._title .input {
