@@ -5,7 +5,10 @@ function course_html(oCourse){
   sPassed = '',
   sCourseHtml = ''
 
-  sCourseHtml += '<div class="course collaps_block ' + sActive + '">'
+  if (oCourse.passed == 100)
+  sPassed = '_passed_'
+
+  sCourseHtml += '<div class="course collaps_block ' + sActive + ' ' + sPassed + '">'
     sCourseHtml += '<div class="collaps_head">'
       sCourseHtml += '<div class="_icon">'
         sCourseHtml += '<img src="img/icons/courses_status.svg" alt="">'
@@ -27,7 +30,8 @@ function courses_init(){
   var
   sResultHtml = '',
   oData = {
-    'courses': true
+    'courses': true,
+    'progress': true
   }
 
   // Загружаем курсы

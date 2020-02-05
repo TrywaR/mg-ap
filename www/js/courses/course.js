@@ -4,7 +4,10 @@ function theme_html(oTheme){
   sPassed = '',
   sThemeHtml = ''
 
-  sThemeHtml += '<div class="item theme">'
+  if (oTheme.passed == 100)
+  sPassed = '_passed_'
+
+  sThemeHtml += '<div class="item theme ' + sPassed + '">'
     sThemeHtml += '<div class="_status"></div>'
     sThemeHtml += '<div class="_text">'
       sThemeHtml += oTheme.name
@@ -28,6 +31,7 @@ function course_init(){
     sResultHtml = '',
     oData = {
       'course': arrPageParams['id'],
+      'progress': true,
       'themes': true,
       'video_length': true,
     }

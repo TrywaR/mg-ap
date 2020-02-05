@@ -989,7 +989,7 @@ button {
 .page_course .block_course > ._description {
   font-size: 1rem;
   line-height: 1.1;
-  padding: 1rem 0; }
+  padding: 0 0 1rem; }
 .block_course .block_themes,
 .page_course .block_themes {
   display: none; }
@@ -1018,10 +1018,7 @@ button {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding: 0.5rem 0;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #FFFFFF; }
+  padding: 0.5rem 0; }
   .block_themes > ._themes .item ._status,
   .page_themes > ._themes .item ._status {
     position: relative;
@@ -1034,13 +1031,15 @@ button {
       content: "";
       position: absolute;
       top: 0.3rem;
-      right: 0.6rem;
-      width: 0.6rem;
-      height: 0.6rem;
+      right: 0.5rem;
+      width: 0.5rem;
+      height: 0.5rem;
       border-radius: 50%;
       background: white; }
   .block_themes > ._themes .item ._text,
   .page_themes > ._themes .item ._text {
+    font-size: 1rem;
+    line-height: 1;
     width: 95%;
     min-width: 95%; }
     .block_themes > ._themes .item ._text a,
@@ -1050,7 +1049,7 @@ button {
   .block_themes > ._themes .item ._buttons,
   .page_themes > ._themes .item ._buttons {
     width: 100%;
-    padding: 2rem 0;
+    padding: 0.5rem 0 0.5rem;
     display: flex;
     flex-direction: row;
     align-items: center;
