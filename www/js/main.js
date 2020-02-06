@@ -42,10 +42,9 @@ arrPagesHistory = $.parseJSON( localStorage.getItem('arrPagesHistory') )
 
 
 if ( localStorage.getItem('session_key') ) {
-  form_data = localStorage.getItem('session_key')
   $.ajax({
     url: site_url,
-    data: form_data,
+    data: {'progress_user': localStorage.getItem('session_key') },
     method: 'POST'
 
   })
