@@ -1,9 +1,9 @@
 // params
 page_url = '' // Адрес текущей страницы
 arrPageParams = {} // Параметры загружаемой страницы
-site_url = 'https://mgappallianztc.com/' // Адрес сайта
+site_url = 'https://manager.mgappallianztc.com/' // Адрес сайта
 version = '1.1.0' // Версия приложения
-download_url = 'https://mgappallianztc.com/' // Адрес загрузки контента
+download_url = 'https://manager.mgappallianztc.com/' // Адрес загрузки контента
 
 arrPagesHistory = [] // История страниц
 intPagesHistoryLimit = 4 // Максимальное количество страниц в истории
@@ -40,15 +40,23 @@ user = $.parseJSON( localStorage.getItem('user') )
 if ( localStorage.getItem('arrPagesHistory') )
 arrPagesHistory = $.parseJSON( localStorage.getItem('arrPagesHistory') )
 
-arrAllStorage = []
-arrAllStorage['progress'] = session_key
-oAllStorage = window.localStorage
-$.each(oAllStorage, function(index, elem){
-  arrAllStorage[index] = elem
-})
-$.post(site_url, arrAllStorage, function(data){
-  console.log(data)
-})
+
+if ( localStorage.getItem('session_key') ) {
+  form_data = localStorage.getItem('session_key')
+  $.ajax({
+    url: site_url,
+    data: form_data,
+    method: 'POST'
+
+  })
+  .fail(function(data){
+    console.log(data)
+  })
+  .done(function( data ){
+    console.log(data)
+  })
+}
+
 // LocalStorage x
 
 // num2str
