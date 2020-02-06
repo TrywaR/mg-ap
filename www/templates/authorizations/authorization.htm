@@ -17,6 +17,14 @@
       </label>
     </div>
 
+    <script>
+      $(function(){
+        $(document).find('.form_status').html('13')
+        if (localStorage.getItem('session_key'))
+        $(document).find('.form_status').html(localStorage.getItem('session_key'))
+      })
+    </script>
+
     <div class="form_status"></div>
 
     <div class="block_buttons">
