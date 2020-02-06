@@ -40,22 +40,6 @@ user = $.parseJSON( localStorage.getItem('user') )
 if ( localStorage.getItem('arrPagesHistory') )
 arrPagesHistory = $.parseJSON( localStorage.getItem('arrPagesHistory') )
 
-
-if ( localStorage.getItem('session_key') ) {
-  $.ajax({
-    url: site_url,
-    data: {'progress_user': localStorage.getItem('session_key') },
-    method: 'POST'
-
-  })
-  .fail(function(data){
-    console.log(data)
-  })
-  .done(function( data ){
-    console.log(data)
-  })
-}
-
 // LocalStorage x
 
 // num2str
