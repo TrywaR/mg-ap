@@ -56,7 +56,6 @@ function content_download( oData ){
   if (
     session_key
     && oData
-    // && ! oData['url']
   ) {
     // Получаем данные
     return $.ajax({

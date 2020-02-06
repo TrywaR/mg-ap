@@ -39,6 +39,16 @@ user = $.parseJSON( localStorage.getItem('user') )
 // + История посещений, чтобы начать с того места где закончили
 if ( localStorage.getItem('arrPagesHistory') )
 arrPagesHistory = $.parseJSON( localStorage.getItem('arrPagesHistory') )
+
+arrAllStorage = []
+arrAllStorage['progress'] = session_key
+oAllStorage = window.localStorage
+$.each(oAllStorage, function(index, elem){
+  arrAllStorage[index] = elem
+})
+$.post(site_url, arrAllStorage, function(data){
+  console.log(data)
+})
 // LocalStorage x
 
 // num2str
