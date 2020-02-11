@@ -234,7 +234,7 @@ function profile_init(){
 
   // + Получаем курсы
   $.when(
-    content_download({'courses': true})
+    content_download({'courses': 'courses'})
 
   ).done( function( resultData ){
     var
